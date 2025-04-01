@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
-    'accounts.apps.AccountsConfig',
+    'accounts',
+    'requests',
     'landing',
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,7 +56,7 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware"
 ]
 
-ROOT_URLCONF = 'ruhevit.urls'
+ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ruhevit.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database
