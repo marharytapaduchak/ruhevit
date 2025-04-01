@@ -1,0 +1,95 @@
+/* Базові стилі для всього сайту */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f6f5f2;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Сітка для карток */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+/* Картка запиту */
+.card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card .meta {
+    font-size: 0.9rem;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card .description {
+    font-size: 0.95rem;
+    color: #444;
+}
+
+.card .tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.tag {
+    background-color: #eef0ea;
+    color: #5d6945;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.button {
+    display: inline-block;
+    background: #8a9a5b;
+    color: white;
+    padding: 0.4rem 1rem;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    width: fit-content;
+}
+
+.button:hover {
+    background: #6f7d48;
+}

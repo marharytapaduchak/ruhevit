@@ -1,0 +1,30 @@
+{% extends "core/base.html" %}
+
+{% block title %}Актуальні запити{% endblock %}
+
+{% block content %}
+<h2>Актуальні запити</h2>
+
+<div class="card-grid">
+    {% for req in requests %}
+        <div class="card">
+            <h3>{{ req.name }}</h3>
+            <div class="meta">
+                Статус: <strong>{{ req.get_status_display }}</strong><br>
+                Власник: {{ req.owner.username }}<br>
+                Пріоритет: {{ req.get_priority_display }}<br>
+                Локація: {{ req.get_location_display }}
+            </div>
+            <p>{{ req.description|truncatewords:20 }}</p>
+            <div class="tags">
+                <span class="tag">{{ req.get_type_display }}</span>
+                <span class="tag">{{ req.get_priority_display }}</span>
+                <span class="tag">{{ req.get_location_display }}</span>
+            </div>
+            <a href="#" class="button">Детальніше</a>
+        </div>
+    {% empty %}
+        <p>Наразі немає запитів.</p>
+    {% endfor %}
+</div>
+{% endblock %}
