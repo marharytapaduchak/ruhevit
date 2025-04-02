@@ -1,5 +1,97 @@
 [
 {
+  "model": "accounts.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$z71fa6GSnuiHpNEsJyTmSg$cJTq7CE7IpTEFPU39CcEQ1K2Id3eDyGPoAycQgfT+T8=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "military1",
+    "first_name": "",
+    "last_name": "",
+    "email": "military1@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-01T20:09:03.740Z",
+    "name": "Military1",
+    "surname": "Тестовий",
+    "type": "military",
+    "photo": "",
+    "description": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$qoCmIfChCT5hoOAc5CY6Ei$mhGBHd+GF7zwBN676HiDj5SBeKBLrZn3n+vEakRxUq0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "volunteer1",
+    "first_name": "",
+    "last_name": "",
+    "email": "volunteer1@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-01T20:09:03.960Z",
+    "name": "Volunteer1",
+    "surname": "Тестовий",
+    "type": "volunteer",
+    "photo": "",
+    "description": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$6KciSZpf8V69zHjOQOr06F$abpugdM9Ld8+ru1LQ1gdC/2Y+dAyfjLEToIwhnbgzPw=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "admin1",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin1@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2025-04-01T20:09:04.173Z",
+    "name": "Admin1",
+    "surname": "Тестовий",
+    "type": "admin",
+    "photo": "",
+    "description": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$870000$KLjpAyRMRQxXHFa9qSL8gn$HZ9wEAOVJADDeK5SNIzzDHl/MtrGQJ58QDhnQicrOk0=",
+    "last_login": "2025-04-01T20:33:50.078Z",
+    "is_superuser": true,
+    "username": "maryna",
+    "first_name": "",
+    "last_name": "",
+    "email": "maryna.ohinska@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-04-01T20:14:32.817Z",
+    "name": "",
+    "surname": "",
+    "type": "",
+    "photo": "",
+    "description": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "requests.request",
   "pk": 1,
   "fields": {
