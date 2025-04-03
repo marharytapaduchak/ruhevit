@@ -1,4 +1,4 @@
-# ruhevit_team6
+# Ruhevit
 
 Make migrations
 ```bash
