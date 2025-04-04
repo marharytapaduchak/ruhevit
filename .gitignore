@@ -18,24 +18,4 @@ __pycache__/
 # IDEs and editors
 .vscode/
 .idea/
-# Virtual environment
-venv/
-env/
-
-# Byte-compiled / cache files
-__pycache__/
-*.py[cod]
-*.sqlite3
-
-# Django static and media files
-/static/
-/media/
-
-# Logs and local environment
-*.log
-.env
-
-# IDEs and editors
-.vscode/
-.idea/
 .DS_Store
