@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ukrainian">
   <head>
@@ -26,7 +27,7 @@
         background: var(--dl-color-theme-neutral-light);
         fill: var(--dl-color-theme-neutral-dark);
       }
-      
+
       :root {
         --dl-color-theme-neutral-dark: #333333;
         --dl-color-theme-neutral-light: #f5f5f5;
@@ -60,8 +61,9 @@
       rel="stylesheet"
       href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
     />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="index.css" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'accounts/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'accounts/index.css' %}" />
   </head>
   <body>
     <div>
@@ -73,11 +75,6 @@
             </div>
             <div class="frame15432-getstarted1">
               <span class="frame15432-text11">Зареєструватись</span>
-              <img
-                src="public/external/line14181-xgpq.svg"
-                alt="Line14181"
-                class="frame15432-line11"
-              />
               <div class="frame15432-frame511">
                 <span class="frame15432-text12">Email</span>
                 <div class="frame15432-frame241">
@@ -90,7 +87,7 @@
                     <div class="role-option active" data-role="Волонтер">Волонтер</div>
                     <div class="role-option" data-role="Військовий">Військовий</div>
                 </div>
-              </div>                       
+              </div>
               <div class="frame15432-frame971">
                 <span class="frame15432-text17">Пароль</span>
                 <div class="frame15432-frame243">
@@ -106,11 +103,7 @@
               <div class="frame15432-frame100">
                 <span class="frame15432-text21">Підтвердити особу</span>
                 <div class="frame15432-frame122">
-                  <img
-                    src="public/external/unnamed11524-8ok-200h.png"
-                    alt="unnamed11524"
-                    class="frame15432-unnamed1"
-                  />
+                  <img src="{% static 'accounts/images/diia_logo.png' %}">
                 </div>
               </div>
               <div class="frame15432-frame981">
@@ -120,7 +113,7 @@
                 <span class="frame15432-text23">
                   <span class="frame15432-text24">Вже маєте акаунт?</span>
                   <span class="frame15432-text25"></span>
-                  <a href="login.html"><span>Увійти</span></a>
+                  <a href="{% url 'login' %}"><span style="color: #F9A826;">Увійти</span></a>
                 </span>
               </div>
             </div>
@@ -148,7 +141,7 @@
                 });
               });
               const createAccountButton = document.querySelector('.frame15432-add1');
-              
+
               if (createAccountButton) {
                 createAccountButton.addEventListener('mouseenter', function() {
                   this.style.backgroundColor = '#e0e0e0';
@@ -156,44 +149,44 @@
                   this.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
                   this.style.cursor = 'pointer';
                 });
-    
+
                 createAccountButton.addEventListener('mouseleave', function() {
                   this.style.backgroundColor = '';
                   this.style.transform = 'scale(1)';
                   this.style.boxShadow = '';
                 });
-                
+
                 createAccountButton.addEventListener('mousedown', function() {
                   this.style.transform = 'scale(0.98)';
                   this.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
                 });
-                
+
                 createAccountButton.addEventListener('mouseup', function() {
                   this.style.transform = 'scale(1.03)';
                   this.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.1)';
                 });
-                
+
                 createAccountButton.addEventListener('click', function() {
                   const email = document.querySelector('input[type="email"]').value;
                   const password = document.querySelectorAll('input[type="password"]')[0].value;
                   const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
                   const role = document.querySelector('.role-option.active').getAttribute('data-role');
-                  
+
                   if (!email) {
                     alert('Будь ласка, введіть email');
                     return;
                   }
-                  
+
                   if (!password) {
                     alert('Будь ласка, введіть пароль');
                     return;
                   }
-                  
+
                   if (password !== confirmPassword) {
                     alert('Паролі не співпадають');
                     return;
                   }
-                  
+
                   alert(`Реєстрація успішна! Email: ${email}, Роль: ${role}`);
                 });
               }

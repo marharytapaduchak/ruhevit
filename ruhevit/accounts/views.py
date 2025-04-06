@@ -1,7 +1,21 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
-def say_hello(request):
-    x = 1
-    y = 2
-    return render(request, 'hello.html', {'name': 'Alina'})
+
+def auth(request):
+    return render(request, 'accounts/auth.html')
+
+
+def login(request):
+    return render(request, 'accounts/login.html')
+
+
+def signup(request):
+    return render(request, 'accounts/signup.html')
+
+
+def reset_pass(request):
+    return render(request, 'accounts/password_reset.html')
+
+
+def reset_pass_confirm(request):
+    return render(request, 'accounts/new_password.html')
