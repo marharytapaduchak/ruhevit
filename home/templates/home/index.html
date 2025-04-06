@@ -1,0 +1,400 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="english">
+    <head>
+        <title>exported project</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta property="twitter:card" content="summary_large_image" />
+
+        <style data-tag="reset-style-sheet">
+            html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;  -webkit-font-smoothing: antialiased;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;  color: inherit;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}details {  display: block;  margin: 0;  padding: 0;}summary::-webkit-details-marker {  display: none;}[data-thq="accordion"] [data-thq="accordion-content"] {  max-height: 0;  overflow: hidden;  transition: max-height 0.3s ease-in-out;  padding: 0;}[data-thq="accordion"] details[data-thq="accordion-trigger"][open] + [data-thq="accordion-content"] {  max-height: 1000vh;}details[data-thq="accordion-trigger"][open] summary [data-thq="accordion-icon"] {  transform: rotate(180deg);}html { scroll-behavior: smooth  }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style data-tag="default-style-sheet">
+        </style>
+    </head>
+    <body>
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <div class="feed-mil">
+    <header class="navbar">
+      <div class="search-and-logo">
+        <h1 class="logo">Ругевіт</h1>
+        <div class="search" role="button" tabindex="0" onclick="activateSearch()" onkeypress="if(event.key === 'Enter') activateSearch()">
+            <i class="fa fa-search"></i>
+            <span class="search-text">Пошук</span>
+            <input type="text" class="search-input" placeholder="Пошук..." />
+          </div>
+      </div>
+      <a href="{% url 'profile_page' %}" class="profile-icon">
+        {% load static %}
+          <img
+              src="{% static 'home/images/profile_pic.svg' %}"
+              alt="Profile"
+              class="profile-page"
+          />
+      </a>
+    </header>
+  
+    <section class="requests-block">
+      <h2 class="requests-text">Ваші запити</h2>
+      <div class="requests">
+        <article class="request">
+          <div class="request-pic">
+            <div class="request-pic-container">
+              {% load static %}
+              <img
+                  src="{% static 'home/images/icon.svg' %}"
+                  alt="ImageiconI115"
+                      class="landing-imageicon2"
+              />
+              <!-- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d5a57d0fef346ffbc8c00b14c862797ca646134e?placeholderIfAbsent=true&apiKey=f4c71df98672477aa00fd79d8a734af7" alt="Request" class="request-icon" /> -->
+            </div>
+          </div>
+          <div class="request-info">
+            <h3 class="request-title">10 турнікетів CAT Generation 7</h3>
+            <div class="progress-container">
+              <div class="progress-bar">
+                <div class="progress-fill"></div>
+              </div>
+              <p class="progress-status">Очікує підтвердження</p>
+            </div>
+            <div class="request-details">
+              <div class="deadline-info">
+                <p class="detail-label">термін виконання</p>
+                <p class="detail-value">23.03.2025</p>
+              </div>
+              <div class="volunteer-info">
+                <p class="detail-label">волонтер</p>
+                <p class="detail-value">Анна Шевченко</p>
+              </div>
+            </div>
+            <div class="action-buttons">
+              <button class="action-button contact">Сконтактувати</button>
+              <button class="action-button confirm">Підтвердити статус</button>
+            </div>
+          </div>
+        </article>
+  
+        <article class="request">
+            <div class="request-pic">
+              <div class="request-pic-container">
+                {% load static %}
+                <img
+                    src="{% static 'home/images/icon.svg' %}"
+                    alt="ImageiconI115"
+                        class="landing-imageicon2"
+                />
+                <!-- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d5a57d0fef346ffbc8c00b14c862797ca646134e?placeholderIfAbsent=true&apiKey=f4c71df98672477aa00fd79d8a734af7" alt="Request" class="request-icon" /> -->
+              </div>
+            </div>
+            <div class="request-info">
+              <h3 class="request-title">10 турнікетів CAT Generation 7</h3>
+              <div class="progress-container">
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+                <p class="progress-status">Очікує підтвердження</p>
+              </div>
+              <div class="request-details">
+                <div class="deadline-info">
+                  <p class="detail-label">термін виконання</p>
+                  <p class="detail-value">23.03.2025</p>
+                </div>
+                <div class="volunteer-info">
+                  <p class="detail-label">волонтер</p>
+                  <p class="detail-value">Анна Шевченко</p>
+                </div>
+              </div>
+              <div class="action-buttons">
+                <button class="action-button contact">Сконтактувати</button>
+                <button class="action-button confirm">Підтвердити статус</button>
+              </div>
+            </div>
+          </article>
+  
+          <article class="request">
+            <div class="request-pic">
+              <div class="request-pic-container">
+                {% load static %}
+                <img
+                    src="{% static 'home/images/icon.svg' %}"
+                    alt="ImageiconI115"
+                        class="landing-imageicon2"
+                />
+                <!-- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d5a57d0fef346ffbc8c00b14c862797ca646134e?placeholderIfAbsent=true&apiKey=f4c71df98672477aa00fd79d8a734af7" alt="Request" class="request-icon" /> -->
+              </div>
+            </div>
+            <div class="request-info">
+              <h3 class="request-title">10 турнікетів CAT Generation 7</h3>
+              <div class="progress-container">
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+                <p class="progress-status">Очікує підтвердження</p>
+              </div>
+              <div class="request-details">
+                <div class="deadline-info">
+                  <p class="detail-label">термін виконання</p>
+                  <p class="detail-value">23.03.2025</p>
+                </div>
+                <div class="volunteer-info">
+                  <p class="detail-label">волонтер</p>
+                  <p class="detail-value">Анна Шевченко</p>
+                </div>
+              </div>
+              <div class="action-buttons">
+                <button class="action-button contact">Сконтактувати</button>
+                <button class="action-button confirm">Підтвердити статус</button>
+              </div>
+            </div>
+          </article>
+          <article class="request">
+            <div class="request-pic">
+              <div class="request-pic-container">
+                {% load static %}
+              <img
+                  src="{% static 'home/images/icon.svg' %}"
+                  alt="ImageiconI115"
+                      class="landing-imageicon2"
+              />
+                <!-- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d5a57d0fef346ffbc8c00b14c862797ca646134e?placeholderIfAbsent=true&apiKey=f4c71df98672477aa00fd79d8a734af7" alt="Request" class="request-icon" /> -->
+              </div>
+            </div>
+            <div class="request-info">
+              <h3 class="request-title">10 турнікетів CAT Generation 7</h3>
+              <div class="progress-container">
+                <div class="progress-bar">
+                  <div class="progress-fill"></div>
+                </div>
+                <p class="progress-status">Очікує підтвердження</p>
+              </div>
+              <div class="request-details">
+                <div class="deadline-info">
+                  <p class="detail-label">термін виконання</p>
+                  <p class="detail-value">23.03.2025</p>
+                </div>
+                <div class="volunteer-info">
+                  <p class="detail-label">волонтер</p>
+                  <p class="detail-value">Анна Шевченко</p>
+                </div>
+              </div>
+              <div class="action-buttons">
+                <button class="action-button contact">Сконтактувати</button>
+                <button class="action-button confirm">Підтвердити статус</button>
+              </div>
+            </div>
+          </article>
+      </div>
+    </section>
+  
+    <section class="help-offers">
+      <h2 class="section-title">Пропозиції допомоги</h2>
+      <div class="filters-and-sorting">
+        <button class="filter-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
+                <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
+              </svg>
+          <span class="filter-text">Фільтри</span>
+        </button>
+        <button class="sorting-button">
+          <span class="sort-text">&#8645;Сортування</span>
+        </button>
+      </div>
+      <div class="offers-container">
+        <article class="offer-card">
+          <div class="offer-image">
+            <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer" class="offer-icon">
+          </div>
+          <div class="offer-info">
+            <div class="author-info">
+              {% load static %}
+              <img
+                  src="{% static 'home/images/ellipse11103-otjg-200h.png' %}"
+                  alt="Ellipse11103"
+                  class="landing-ellipse11"
+              />
+              <!-- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0780a2cffdf0924c791991cd2cc381bf928cbab2?placeholderIfAbsent=true&apiKey=f4c71df98672477aa00fd79d8a734af7" alt="Author" class="author-image" /> -->
+              <p class="author-name">Василь Костенко</p>
+            </div>
+            <div class="offer-content">
+              <h3 class="offer-title">
+                Тактичні аптечки, турнікети та засоби для зупинки кровотечі
+              </h3>
+              <p class="offer-description">
+                Lorem ipsum malesuada commodo et pulvinar blandit adipiscing
+                iaculis non convallis vitae.
+              </p>
+            </div>
+            <div class="offer-tags">
+              <span class="tag">Фронт</span>
+              <span class="tag">Медицина</span>
+            </div>
+            <button class="details-button">Детальніше</button>
+          </div>
+        </article>
+  
+        <article class="offer-card">
+            <div class="offer-image">
+              <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer" class="offer-icon">
+            </div>
+            <div class="offer-info">
+              <div class="author-info">
+                {% load static %}
+                <img
+                    src="{% static 'home/images/ellipse11103-otjg-200h.png' %}"
+                    alt="Ellipse11103"
+                    class="landing-ellipse11"
+                />
+                <!-- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0780a2cffdf0924c791991cd2cc381bf928cbab2?placeholderIfAbsent=true&apiKey=f4c71df98672477aa00fd79d8a734af7" alt="Author" class="author-image" /> -->
+                <p class="author-name">Василь Костенко</p>
+              </div>
+              <div class="offer-content">
+                <h3 class="offer-title">
+                  Тактичні аптечки, турнікети та засоби для зупинки кровотечі
+                </h3>
+                <p class="offer-description">
+                  Lorem ipsum malesuada commodo et pulvinar blandit adipiscing
+                  iaculis non convallis vitae.
+                </p>
+              </div>
+              <div class="offer-tags">
+                <span class="tag">Фронт</span>
+                <span class="tag">Медицина</span>
+              </div>
+              <button class="details-button">Детальніше</button>
+            </div>
+          </article>
+          <article class="offer-card">
+            <div class="offer-image">
+              <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer" class="offer-icon">
+            </div>
+            <div class="offer-info">
+              <div class="author-info">
+                {% load static %}
+                <img
+                    src="{% static 'home/images/ellipse11103-otjg-200h.png' %}"
+                    alt="Ellipse11103"
+                    class="landing-ellipse11"
+                />
+                <!-- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0780a2cffdf0924c791991cd2cc381bf928cbab2?placeholderIfAbsent=true&apiKey=f4c71df98672477aa00fd79d8a734af7" alt="Author" class="author-image" /> -->
+                <p class="author-name">Василь Костенко</p>
+              </div>
+              <div class="offer-content">
+                <h3 class="offer-title">
+                  Тактичні аптечки, турнікети та засоби для зупинки кровотечі
+                </h3>
+                <p class="offer-description">
+                  Lorem ipsum malesuada commodo et pulvinar blandit adipiscing
+                  iaculis non convallis vitae.
+                </p>
+              </div>
+              <div class="offer-tags">
+                <span class="tag">Фронт</span>
+                <span class="tag">Медицина</span>
+              </div>
+              <button class="details-button">Детальніше</button>
+            </div>
+          </article>
+  
+          <article class="offer-card">
+            <div class="offer-image">
+              <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer" class="offer-icon">
+            </div>
+            <div class="offer-info">
+              <div class="author-info">
+                {% load static %}
+                <img
+                    src="{% static 'home/images/ellipse11103-otjg-200h.png' %}"
+                    alt="Ellipse11103"
+                    class="landing-ellipse11"
+                />
+                <!-- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0780a2cffdf0924c791991cd2cc381bf928cbab2?placeholderIfAbsent=true&apiKey=f4c71df98672477aa00fd79d8a734af7" alt="Author" class="author-image" /> -->
+                <p class="author-name">Василь Костенко</p>
+              </div>
+              <div class="offer-content">
+                <h3 class="offer-title">
+                  Тактичні аптечки, турнікети та засоби для зупинки кровотечі
+                </h3>
+                <p class="offer-description">
+                  Lorem ipsum malesuada commodo et pulvinar blandit adipiscing
+                  iaculis non convallis vitae.
+                </p>
+              </div>
+              <div class="offer-tags">
+                <span class="tag">Фронт</span>
+                <span class="tag">Медицина</span>
+              </div>
+              <button class="details-button">Детальніше</button>
+            </div>
+          </article>
+  
+          <article class="offer-card">
+            <div class="offer-image">
+              <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer" class="offer-icon">
+            </div>
+            <div class="offer-info">
+              <div class="author-info">
+                {% load static %}
+                <img
+                    src="{% static 'home/images/ellipse11103-otjg-200h.png' %}"
+                    alt="Ellipse11103"
+                    class="landing-ellipse11"
+                />
+                <!-- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0780a2cffdf0924c791991cd2cc381bf928cbab2?placeholderIfAbsent=true&apiKey=f4c71df98672477aa00fd79d8a734af7" alt="Author" class="author-image" /> -->
+                <p class="author-name">Василь Костенко</p>
+              </div>
+              <div class="offer-content">
+                <h3 class="offer-title">
+                  Тактичні аптечки, турнікети та засоби для зупинки кровотечі
+                </h3>
+                <p class="offer-description">
+                  Lorem ipsum malesuada commodo et pulvinar blandit adipiscing
+                  iaculis non convallis vitae.
+                </p>
+              </div>
+              <div class="offer-tags">
+                <span class="tag">Фронт</span>
+                <span class="tag">Медицина</span>
+              </div>
+              <button class="details-button">Детальніше</button>
+            </div>
+          </article>
+  
+          <article class="offer-card">
+            <div class="offer-image">
+              <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer" class="offer-icon">
+            </div>
+            <div class="offer-info">
+              <div class="author-info">
+                {% load static %}
+                <img
+                    src="{% static 'home/images/ellipse11103-otjg-200h.png' %}"
+                    alt="Ellipse11103"
+                    class="landing-ellipse11"
+                />
+                <!-- <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/0780a2cffdf0924c791991cd2cc381bf928cbab2?placeholderIfAbsent=true&apiKey=f4c71df98672477aa00fd79d8a734af7" alt="Author" class="author-image" /> -->
+                <p class="author-name">Василь Костенко</p>
+              </div>
+              <div class="offer-content">
+                <h3 class="offer-title">
+                  Тактичні аптечки, турнікети та засоби для зупинки кровотечі
+                </h3>
+                <p class="offer-description">
+                  Lorem ipsum malesuada commodo et pulvinar blandit adipiscing
+                  iaculis non convallis vitae.
+                </p>
+              </div>
+              <div class="offer-tags">
+                <span class="tag">Фронт</span>
+                <span class="tag">Медицина</span>
+              </div>
+              <button class="details-button">Детальніше</button>
+            </div>
+          </article>
+      </div>
+    </section>
+  </div>
+  <script src="{% static 'home/script.js' %}" defer></script>
+</body>
