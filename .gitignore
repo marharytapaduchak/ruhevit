@@ -18,4 +18,5 @@ __pycache__/
 # IDEs and editors
 .vscode/
 .idea/
+>>>>>>> ce2ca924de95b4fad2127c211d7aa3f57c49da67
 .DS_Store
