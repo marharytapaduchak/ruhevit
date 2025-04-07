@@ -9,13 +9,13 @@ class LoginForm(forms.Form):
 
 
 class RegisterForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password1', 'password2', 'role')
+
     ROLE_CHOICES = [
-        ('Волонтер', 'Волонтер'),
-        ('Військовий', 'Військовий'),
+        ('волонтер', 'Волонтер'),
+        ('військовий', 'Військовий'),
     ]
     role = forms.ChoiceField(choices=ROLE_CHOICES,
                              widget=forms.HiddenInput())
-
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'role', 'password1', 'password2', 'role']

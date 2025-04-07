@@ -91,10 +91,10 @@
                 <div class="frame15432-frame139">
                   <span class="frame15432-text14">Роль</span>
                   <div class="frame15432-frame242 toggle-role">
-                      <div class="role-option active" data-role="Волонтер">Волонтер</div>
+                      <div class="role-option active" data-role="волонтер">Волонтер</div>
                       <div class="role-option" data-role="Військовий">Військовий</div>
                   </div>
-                  <input type="hidden" name="role" id="role-input" value="Волонтер">
+                  <input type="hidden" name="role" id="role-input" value="волонтер">
                 </div>
                 <div class="frame15432-frame971">
                   <span class="frame15432-text17">Пароль</span>
@@ -133,7 +133,7 @@
               option.addEventListener('click', function() {
                   document.querySelectorAll('.role-option').forEach(el => el.classList.remove('active'));
                   this.classList.add('active');
-                  document.getElementById('role-input').value = this.getAttribute('data-role');
+                  document.getElementById('role-input').value = this.getAttribute('data-role').toLowerCase();
               });
           });
 
