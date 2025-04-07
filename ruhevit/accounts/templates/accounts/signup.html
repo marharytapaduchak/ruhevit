@@ -69,54 +69,62 @@
     <div>
       <div class="frame15432-container">
         <div class="frame15432-frame15432">
-          <div class="frame15432-signup">
-            <div class="frame15432-frame143">
-              <span class="frame15432-text10">Ругевіт</span>
-            </div>
-            <div class="frame15432-getstarted1">
-              <span class="frame15432-text11">Зареєструватись</span>
-              <div class="frame15432-frame511">
-                <span class="frame15432-text12">Email</span>
-                <div class="frame15432-frame241">
-                  <input type="email" placeholder="example@gmail.com" class="frame15432-text13">
+          <div class="frame15432-signup" style="display: flex; justify-content: center;">
+            <form method="post" style="max-width: 480px; width: 100%; padding: 20px;">
+              {% csrf_token %}
+              <div class="frame15432-frame143">
+                <span class="frame15432-text10">Ругевіт</span>
+              </div>
+              <div class="frame15432-frame240">
+                <label for="username">Імʼя користувача</label>
+                <input type="text" name="username" id="username" required placeholder="Введіть імʼя користувача">
+              </div>
+              <div class="frame15432-getstarted1">
+                <span class="frame15432-text11">Зареєструватись</span>
+                <div class="frame15432-frame511">
+                  <span class="frame15432-text12">Email</span>
+                  <div class="frame15432-frame241">
+                    {{ form.email }}
+                  </div>
+                </div>
+                <div class="frame15432-frame139">
+                  <span class="frame15432-text14">Роль</span>
+                  <div class="frame15432-frame242 toggle-role">
+                      <div class="role-option active" data-role="Волонтер">Волонтер</div>
+                      <div class="role-option" data-role="Військовий">Військовий</div>
+                  </div>
+                  <input type="hidden" name="role" id="role-input" value="Волонтер">
+                </div>
+                <div class="frame15432-frame971">
+                  <span class="frame15432-text17">Пароль</span>
+                  <div class="frame15432-frame243">
+                    {{ form.password1 }}
+                  </div>
+                </div>
+                <div class="frame15432-frame101">
+                  <span class="frame15432-text19">Підтвердьте пароль</span>
+                  <div class="frame15432-frame244">
+                    {{ form.password2 }}
+                  </div>
+                </div>
+                <div class="frame15432-frame100">
+                  <span class="frame15432-text21">Підтвердити особу</span>
+                  <div class="frame15432-frame122">
+                    <img src="{% static 'accounts/images/diia_logo.png' %}">
+                  </div>
+                </div>
+                <div class="frame15432-frame981">
+                  <button type="submit" class="frame15432-add1">
+                    <span class="frame15432-text22">Створити акаунт</span>
+                  </button>
+                  <span class="frame15432-text23">
+                    <span class="frame15432-text24">Вже маєте акаунт?</span>
+                    <span class="frame15432-text25"></span>
+                    <a href="{% url 'login' %}"><span style="color: #F9A826;">Увійти</span></a>
+                  </span>
                 </div>
               </div>
-              <div class="frame15432-frame139">
-                <span class="frame15432-text14">Роль</span>
-                <div class="frame15432-frame242 toggle-role">
-                    <div class="role-option active" data-role="Волонтер">Волонтер</div>
-                    <div class="role-option" data-role="Військовий">Військовий</div>
-                </div>
-              </div>
-              <div class="frame15432-frame971">
-                <span class="frame15432-text17">Пароль</span>
-                <div class="frame15432-frame243">
-                  <input type="password" placeholder="12345" class="frame15432-text18">
-                </div>
-              </div>
-              <div class="frame15432-frame101">
-                <span class="frame15432-text19">Підтвердьте пароль</span>
-                <div class="frame15432-frame244">
-                  <input type="password" placeholder="12345" class="frame15432-text20">
-                </div>
-              </div>
-              <div class="frame15432-frame100">
-                <span class="frame15432-text21">Підтвердити особу</span>
-                <div class="frame15432-frame122">
-                  <img src="{% static 'accounts/images/diia_logo.png' %}">
-                </div>
-              </div>
-              <div class="frame15432-frame981">
-                <div class="frame15432-add1">
-                  <span class="frame15432-text22">Створити акаунт</span>
-                </div>
-                <span class="frame15432-text23">
-                  <span class="frame15432-text24">Вже маєте акаунт?</span>
-                  <span class="frame15432-text25"></span>
-                  <a href="{% url 'login' %}"><span style="color: #F9A826;">Увійти</span></a>
-                </span>
-              </div>
-            </div>
+            </form>
           </div>
           <script>
 
@@ -124,6 +132,7 @@
               option.addEventListener('click', function() {
                   document.querySelectorAll('.role-option').forEach(el => el.classList.remove('active'));
                   this.classList.add('active');
+                  document.getElementById('role-input').value = this.getAttribute('data-role');
               });
           });
 
@@ -170,7 +179,7 @@
                   const email = document.querySelector('input[type="email"]').value;
                   const password = document.querySelectorAll('input[type="password"]')[0].value;
                   const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
-                  const role = document.querySelector('.role-option.active').getAttribute('data-role');
+                  const role = document.getElementById('role-input').value;
 
                   if (!email) {
                     alert('Будь ласка, введіть email');
@@ -187,9 +196,21 @@
                     return;
                   }
 
-                  alert(`Реєстрація успішна! Email: ${email}, Роль: ${role}`);
+                  if (!role) {
+                    alert('Будь ласка, оберіть роль');
+                    return;
+                  }
                 });
               }
+              {% if form.errors %}
+                let errorMessages = '';
+                {% for field, errors in form.errors.items %}
+                  {% for error in errors %}
+                    errorMessages += '{{ error|escapejs }}\n';
+                  {% endfor %}
+                {% endfor %}
+                alert(errorMessages);
+              {% endif %}
             });
           </script>
         </body>

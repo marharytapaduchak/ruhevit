@@ -67,50 +67,47 @@
     />
   </head>
   <body>
-    <h2>Увійти</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Увійти</button>
-</form>
-    <div>
-      <div class="frame15432-container">
-        <div class="frame15432-frame15432">
-          <div class="frame15432-login">
-            <div class="frame15432-frame144">
-              <span class="frame15432-text27">Ругевіт</span>
-            </div>
-            <div class="frame15432-getstarted2">
-              <span class="frame15432-text28">Увійти</span>
-              <hr class="frame15432-line12" />
-              <div class="frame15432-frame512">
-                <span class="frame15432-text29">Email</span>
-                <div class="frame15432-frame245">
-                  <input type="email" placeholder="example@gmail.com" class="frame15432-text30">
-                </div>
+    <form method="post" action="">
+      {% csrf_token %}
+      <div>
+        <div class="frame15432-container">
+          <div class="frame15432-frame15432">
+            <div class="frame15432-login">
+              <div class="frame15432-frame144">
+                <span class="frame15432-text27">Ругевіт</span>
               </div>
-              <div class="frame15432-frame972">
-                <span class="frame15432-text31">Пароль</span>
-                <div class="frame15432-frame246">
-                  <input type="password" placeholder="12345" class="frame15432-text32">
+              <div class="frame15432-getstarted2">
+                <span class="frame15432-text28">Увійти</span>
+                <hr class="frame15432-line12" />
+                <div class="frame15432-frame512">
+                  <span class="frame15432-text29">Email</span>
+                  <div class="frame15432-frame245">
+                    <input type="email" placeholder="example@gmail.com" class="frame15432-text30">
+                  </div>
                 </div>
-                <a href="{% url 'reset_pass' %}" class="frame15432-text33">Забули пароль?</a>
-              </div>
-              <div class="frame15432-frame982">
-                <div class="frame15432-add2">
-                  <span class="frame15432-text34">Увійти</span>
+                <div class="frame15432-frame972">
+                  <span class="frame15432-text31">Пароль</span>
+                  <div class="frame15432-frame246">
+                    <input type="password" placeholder="12345" class="frame15432-text32">
+                  </div>
+                  <a href="{% url 'reset_pass' %}" class="frame15432-text33">Забули пароль?</a>
                 </div>
-                <span class="frame15432-text35">
-                  <span class="frame15432-text36">Не маєте акаунту?</span>
-                  <span class="frame15432-text37"></span>
-                  <a href="{% url 'signup' %}"><span>Зареєструватись</span></a>
-                </span>
+                <div class="frame15432-frame982">
+                  <button type="submit" class="frame15432-add2">
+                    <span class="frame15432-text34">Увійти</span>
+                  </button>
+                  <span class="frame15432-text35">
+                    <span class="frame15432-text36">Не маєте акаунту?</span>
+                    <span class="frame15432-text37"></span>
+                    <a href="{% url 'signup' %}"><span>Зареєструватись</span></a>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   <script>
 document.addEventListener('DOMContentLoaded', function() {
   function styleInputFields() {
@@ -255,8 +252,4 @@ document.addEventListener('DOMContentLoaded', function() {
   setupOtherLinks();
   addGlobalStyles();
 });
-
-  </script>
-
-  </body>
-</html>
+</script>

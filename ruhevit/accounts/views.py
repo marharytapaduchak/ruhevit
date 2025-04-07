@@ -1,3 +1,5 @@
+from django.contrib.auth import login
+from .forms import RegisterForm
 from .forms import LoginForm
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
@@ -25,9 +27,20 @@ def login_view(request):
     return render(request, 'accounts/login.html', {'form': form})
 
 
-def signup(request):
-    return render(request, 'accounts/signup.html')
-
+def signup_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.role = form.cleaned_data['role']
+            user.save()
+            login(request, user)
+            return redirect('home')
+        else:
+            print(form.errors)
+    else:
+        form = RegisterForm()
+    return render(request, 'accounts/signup.html', {'form': form})
 
 def reset_pass(request):
     return render(request, 'accounts/password_reset.html')
