@@ -67,6 +67,12 @@
     />
   </head>
   <body>
+    <h2>Увійти</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Увійти</button>
+</form>
     <div>
       <div class="frame15432-container">
         <div class="frame15432-frame15432">

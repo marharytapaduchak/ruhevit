@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'requests',
     'landing',
     'core',
+    'home',
+    'profile_page',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
