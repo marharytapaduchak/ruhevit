@@ -151,27 +151,25 @@ document.addEventListener('DOMContentLoaded', function() {
         this.style.transform = 'scale(1)';
       });
 
-      loginButton.addEventListener('click', function(e) {
-        e.preventDefault();
-
+      loginButton.addEventListener('click', function() {
         const emailField = document.querySelector('input[type="email"]');
         const passwordField = document.querySelector('input[type="password"]');
 
-        if (emailField && passwordField) {
-          if (!emailField.value) {
-            emailField.style.borderColor = '#dc3545';
-            alert('Будь ласка, введіть адресу електронної пошти');
-            return;
-          }
-
-          if (!passwordField.value) {
-            passwordField.style.borderColor = '#dc3545';
-            alert('Будь ласка, введіть пароль');
-            return;
-          }
-
-          console.log('Login attempt:', emailField.value);
+        if (!emailField.value) {
+          emailField.style.borderColor = '#dc3545';
+          alert('Будь ласка, введіть адресу електронної пошти');
+          return;
         }
+
+        if (!passwordField.value) {
+          passwordField.style.borderColor = '#dc3545';
+          alert('Будь ласка, введіть пароль');
+          return;
+        }
+
+        // Якщо валідація пройдена — сабмітимо форму
+        emailField.form.submit();
+        window.location.href = '/home';
       });
     }
   }

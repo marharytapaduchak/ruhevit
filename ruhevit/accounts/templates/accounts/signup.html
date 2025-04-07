@@ -75,12 +75,13 @@
               <div class="frame15432-frame143">
                 <span class="frame15432-text10">Ругевіт</span>
               </div>
-              <div class="frame15432-frame240">
-                <label for="username">Імʼя користувача</label>
-                <input type="text" name="username" id="username" required placeholder="Введіть імʼя користувача">
-              </div>
+
               <div class="frame15432-getstarted1">
                 <span class="frame15432-text11">Зареєструватись</span>
+                <div class="frame15432-frame511">
+                  <label for="username" class="frame15432-text12">Імʼя користувача</label>
+                  <input type="text" name="username" id="username" class="frame15432-frame241" required placeholder="Введіть імʼя користувача">
+                </div>
                 <div class="frame15432-frame511">
                   <span class="frame15432-text12">Email</span>
                   <div class="frame15432-frame241">
@@ -200,17 +201,18 @@
                     alert('Будь ласка, оберіть роль');
                     return;
                   }
+
+                  {% if form.errors %}
+                    let errorMessages = '';
+                    {% for field, errors in form.errors.items %}
+                      {% for error in errors %}
+                        errorMessages += '{{ error|escapejs }}\n';
+                      {% endfor %}
+                    {% endfor %}
+                    alert(errorMessages);
+                  {% endif %}
                 });
               }
-              {% if form.errors %}
-                let errorMessages = '';
-                {% for field, errors in form.errors.items %}
-                  {% for error in errors %}
-                    errorMessages += '{{ error|escapejs }}\n';
-                  {% endfor %}
-                {% endfor %}
-                alert(errorMessages);
-              {% endif %}
             });
           </script>
         </body>

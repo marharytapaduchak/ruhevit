@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import login
 from .forms import RegisterForm
 from .forms import LoginForm
@@ -12,19 +13,16 @@ def auth(request):
 
 def login_view(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')  # або на /dashboard/ чи інше
-            else:
-                form.add_error(None, 'Невірне ім’я користувача або пароль.')
-    else:
-        form = LoginForm()
-    return render(request, 'accounts/login.html', {'form': form})
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')  # або на dashboard
+        else:
+            messages.error(request, 'Невірна електронна пошта або пароль')
+    return render(request, 'accounts/login.html')
 
 
 def signup_view(request):
@@ -41,6 +39,7 @@ def signup_view(request):
     else:
         form = RegisterForm()
     return render(request, 'accounts/signup.html', {'form': form})
+
 
 def reset_pass(request):
     return render(request, 'accounts/password_reset.html')
