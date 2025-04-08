@@ -78,17 +78,28 @@
               </div>
               <div class="frame15432-getstarted2">
                 <span class="frame15432-text28">Увійти</span>
-                <hr class="frame15432-line12" />
+                {% if form.errors %}
+                  <div class="form-errors" style="color: red; margin-top: 10px;">
+                    {% for error in form.non_field_errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                    {% for field in form %}
+                      {% for error in field.errors %}
+                        <p>{{ error }}</p>
+                      {% endfor %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
                 <div class="frame15432-frame512">
-                  <span class="frame15432-text29">Email</span>
+                  <span class="frame15432-text29">Ім'я користувача</span>
                   <div class="frame15432-frame245">
-                    <input type="email" placeholder="example@gmail.com" class="frame15432-text30">
+                    <input type="text" name="username" placeholder="username" class="frame15432-text30">
                   </div>
                 </div>
                 <div class="frame15432-frame972">
                   <span class="frame15432-text31">Пароль</span>
                   <div class="frame15432-frame246">
-                    <input type="password" placeholder="12345" class="frame15432-text32">
+                    <input type="password" name="password" placeholder="12345" class="frame15432-text32">
                   </div>
                   <a href="{% url 'password_reset' %}" class="frame15432-text33">Забули пароль?</a>
                 </div>
@@ -111,7 +122,7 @@
   <script>
 document.addEventListener('DOMContentLoaded', function() {
   function styleInputFields() {
-    const emailField = document.querySelector('input[type="email"]');
+    const emailField = document.querySelector('input[type="text"]');
     const passwordField = document.querySelector('input[type="password"]');
 
     const inputFields = [emailField, passwordField];
@@ -151,25 +162,24 @@ document.addEventListener('DOMContentLoaded', function() {
         this.style.transform = 'scale(1)';
       });
 
-      loginButton.addEventListener('click', function() {
-        const emailField = document.querySelector('input[type="email"]');
+      loginButton.addEventListener('click', function(event) {
+        const emailField = document.querySelector('input[type="text"]');
         const passwordField = document.querySelector('input[type="password"]');
 
         if (!emailField.value) {
           emailField.style.borderColor = '#dc3545';
           alert('Будь ласка, введіть адресу електронної пошти');
+          event.preventDefault();
           return;
         }
 
         if (!passwordField.value) {
           passwordField.style.borderColor = '#dc3545';
           alert('Будь ласка, введіть пароль');
+          event.preventDefault();
           return;
         }
 
-        // Якщо валідація пройдена — сабмітимо форму
-        emailField.form.submit();
-        window.location.href = '/home';
       });
     }
   }
@@ -233,11 +243,11 @@ document.addEventListener('DOMContentLoaded', function() {
         text-decoration: underline !important;
       }
 
-      input[type="email"], input[type="password"] {
+      input[type="text"], input[type="password"] {
         outline: none;
       }
 
-      input[type="email"]:focus, input[type="password"]:focus {
+      input[type="text"]:focus, input[type="password"]:focus {
         border-color: #F9A826;
         box-shadow: 0 0 5px rgba(249, 168, 38, 0.5);
       }

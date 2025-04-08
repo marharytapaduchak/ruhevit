@@ -12,33 +12,39 @@ from django.shortcuts import render, redirect
 from django.shortcuts import render
 
 
-def auth(request):
-    return render(request, 'accounts/auth.html')
-
-
 def login_view(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
+        print("POST data:", request.POST)
+        form = LoginForm(request.POST)
+        username = request.POST.get('username')
         password = request.POST.get('password')
+        print(f"Username: {username}")
+        print(f"Password: {password}")
 
-        user = authenticate(request, username=email, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('home')
+        if form.is_valid():
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                form.add_error(None, "Неправильне ім'я користувача або пароль")
         else:
-            messages.error(request, 'Невірна електронна пошта або пароль')
-    return render(request, 'accounts/login.html')
+            print(form.errors)
+    else:
+        form = LoginForm()
+
+    return render(request, 'accounts/login.html', {'form': form})
 
 
 def signup_view(request):
     if request.method == 'POST':
-        # print("POST data:", request.POST)
-
+        print("POST data:", request.POST)
         form = RegisterForm(request.POST)
+        print("➡️ Пароль із форми:", request.POST.get('password1'))
         if form.is_valid():
             user = form.save(commit=False)
             user.role = form.cleaned_data['role']
-            # print("➡️ ROLE перед збереженням:", user.role)
+            print("➡️ ROLE перед збереженням:", user.role)
             user.save()
             login(request, user)
             return redirect('home')
@@ -47,14 +53,6 @@ def signup_view(request):
     else:
         form = RegisterForm()
     return render(request, 'accounts/signup.html', {'form': form})
-
-
-def reset_pass(request):
-    return render(request, 'accounts/password_reset.html')
-
-
-def reset_pass_confirm(request):
-    return render(request, 'accounts/new_password.html')
 
 
 @csrf_exempt

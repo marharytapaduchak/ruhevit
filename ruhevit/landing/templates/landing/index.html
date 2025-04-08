@@ -66,7 +66,7 @@
         <div class="landing-landing">
           <div class="landing-frame143">
             <span class="landing-text10">Ругевіт</span>
-            <div class="landing-add1">
+            <div class="landing-add1 join-button">
               <span class="landing-text11">Приєднатись</span>
             </div>
           </div>
@@ -80,7 +80,7 @@
                   та ефективно допомагати тим, хто цього потребує.
                 </span>
               </div>
-              <div class="landing-add2">
+              <div class="landing-add2 join-button">
                 <span class="landing-text14">Приєднатись</span>
               </div>
             </div>
@@ -402,7 +402,7 @@
     <script>
       document.querySelectorAll('.join-button').forEach(button => {
         button.addEventListener('click', () => {
-          alert('Форма реєстрації буде відкрита!');
+          window.location.href = 'accounts/login/';
         });
       });
       document.querySelectorAll('.details-button').forEach(button => {
