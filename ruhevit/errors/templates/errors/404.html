@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="{% static 'errors/404.css' %}">
+<script src="{% static 'errirs/script.js' %}" defer></script>
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error Page</title>
+    <link rel="stylesheet" href="404.css" />
+  </head>
+  <body>
+    <main class="error-container">
+      <header class="navigation-bar">
+        <nav class="search-section">
+          <h1 class="brand-name">Ругевіт</h1>
+          <div class="search-button">
+            <span class="search-icon"></span>
+            <input
+              type="text"
+              id="search-input"
+              class="search-text"
+              placeholder="Пошук"
+            />
+          </div>
+        </nav>
+        <div class="user-notifications">
+          <span class="notification-icon"></span>
+          <span class="message-icon"></span>
+          <img src="images/profile photo.png" class="profile-image" alt="User profile" />
+        </div>
+      </header>
+
+      <section class="error-number-container">
+        <h2 id="error-code" class="error-number">404</h2>
+        <img src="images/image 1.png" class="error-image" alt="Error illustration" />
+      </section>
+
+      <p id="error-message" class="error-message">Сторінку не знайдено</p>
+
+      <button id="home-button" class="home-button">
+        Повернутися на головну
+      </button>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

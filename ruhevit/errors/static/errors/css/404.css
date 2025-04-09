@@ -1,0 +1,262 @@
+.error-container {
+  align-items: center;
+  background-color: #fefffb;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #1d1d20;
+  text-align: center;
+  justify-content: start;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.navigation-bar {
+  background-color: rgba(254, 255, 251, 0.7);
+  display: flex;
+  min-height: 110px;
+  width: 100%;
+  padding-left: 120px;
+  padding-right: 110px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  align-items: stretch;
+  gap: 40px 100px;
+  overflow: hidden;
+  font-size: 20px;
+  white-space: nowrap;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 991px) {
+  .navigation-bar {
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: initial;
+  }
+}
+
+.search-section {
+  display: flex;
+  min-width: 240px;
+  align-items: stretch;
+  gap: 30px;
+  justify-content: start;
+  height: 100%;
+}
+
+@media (max-width: 991px) {
+  .search-section {
+    max-width: 100%;
+    white-space: initial;
+  }
+}
+
+.brand-name {
+  font-family:
+    Vinnytsia Sans,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.search-button {
+  align-items: center;
+  border-radius: 80px;
+  background-color: #f8f2e9;
+  display: flex;
+  min-width: 240px;
+  padding: 20px 30px;
+  gap: 10px;
+  overflow: hidden;
+  font-family:
+    SF Pro,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-weight: 400;
+  justify-content: start;
+  height: 100%;
+  width: 350px;
+}
+
+@media (max-width: 991px) {
+  .search-button {
+    padding-left: 20px;
+    padding-right: 20px;
+    white-space: initial;
+    width: auto;
+    min-width: 180px;
+  }
+}
+
+.search-icon {
+  align-self: stretch;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.search-text {
+  align-self: stretch;
+  margin-top: auto;
+  margin-bottom: auto;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family:
+    SF Pro,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 20px;
+  width: 100%;
+}
+
+.user-notifications {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family:
+    SF Pro,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-weight: 400;
+  justify-content: start;
+  height: 100%;
+}
+
+@media (max-width: 991px) {
+  .user-notifications {
+    white-space: initial;
+  }
+}
+
+.notification-icon {
+  align-self: stretch;
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: pointer;
+}
+
+.message-icon {
+  align-self: stretch;
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: pointer;
+}
+
+.profile-image {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 60px;
+  border-radius: 100px;
+  align-self: stretch;
+  margin-top: auto;
+  margin-bottom: auto;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.error-number-container {
+  display: flex;
+  margin-top: 30px;
+  width: 500px;
+  max-width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  font-family:
+    SF Pro,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 200px;
+  color: #879e36;
+  font-weight: 590;
+  white-space: nowrap;
+  justify-content: start;
+}
+
+@media (max-width: 991px) {
+  .error-number-container {
+    font-size: 40px;
+    white-space: initial;
+  }
+}
+
+.error-number {
+  margin: 0;
+}
+
+@media (max-width: 991px) {
+  .error-number {
+    font-size: 40px;
+  }
+}
+
+.error-image {
+  aspect-ratio: 0.73;
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+}
+
+.error-message {
+  align-self: stretch;
+  font-family:
+    SF Pro,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 30px;
+  font-weight: 590;
+  margin-top: 30px;
+}
+
+@media (max-width: 991px) {
+  .error-message {
+    max-width: 100%;
+  }
+}
+
+.home-button {
+  margin-top: 30px;
+  padding: 15px 30px;
+  background-color: #879e36;
+  color: white;
+  border: none;
+  border-radius: 80px;
+  font-family:
+    SF Pro,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #6c7e2b;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
