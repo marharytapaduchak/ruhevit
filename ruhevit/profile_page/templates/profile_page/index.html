@@ -40,20 +40,24 @@
           </div>
           <div class="profile">
             {% load static %}
-            <img 
-                src="{% static 'profile_page/images/profile_pic2.svg' %}" 
+            <img
+                src="{% static 'profile_page/images/profile_pic2.svg' %}"
                 alt="Profile"
                 class="profile-image"
             />
           </div>
           </div>
         </header>
+        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+          {% csrf_token %}
+          <button type="submit" class="logout-button">Вийти</button>
+        </form>
 
         <section class="info-section">
           <div class="user-profile">
             {% load static %}
-            <img 
-                src="{% static 'profile_page/images/profile_pic2.svg' %}" 
+            <img
+                src="{% static 'profile_page/images/profile_pic2.svg' %}"
                 alt="Profile"
                 class="profile-image"
             />
@@ -97,8 +101,8 @@
               <div class="post-icon">
                 <div class="icon-container">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/img.svg' %}" 
+                  <img
+                      src="{% static 'profile_page/images/img.svg' %}"
                       alt="Request"
                     class="request-icon-image"
                   />
@@ -133,8 +137,8 @@
               <div class="post-icon">
                 <div class="icon-container">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/img.svg' %}" 
+                  <img
+                      src="{% static 'profile_page/images/img.svg' %}"
                       alt="Request"
                     class="request-icon-image"
                   />
@@ -169,8 +173,8 @@
               <div class="post-icon">
                 <div class="icon-container">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/img.svg' %}" 
+                  <img
+                      src="{% static 'profile_page/images/img.svg' %}"
                       alt="Request"
                     class="request-icon-image"
                   />
@@ -205,8 +209,8 @@
               <div class="post-icon">
                 <div class="icon-container">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/img.svg' %}" 
+                  <img
+                      src="{% static 'profile_page/images/img.svg' %}"
                       alt="Request"
                     class="request-icon-image"
                   />
@@ -246,8 +250,8 @@
               <div class="review-content">
                 <div class="reviewer-info">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/profile.png' %}" 
+                  <img
+                      src="{% static 'profile_page/images/profile.png' %}"
                       alt="Reviewer"
                       class="reviewer-avatar"
                   />
@@ -270,8 +274,8 @@
               <div class="review-content">
                 <div class="reviewer-info">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/profile.png' %}" 
+                  <img
+                      src="{% static 'profile_page/images/profile.png' %}"
                       alt="Reviewer"
                       class="reviewer-avatar"
                   />
@@ -294,8 +298,8 @@
               <div class="review-content">
                 <div class="reviewer-info">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/profile.png' %}" 
+                  <img
+                      src="{% static 'profile_page/images/profile.png' %}"
                       alt="Reviewer"
                       class="reviewer-avatar"
                   />
@@ -318,8 +322,8 @@
               <div class="review-content">
                 <div class="reviewer-info">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/profile.png' %}" 
+                  <img
+                      src="{% static 'profile_page/images/profile.png' %}"
                       alt="Reviewer"
                       class="reviewer-avatar"
                   />
@@ -346,8 +350,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/img.svg' %}" 
+                  <img
+                      src="{% static 'profile_page/images/img.svg' %}"
                       alt="History"
                       class="history-icon-image"
                   />
@@ -355,8 +359,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/profile.png' %}" 
+                  <img
+                      src="{% static 'profile_page/images/profile.png' %}"
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -391,8 +395,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/img.svg' %}" 
+                  <img
+                      src="{% static 'profile_page/images/img.svg' %}"
                       alt="History"
                       class="history-icon-image"
                   />
@@ -400,8 +404,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/profile.png' %}" 
+                  <img
+                      src="{% static 'profile_page/images/profile.png' %}"
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -436,8 +440,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/img.svg' %}" 
+                  <img
+                      src="{% static 'profile_page/images/img.svg' %}"
                       alt="History"
                       class="history-icon-image"
                   />
@@ -445,8 +449,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/profile.png' %}" 
+                  <img
+                      src="{% static 'profile_page/images/profile.png' %}"
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -481,8 +485,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/img.svg' %}" 
+                  <img
+                      src="{% static 'profile_page/images/img.svg' %}"
                       alt="History"
                       class="history-icon-image"
                   />
@@ -490,8 +494,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/profile.png' %}" 
+                  <img
+                      src="{% static 'profile_page/images/profile.png' %}"
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -526,8 +530,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/img.svg' %}" 
+                  <img
+                      src="{% static 'profile_page/images/img.svg' %}"
                       alt="History"
                       class="history-icon-image"
                   />
@@ -535,8 +539,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/profile.png' %}" 
+                  <img
+                      src="{% static 'profile_page/images/profile.png' %}"
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -571,8 +575,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/img.svg' %}" 
+                  <img
+                      src="{% static 'profile_page/images/img.svg' %}"
                       alt="History"
                       class="history-icon-image"
                   />
@@ -580,8 +584,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img 
-                      src="{% static 'profile_page/images/profile.png' %}" 
+                  <img
+                      src="{% static 'profile_page/images/profile.png' %}"
                       alt="Requester"
                       class="requester-avatar"
                   />
