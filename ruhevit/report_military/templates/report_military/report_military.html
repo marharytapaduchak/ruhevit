@@ -1,0 +1,130 @@
+<link rel="stylesheet" href="{% static 'report_military/style.css' %}">
+<script src="{% static 'report_military/script.js' %}" defer></script>
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Звіт для військових</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="report-container">
+      <header class="navbar">
+        <div class="searchbar">
+          <h1 class="logo">Ругевіт</h1>
+          <div class="search-input" id="searchInput">
+            <span class="search-icon"></span>
+            <span class="search-placeholder" id="searchPlaceholder">Пошук</span>
+            <input
+              type="text"
+              class="search-field"
+              id="searchField"
+              aria-label="Пошук"
+            />
+          </div>
+        </div>
+        <div class="notifications">
+          <button class="notification-icon"></button>
+          <button class="message-icon"></button>
+          <img
+            src="images/profile photo.png"
+            alt="User profile"
+            class="profile-image"
+          />
+        </div>
+      </header>
+
+      <main class="report-form">
+        <h2 class="report-title">10 турнікетів CAT Generation 7</h2>
+
+        <div class="report-header">
+          <span class="report-type">Проміжний звіт</span>
+          <span class="report-date">02.02.2025</span>
+        </div>
+
+        <hr class="divider" />
+
+        <article class="report-content">
+          Вітаю! Хочу надати проміжний звіт щодо виконання запиту на 10
+          турнікетів.
+          <br />
+          <br />
+          На даний момент:
+          <br />
+          Я придбала 5 турнікетів, які вже доставлено до складу.
+          <br />
+          Ще 3 турнікетів наразі перебувають на етапі замовлення, очікую їх
+          доставку протягом наступних 3 днів.
+          <br />
+          2 турнікетів залишаються на етапі пошуку постачальника через певні
+          затримки у наявності товару.
+          <br />
+          <br />
+          Якщо будуть потрібні додаткові зміни або уточнення, будь ласка, дайте
+          знати.
+        </article>
+
+        <section class="image-gallery">
+          <div class="gallery-item">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/e4d8904de477bb915c69b0cebd32ab0d54a19e27?placeholderIfAbsent=true&apiKey=164f44f9b7944cc2884828cb8c32bd9d"
+              alt="Report image 1"
+              class="gallery-image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/0b9de7c2e5998a0c1cdd689a40d248f8d998a74c?placeholderIfAbsent=true&apiKey=164f44f9b7944cc2884828cb8c32bd9d"
+              alt="Report image 2"
+              class="gallery-image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/54861ec50362b9b51b1333351c696b047c2ed413?placeholderIfAbsent=true&apiKey=164f44f9b7944cc2884828cb8c32bd9d"
+              alt="Report image 3"
+              class="gallery-image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/2c6a19f713b1e3f8a4446297482ccaa70b600771?placeholderIfAbsent=true&apiKey=164f44f9b7944cc2884828cb8c32bd9d"
+              alt="Report image 4"
+              class="gallery-image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/587752ba008c4afa86838369fef797089550ab13?placeholderIfAbsent=true&apiKey=164f44f9b7944cc2884828cb8c32bd9d"
+              alt="Report image 5"
+              class="gallery-image"
+            />
+          </div>
+        </section>
+
+        <div class="report-footer">
+          <div class="deadline-info">
+            <span class="info-label">термін виконання</span>
+            <span class="info-value">23.03.2025</span>
+          </div>
+          <div class="volunteer-info">
+            <span class="info-label">волонтер</span>
+            <span class="info-value">Анна Шевченко</span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="contact-button" id="contactButton">
+            Сконтактувати
+          </button>
+          <button class="confirm-button" id="confirmButton">Підтвердити</button>
+        </div>
+      </main>
+    </div>
+
+    <script src="script.js">
+     
+    </script>
+  </body>
+</html>
