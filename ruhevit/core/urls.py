@@ -18,13 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from debug_toolbar.toolbar import debug_toolbar_urls
 import debug_toolbar
+from core.views import home_redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
-    path('', include('landing.urls')),
+    path('', home_redirect, name='home'),
     path('accounts/', include('accounts.urls')),
     path('requests/', include('requests.urls')),
-    path('home/', include('home.urls')),
     path('profile/', include('profile_page.urls')),
 ]
