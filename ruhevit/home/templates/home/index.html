@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Всі запити</title>
+    <title>Мої запити</title>
 </head>
 <body>
-    <h1>Список всіх запитів</h1>
-    
+    <h1>Мої запити</h1>
+
+    <h2>Я створив(ла):</h2>
     <ul>
-        {% for req in all_requests %}
+        {% for req in own_requests %}
             <li>
                 <strong>{{ req.title }}</strong><br>
                 Статус: {{ req.status }}<br>
@@ -16,9 +17,79 @@
                 Волонтер: {{ req.volunteer_name }}
             </li>
         {% empty %}
-            <li>Немає жодного запиту в базі даних.</li>
+            <li>Ви ще не створювали запитів.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Я волонтер:</h2>
+    <ul>
+        {% for req in volunteered_requests %}
+            <li>
+                <strong>{{ req.title }}</strong><br>
+                Статус: {{ req.status }}<br>
+                Термін: {{ req.deadline }}<br>
+                Автор: {{ req.author.username }}
+            </li>
+        {% empty %}
+            <li>Ви ще не стали волонтером у жодному запиті.</li>
         {% endfor %}
     </ul>
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Мої запити</title>
+</head>
+<body>
+    <h1>Мої запити</h1>
+
+    <h2>Я створив(ла):</h2>
+    <ul>
+        {% for req in own_requests %}
+            <li>
+                <strong>{{ req.title }}</strong><br>
+                Статус: {{ req.status }}<br>
+                Термін: {{ req.deadline }}<br>
+                Волонтер: {{ req.volunteer_name }}
+            </li>
+        {% empty %}
+            <li>Ви ще не створювали запитів.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Я волонтер:</h2>
+    <ul>
+        {% for req in volunteered_requests %}
+            <li>
+                <strong>{{ req.title }}</strong><br>
+                Статус: {{ req.status }}<br>
+                Термін: {{ req.deadline }}<br>
+                Автор: {{ req.author.username }}
+            </li>
+        {% empty %}
+            <li>Ви ще не стали волонтером у жодному запиті.</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html> -->
+
+<h2>Ваші запити</h2>
+<div class="requests-grid">
+    {% for request in user_requests %}
+        <div class="request-card">
+            <h3>{{ request.name }}</h3>
+            <p>{{ request.status }}</p>
+            <p>Термін виконання: {{ request.created_at|date:"d.m.Y" }}</p>
+            <p>Волонтер: {{ request.executor.get_full_name }}</p>
+            <a href="#">Сконтактувати</a>
+            <a href="#">Підтвердити статус</a>
+        </div>
+    {% empty %}
+        <p>У вас ще немає запитів.</p>
+    {% endfor %}
+</div>
+

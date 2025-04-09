@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from requests.models import Request  # або як називається твоя модель
+from requests.models import Request  # Імпортуємо твою модель
 
+@login_required
 def index(request):
-    all_requests = Request.objects.all()
-    return render(request, 'home/index.html', {'all_requests': all_requests})
+    user_requests = Request.objects.filter(owner=request.user)
+    return render(request, 'home/index.html', {'user_requests': user_requests})
