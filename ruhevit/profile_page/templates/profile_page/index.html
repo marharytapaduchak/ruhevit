@@ -16,6 +16,7 @@
           
         </style>
     </head>
+    
     <body>
       <div class="feed-mil">
         <header class="navbar">
@@ -36,6 +37,10 @@
             </div>
             <!-- </div> -->
           </header>
+          <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">Вийти</button>
+          </form>
         <section class="info-section">
           <div class="user-profile">
             <img 
