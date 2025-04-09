@@ -1,0 +1,20 @@
+from django import forms
+from .models import *
+
+class RequestHistoryForm(forms.ModelForm):
+    class Meta:
+        model = RequestHistory
+        fields = ['status', 'comment', 'photo']
+        widgets = {
+            'comment': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Опишіть, що вже зроблено…'}),
+        }
+
+
+class RequestForm(forms.ModelForm):
+    class Meta:
+        model = Request
+        fields = ['name', 'description', 'status',
+                  'priority', 'location', 'type']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 4}),
+        }

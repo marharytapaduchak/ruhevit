@@ -63,6 +63,9 @@ class RequestHistory(models.Model):
     request = models.ForeignKey(
         Request, on_delete=models.CASCADE, related_name='history')
     status = models.CharField(max_length=20, choices=Request.STATUS_CHOICES)
+    comment = models.TextField(blank=True)
+    photo = models.ImageField(
+        upload_to='report_photos/', blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
