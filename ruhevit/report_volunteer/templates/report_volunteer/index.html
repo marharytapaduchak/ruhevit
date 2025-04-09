@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="{% static 'report_volunteer/styles.css' %}">
+<script src="{% static 'report_volunteer/script.js' %}" defer></script>
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Проміжний звіт</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=SF+Pro:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-container">
+      <header class="main-header">
+        <div class="header-left">
+          <h1 class="brand-name">Ругевіт</h1>
+          <div class="search-bar">
+            <i class="ti ti-search search-icon"></i>
+            <span class="search-placeholder">Пошук</span>
+          </div>
+        </div>
+        <div class="user-actions">
+          <button class="icon-button" aria-label="Messages">
+            <i class="ti ti-message"></i>
+          </button>
+          <button class="icon-button" aria-label="Notifications">
+            <i class="ti ti-bell"></i>
+          </button>
+          <img src="images/profile photo.png" alt="Profile" class="profile-photo" />
+        </div>
+      </header>
+      <main class="report-form-container">
+        <h2 class="form-title">Проміжний звіт</h2>
+        <hr class="form-divider" />
+        <form id="reportForm">
+          <div class="form-group">
+            <label for="reportTitle" class="form-label">
+              <span>Заголовок</span>
+              <span class="required-mark">*</span>
+            </label>
+            <input
+              type="text"
+              id="reportTitle"
+              class="input-field"
+              value="10 турнікетів CAT Generation 7"
+              placeholder="Введіть заголовок звіту"
+              required
+            />
+            <div class="error-message" id="titleError"></div>
+          </div>
+          <div class="form-group">
+            <label for="reportText" class="form-label">
+              <span>Текст</span>
+              <span class="required-mark">*</span>
+            </label>
+            <textarea
+              id="reportText"
+              class="text-area"
+              placeholder="Введіть текст звіту"
+              required
+            >
+Вітаю! Хочу надати проміжний звіт щодо виконання запиту на 10 турнікетів.
+
+На даний момент:
+• Я придбала 5 турнікетів, які вже доставлено до складу.
+• Ще 3 турнікетів наразі перебувають на етапі замовлення, очікую їх доставку протягом наступних 3 днів.</textarea
+            >
+            <div class="error-message" id="textError"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Фото</label>
+            <div class="photo-upload-area">
+              <i class="ti ti-photo-plus upload-icon"></i>
+              <p class="upload-text">
+                <span>Перетягніть фото сюди. Або </span>
+                <span class="upload-link">завантажте</span>
+              </p>
+            </div>
+          </div>
+          <button type="submit" class="submit-button" id="submitButton">
+            Надіслати
+          </button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
