@@ -20,6 +20,8 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 import debug_toolbar
 from core.views import home_redirect
 
+handler404 = 'core.views.custom_404_view'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
@@ -27,4 +29,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('requests/', include('requests.urls')),
     path('profile/', include('profile_page.urls')),
+    # path('errors/', include('errors.urls')),
 ]
