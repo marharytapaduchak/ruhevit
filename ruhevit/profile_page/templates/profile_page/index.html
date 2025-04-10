@@ -1,65 +1,52 @@
 {% load static %}
-<!doctype html>
-<html lang="uk">
-  <head>
-    <title>exported project</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <meta property="twitter:card" content="summary_large_image" />
+<!DOCTYPE html>
+<html lang="english">
+    <head>
+        <title>exported project</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta property="twitter:card" content="summary_large_image" />
 
-    <style data-tag="reset-style-sheet">
-        html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;  -webkit-font-smoothing: antialiased;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;  color: inherit;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}details {  display: block;  margin: 0;  padding: 0;}summary::-webkit-details-marker {  display: none;}[data-thq="accordion"] [data-thq="accordion-content"] {  max-height: 0;  overflow: hidden;  transition: max-height 0.3s ease-in-out;  padding: 0;}[data-thq="accordion"] details[data-thq="accordion-trigger"][open] + [data-thq="accordion-content"] {  max-height: 1000vh;}details[data-thq="accordion-trigger"][open] summary [data-thq="accordion-icon"] {  transform: rotate(180deg);}html { scroll-behavior: smooth  }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style data-tag="default-style-sheet">
-    </style>
-    <!-- <link rel="stylesheet" href="./style.css" /> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{% static 'profile_page/style.css' %}">
-  </head>
-  <body>
-    <div class="page-container">
-      <div class = 'navigation'>
-        <header class="navigation">
-          <!-- <div class="search-logo">
-            <h1 class="logo-text">Ругевіт</h1>
-            <div class="search-bar">
-              <span class="search-icon">􀊫</span>
-              <span class="search-text">Пошук</span>
-            </div>
-          </div> -->
-          <div class="search-logo">
-            <h1 class="logo-text">Ругевіт</h1>
-            <div class="search-bar">
+        <style data-tag="reset-style-sheet">
+            html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;  -webkit-font-smoothing: antialiased;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;  color: inherit;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}details {  display: block;  margin: 0;  padding: 0;}summary::-webkit-details-marker {  display: none;}[data-thq="accordion"] [data-thq="accordion-content"] {  max-height: 0;  overflow: hidden;  transition: max-height 0.3s ease-in-out;  padding: 0;}[data-thq="accordion"] details[data-thq="accordion-trigger"][open] + [data-thq="accordion-content"] {  max-height: 1000vh;}details[data-thq="accordion-trigger"][open] summary [data-thq="accordion-icon"] {  transform: rotate(180deg);}html { scroll-behavior: smooth  }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'profile_page/style.css' %}">
+        <style data-tag="default-style-sheet">
+          
+        </style>
+    </head>
+    
+    <body>
+      <div class="feed-mil">
+        <header class="navbar">
+          <div class="search-and-logo">
+            <a href="{% url 'home' %}" class="logo">Ругевіт</a>
             <div class="search" role="button" tabindex="0" onclick="activateSearch()" onkeypress="if(event.key === 'Enter') activateSearch()">
-              <i class="fa fa-search"></i>
-              <span class="search-text">Пошук</span>
-              <input type="text" class="search-input" placeholder="Пошук..." />
-            </div>
+                <i class="fa fa-search"></i>
+                <span class="search-text">Пошук</span>
+                <input type="text" class="search-input" placeholder="Пошук..." />
+              </div>
           </div>
-          </div>
-          <div class="profile">
-            {% load static %}
-            <img
-                src="{% static 'profile_page/images/profile_pic2.svg' %}"
+            <div class="profile">
+              <img
+              src="{% static 'profile_page/images/profile_pic2.svg' %}" 
                 alt="Profile"
                 class="profile-image"
-            />
-          </div>
-          </div>
-        </header>
-        <form action="{% url 'logout' %}" method="post" style="display: inline;">
-          {% csrf_token %}
-          <button type="submit" class="logout-button">Вийти</button>
-        </form>
-
+              />
+            </div>
+            <!-- </div> -->
+          </header>
+          <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">Вийти</button>
+          </form>
         <section class="info-section">
           <div class="user-profile">
-            {% load static %}
-            <img
-                src="{% static 'profile_page/images/profile_pic2.svg' %}"
-                alt="Profile"
-                class="profile-image"
+            <img 
+                src="{% static 'profile_page/images/profile_pic2.svg' %}" 
+                alt="User"
+              class="user-avatar"
             />
             <div class="user-details">
               <h2 class="user-name">Анна Шевченко</h2>
@@ -83,10 +70,10 @@
           </p>
           <p class="join-date">приєдналась 20.01.2023</p>
           <div class="action-buttons">
-            <a href="{% url 'create_request' %}" class="create-button">
+            <button class="create-button">
               <span class="button-icon">&#43;</span>
               <span class="button-text">Створити пропозицію</span>
-            </a>
+            </button>
             <button class="edit-button">
               <i style="font-size:20px" class="fa">&#xf040;</i>
               <span class="button-text">Редагувати профіль</span>
@@ -101,8 +88,8 @@
               <div class="post-icon">
                 <div class="icon-container">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/img.svg' %}"
+                  <img 
+                      src="{% static 'profile_page/images/img.svg' %}" 
                       alt="Request"
                     class="request-icon-image"
                   />
@@ -137,8 +124,8 @@
               <div class="post-icon">
                 <div class="icon-container">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/img.svg' %}"
+                  <img 
+                      src="{% static 'profile_page/images/img.svg' %}" 
                       alt="Request"
                     class="request-icon-image"
                   />
@@ -173,8 +160,8 @@
               <div class="post-icon">
                 <div class="icon-container">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/img.svg' %}"
+                  <img 
+                      src="{% static 'profile_page/images/img.svg' %}" 
                       alt="Request"
                     class="request-icon-image"
                   />
@@ -209,8 +196,8 @@
               <div class="post-icon">
                 <div class="icon-container">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/img.svg' %}"
+                  <img 
+                      src="{% static 'profile_page/images/img.svg' %}" 
                       alt="Request"
                     class="request-icon-image"
                   />
@@ -250,8 +237,8 @@
               <div class="review-content">
                 <div class="reviewer-info">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/profile.png' %}"
+                  <img 
+                      src="{% static 'profile_page/images/profile.png' %}" 
                       alt="Reviewer"
                       class="reviewer-avatar"
                   />
@@ -274,8 +261,8 @@
               <div class="review-content">
                 <div class="reviewer-info">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/profile.png' %}"
+                  <img 
+                      src="{% static 'profile_page/images/profile.png' %}" 
                       alt="Reviewer"
                       class="reviewer-avatar"
                   />
@@ -298,8 +285,8 @@
               <div class="review-content">
                 <div class="reviewer-info">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/profile.png' %}"
+                  <img 
+                      src="{% static 'profile_page/images/profile.png' %}" 
                       alt="Reviewer"
                       class="reviewer-avatar"
                   />
@@ -322,8 +309,8 @@
               <div class="review-content">
                 <div class="reviewer-info">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/profile.png' %}"
+                  <img 
+                      src="{% static 'profile_page/images/profile.png' %}" 
                       alt="Reviewer"
                       class="reviewer-avatar"
                   />
@@ -350,8 +337,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/img.svg' %}"
+                  <img 
+                      src="{% static 'profile_page/images/img.svg' %}" 
                       alt="History"
                       class="history-icon-image"
                   />
@@ -359,8 +346,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/profile.png' %}"
+                  <img 
+                      src="{% static 'profile_page/images/profile.png' %}" 
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -395,8 +382,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/img.svg' %}"
+                  <img 
+                      src="{% static 'profile_page/images/img.svg' %}" 
                       alt="History"
                       class="history-icon-image"
                   />
@@ -404,8 +391,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/profile.png' %}"
+                  <img 
+                      src="{% static 'profile_page/images/profile.png' %}" 
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -440,8 +427,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/img.svg' %}"
+                  <img 
+                      src="{% static 'profile_page/images/img.svg' %}" 
                       alt="History"
                       class="history-icon-image"
                   />
@@ -449,8 +436,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/profile.png' %}"
+                  <img 
+                      src="{% static 'profile_page/images/profile.png' %}" 
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -485,8 +472,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/img.svg' %}"
+                  <img 
+                      src="{% static 'profile_page/images/img.svg' %}" 
                       alt="History"
                       class="history-icon-image"
                   />
@@ -494,8 +481,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/profile.png' %}"
+                  <img 
+                      src="{% static 'profile_page/images/profile.png' %}" 
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -530,8 +517,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/img.svg' %}"
+                  <img 
+                      src="{% static 'profile_page/images/img.svg' %}" 
                       alt="History"
                       class="history-icon-image"
                   />
@@ -539,8 +526,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/profile.png' %}"
+                  <img 
+                      src="{% static 'profile_page/images/profile.png' %}" 
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -575,8 +562,8 @@
             <article class="history-card">
               <div class="history-icon">
                 {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/img.svg' %}"
+                  <img 
+                      src="{% static 'profile_page/images/img.svg' %}" 
                       alt="History"
                       class="history-icon-image"
                   />
@@ -584,8 +571,8 @@
               <div class="history-info">
                 <div class="requester-info">
                   {% load static %}
-                  <img
-                      src="{% static 'profile_page/images/profile.png' %}"
+                  <img 
+                      src="{% static 'profile_page/images/profile.png' %}" 
                       alt="Requester"
                       class="requester-avatar"
                   />
@@ -618,10 +605,8 @@
             </article>
           </div>
         </section>
-      </main>
     </div>
-    <!-- <script src="./scripts.js" defer></script> -->
     <script src="{% static 'profile_page/script.js' %}" defer></script>
   </body>
-</html>
+
 
