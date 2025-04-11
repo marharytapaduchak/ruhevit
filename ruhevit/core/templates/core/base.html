@@ -7,10 +7,37 @@
     <link rel="stylesheet" href="{% static 'core/styles.css' %}">
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
     <link rel="stylesheet" href="{% static 'profile_page/style.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/style.css' %}">
     <link rel="icon" href="{% static 'core/images/logo.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style data-tag="default-style-sheet">
+    </style>
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <div class="feed-mil">
+        <!-- Header -->
+        <header class="navbar">
+            <div class="search-and-logo">
+                <h1 class="logo">Ругевіт</h1>
+                {% if user.is_authenticated %}
+                <div class="search" role="button" tabindex="0" onclick="activateSearch()" onkeypress="if(event.key === 'Enter') activateSearch()">
+                    <i class="fa fa-search"></i>
+                    <span class="search-text">Пошук</span>
+                    <input type="text" class="search-input" placeholder="Пошук..." />
+                  </div>
+                {% endif %}
+            </div>
+            {% if user.is_authenticated %}
+            <div class="navbar-right">
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">Вийти</button>
+                </form>
+            <a href="{% url 'profile_page' %}" class="profile-icon">
+                <img src="{% static 'home/images/profile_pic.svg' %}" alt="Profile" class="profile-page" />
+            </a>
+            {% endif %}
+        </header>
 </body>
 </html>

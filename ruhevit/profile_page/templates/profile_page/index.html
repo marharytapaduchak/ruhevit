@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="english">
     <head>
-        <title>exported project</title>
+        <title>Ругевіт</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charset="utf-8" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -12,8 +12,8 @@
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{% static 'profile_page/style.css' %}">
+        <link rel="icon" href="{% static 'core/images/logo.svg' %}" type="image/x-icon">
         <style data-tag="default-style-sheet">
-
         </style>
     </head>
 
@@ -25,22 +25,31 @@
             <div class="search" role="button" tabindex="0" onclick="activateSearch()" onkeypress="if(event.key === 'Enter') activateSearch()">
                 <i class="fa fa-search"></i>
                 <span class="search-text">Пошук</span>
-                <input type="text" class="search-input" placeholder="Пошук..." />
+                <input type="text" class="search-input" placeholder="Пошук..." onclick="event.stopPropagation()" />
               </div>
           </div>
-            <div class="profile">
+          <div class="navbar-right">
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">Вийти</button>
+            </form>
+          <a href="{% url 'profile_page' %}" class="profile-icon">
+              <img src="{% static 'profile_page/images/profile_pic2.svg' %}" alt="Profile" class="profile-page" />
+          </a>
+          </div>
+         </header>
+            <!-- <div class="profile">
               <img
               src="{% static 'profile_page/images/profile_pic2.svg' %}"
                 alt="Profile"
                 class="profile-image"
               />
-            </div>
+            </div> -->
             <!-- </div> -->
-          </header>
-          <form action="{% url 'logout' %}" method="post" style="display: inline;">
+          <!-- <form action="{% url 'logout' %}" method="post" style="display: inline;">
             {% csrf_token %}
             <button type="submit" class="logout-button">Вийти</button>
-          </form>
+          </form> -->
         <section class="info-section">
           <div class="user-profile">
             <img

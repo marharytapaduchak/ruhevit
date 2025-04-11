@@ -141,7 +141,13 @@ html {
       margin-top: auto;
       margin-bottom: auto;
     }
-
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 15px; /* Smaller gap */
+      height: 100%;
+    }
+    
     /* Requests Section */
     .requests-block {
       display: flex;
