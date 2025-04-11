@@ -29,5 +29,5 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('requests/', include('requests.urls')),
     path('profile/', include('profile_page.urls')),
-    # path('errors/', include('errors.urls')),
+    path('errors/', include('errors.urls')),
 ]

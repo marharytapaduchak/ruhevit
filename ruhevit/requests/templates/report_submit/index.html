@@ -1,5 +1,7 @@
-<link rel="stylesheet" href="{% static 'report_volunteer/styles.css' %}">
-<script src="{% static 'report_volunteer/script.js' %}" defer></script>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'report_volunteer/css/styles.css' %}">
+<script src="{% static 'report_volunteer/js/script.js' %}" defer></script>
 <!doctype html>
 <html lang="uk">
   <head>
@@ -14,8 +16,6 @@
       href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="app-container">
@@ -28,19 +28,13 @@
           </div>
         </div>
         <div class="user-actions">
-          <button class="icon-button" aria-label="Messages">
-            <i class="ti ti-message"></i>
-          </button>
-          <button class="icon-button" aria-label="Notifications">
-            <i class="ti ti-bell"></i>
-          </button>
-          <img src="images/profile photo.png" alt="Profile" class="profile-photo" />
+          <img src="{% static 'report_volunteer/images/profile photo.png' %}" alt="Profile" class="profile-photo" />
         </div>
       </header>
       <main class="report-form-container">
-        <h2 class="form-title">Проміжний звіт</h2>
+        <h2 class="form-title">Звіт про закриття потреби</h2>
         <hr class="form-divider" />
-        <form id="reportForm">
+        <form id="reportForm" enctype="multipart/form-data" method="post">
           <div class="form-group">
             <label for="reportTitle" class="form-label">
               <span>Заголовок</span>
@@ -78,11 +72,14 @@
           <div class="form-group">
             <label class="form-label">Фото</label>
             <div class="photo-upload-area">
-              <i class="ti ti-photo-plus upload-icon"></i>
-              <p class="upload-text">
-                <span>Перетягніть фото сюди. Або </span>
-                <span class="upload-link">завантажте</span>
-              </p>
+              <label for="photoUpload" class="upload-label">
+                <i class="ti ti-photo-plus upload-icon"></i>
+                <p class="upload-text">
+                  <span>Перетягніть фото сюди. Або </span>
+                  <span class="upload-link">завантажте</span>
+                </p>
+                <input type="file" id="photoUpload" name="photos" class="file-input" accept="image/*" multiple style="display: none;" />
+              </label>
             </div>
           </div>
           <button type="submit" class="submit-button" id="submitButton">

@@ -1,0 +1,104 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'report_display/css/style.css' %}">
+<script src="{% static 'report_display/js/script.js' %}" defer></script>
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Запит</title>
+  </head>
+  <body>
+    <div class="report-container">
+      <header class="navbar">
+        <div class="searchbar">
+          <h1 class="logo">Ругевіт</h1>
+          <div class="search-input" id="searchInput">
+            <span class="search-icon"></span>
+            <span class="search-placeholder" id="searchPlaceholder">Пошук</span>
+            <input
+              type="text"
+              class="search-field"
+              id="searchField"
+              aria-label="Пошук"
+            />
+          </div>
+        </div>
+        <div class="notifications">
+          <button class="notification-icon"></button>
+          <button class="message-icon"></button>
+          <img
+            src="{% static 'report_display/images/profile photo.png' %}"
+            alt="User profile"
+            class="profile-image"
+          />
+        </div>
+      </header>
+
+      <main class="report-form">
+        <h2 class="report-title">{{ request_obj.name }}</h2>
+
+        <div class="report-header">
+          <span class="report-type">Запит</span>
+          <span class="report-date">{{ request_obj.created_at|date:"d.m.Y" }}</span>
+        </div>
+
+        <hr class="divider" />
+
+        <article class="report-content">
+          {{ request_obj.description|linebreaksbr }}
+        </article>
+
+        <section class="image-gallery">
+          {% for image in request_obj.images.all %}
+            <div class="gallery-item">
+              <img src="{{ image.url }}" alt="Запит фото" class="gallery-image" />
+            </div>
+          {% empty %}
+            <p>Немає зображень</p>
+          {% endfor %}
+        </section>
+
+        <div class="meta-info">
+          <p><strong>Категорія:</strong> {{ request_obj.category }}</p>
+          <p><strong>Локація:</strong> {{ request_obj.location }}</p>
+        </div>
+
+        <div class="report-footer">
+          <div class="status-info">
+            <span class="info-label">Статус</span>
+            <span class="info-value">{{ request_obj.get_status_display }}</span>
+          </div>
+          <div class="volunteer-info">
+            <span class="info-label">Волонтер</span>
+            <span class="info-value">
+              {% if request_obj.executor %}
+                {{ request_obj.executor.first_name|add:" "|add:request_obj.executor.last_name|default:request_obj.executor.username }}
+              {% else %}
+                (не призначено)
+              {% endif %}
+            </span>
+          </div>
+          <div class="volunteer-status">
+            <span class="info-label">Автор запиту</span>
+            <span class="info-value">
+              {% if request_obj.owner %}
+                {{ request_obj.owner.first_name|add:" "|add:request_obj.owner.last_name|default:request_obj.owner.username }}
+              {% else %}
+                (невідомо)
+              {% endif %}
+            </span>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button class="contact-button" id="contactButton">
+            Сконтактувати
+          </button>
+          <button class="confirm-button" id="confirmButton">Підтвердити запит</button>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

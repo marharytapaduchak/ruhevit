@@ -1,3 +1,4 @@
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from .forms import *
@@ -12,6 +13,7 @@ def main_page(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.owner = request.user
+            instance.status = 'need_volunteer'
             instance.save()
             return redirect('create_request')
     else:
@@ -25,6 +27,7 @@ def main_page(request):
     })
 
 
+@login_required
 def submit_report(request, request_id):
     req = get_object_or_404(Request, id=request_id)
 
@@ -34,9 +37,29 @@ def submit_report(request, request_id):
             history = form.save(commit=False)
             history.request = req
             history.save()
-            # або куди тобі треба
+
             return redirect('request_detail', request_id=req.id)
     else:
         form = RequestHistoryForm()
 
     return render(request, 'requests/submit_report.html', {'form': form, 'request_obj': req})
+
+
+def report_confirm(request):
+    return render(request, 'report_confirm/index.html')
+
+
+def request_view(request):
+    return render(request, 'request_view/index.html')
+
+
+def report_submit(request):
+    return render(request, 'report_submit/index.html')
+
+
+@login_required
+def request_detail(request, request_id):
+    request_obj = get_object_or_404(Request, pk=request_id)
+    return render(request, 'request_view/index.html', {
+        'request_obj': request_obj
+    })

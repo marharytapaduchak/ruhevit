@@ -1,6 +1,11 @@
+from . import views
 from django.urls import path
 from .views import main_page
 
 urlpatterns = [
     path('', main_page, name='create_request'),
+    path('confirm', views.report_confirm, name='report_confirm'),
+    path('view', views.request_view, name='request_view'),
+    path('submit', views.report_submit, name='report_submit'),
+    path('<int:request_id>/', views.request_detail, name='request_detail'),
 ]

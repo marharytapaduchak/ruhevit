@@ -13,8 +13,8 @@ class RequestHistoryForm(forms.ModelForm):
 class RequestForm(forms.ModelForm):
     class Meta:
         model = Request
-        fields = ['name', 'description', 'status',
-                  'priority', 'location', 'type']
+        fields = ['name', 'description',
+                'priority', 'location', 'type']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4}),
         }

@@ -1,12 +1,13 @@
-<link rel="stylesheet" href="{% static 'report_military/style.css' %}">
-<script src="{% static 'report_military/script.js' %}" defer></script>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'report_military/css/style.css' %}">
+<script src="{% static 'report_military/js/script.js' %}" defer></script>
 <!doctype html>
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Звіт для військових</title>
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="report-container">
@@ -28,7 +29,7 @@
           <button class="notification-icon"></button>
           <button class="message-icon"></button>
           <img
-            src="images/profile photo.png"
+            src="{% static 'report_military/images/profile photo.png' %}"
             alt="User profile"
             class="profile-image"
           />
@@ -118,13 +119,13 @@
           <button class="contact-button" id="contactButton">
             Сконтактувати
           </button>
-          <button class="confirm-button" id="confirmButton">Підтвердити</button>
+          <button class="confirm-button" id="confirmButton">Закрити запит</button>
         </div>
       </main>
     </div>
 
     <script src="script.js">
-     
+
     </script>
   </body>
 </html>
