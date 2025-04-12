@@ -11,7 +11,7 @@ class Command(BaseCommand):
         TYPES = ['medicine', 'ammo', 'drones', 'transport', 'repair']
         PRIORITIES = ['high', 'medium', 'low']
         LOCATIONS = ['front', 'near_rear', 'far_rear']
-        STATUSES = ['need_volunteer', 'in_progress',
+        STATUSES = ['pending', 'in_progress',
                     'pending', 'done', 'rejected']
 
         military_users = list(User.objects.filter(role='військовий'))

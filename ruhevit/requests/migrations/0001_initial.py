@@ -17,35 +17,48 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Request',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
                 ('description', models.TextField()),
-                ('type', models.CharField(choices=[('medicine', 'Медицина'), ('ammo', 'Амуніція'), ('drones', 'Дрони'), ('transport', 'Транспорт'), ('repair', 'Ремонт')], max_length=20)),
-                ('priority', models.CharField(choices=[('high', 'Високий'), ('medium', 'Середній'), ('low', 'Низький')], max_length=10)),
-                ('location', models.CharField(choices=[('front', 'Фронт'), ('near_rear', 'Близький тил'), ('far_rear', 'Далекий тил')], max_length=15)),
-                ('status', models.CharField(choices=[('need_volunteer', 'Потрібен волонтер'), ('in_progress', 'Виконується'), ('pending', 'Очікує підтвердження'), ('done', 'Виконано'), ('rejected', 'Відхилено')], default='need_volunteer', max_length=20)),
+                ('type', models.CharField(choices=[('medicine', 'Медицина'), ('ammo', 'Амуніція'), (
+                    'drones', 'Дрони'), ('transport', 'Транспорт'), ('repair', 'Ремонт')], max_length=20)),
+                ('priority', models.CharField(choices=[
+                 ('high', 'Високий'), ('medium', 'Середній'), ('low', 'Низький')], max_length=10)),
+                ('location', models.CharField(choices=[
+                 ('front', 'Фронт'), ('near_rear', 'Близький тил'), ('far_rear', 'Далекий тил')], max_length=15)),
+                ('status', models.CharField(choices=[('pending', 'Потрібен волонтер'), ('in_progress', 'Виконується'), (
+                    'pending', 'Очікує підтвердження'), ('done', 'Виконано'), ('rejected', 'Відхилено')], default='pending', max_length=20)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('executor', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='requests_taken', to=settings.AUTH_USER_MODEL)),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='requests_made', to=settings.AUTH_USER_MODEL)),
+                ('executor', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL,
+                 related_name='requests_taken', to=settings.AUTH_USER_MODEL)),
+                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='requests_made', to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.CreateModel(
             name='RequestHistory',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.CharField(choices=[('need_volunteer', 'Потрібен волонтер'), ('in_progress', 'Виконується'), ('pending', 'Очікує підтвердження'), ('done', 'Виконано'), ('rejected', 'Відхилено')], max_length=20)),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('status', models.CharField(choices=[('pending', 'Потрібен волонтер'), ('in_progress', 'Виконується'), (
+                    'pending', 'Очікує підтвердження'), ('done', 'Виконано'), ('rejected', 'Відхилено')], max_length=20)),
                 ('date', models.DateTimeField(auto_now_add=True)),
-                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='history', to='requests.request')),
+                ('request', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                 related_name='history', to='requests.request')),
             ],
         ),
         migrations.CreateModel(
             name='Review',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('rating', models.PositiveSmallIntegerField()),
                 ('comment', models.TextField(blank=True)),
-                ('executor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('request', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='requests.request')),
+                ('executor', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('request', models.OneToOneField(
+                    on_delete=django.db.models.deletion.CASCADE, to='requests.request')),
             ],
         ),
     ]

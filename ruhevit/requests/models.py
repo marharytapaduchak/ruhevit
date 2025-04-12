@@ -24,11 +24,9 @@ class Request(models.Model):
     ]
 
     STATUS_CHOICES = [
-        ('need_volunteer', 'Потрібен волонтер'),
+        ('pending', 'Очікує'),
         ('in_progress', 'Виконується'),
-        ('pending', 'Очікує підтвердження'),
         ('done', 'Виконано'),
-        ('rejected', 'Відхилено'),
     ]
 
     owner = models.ForeignKey(
@@ -51,7 +49,7 @@ class Request(models.Model):
     priority = models.CharField(max_length=10, choices=PRIORITY_CHOICES)
     location = models.CharField(max_length=15, choices=LOCATION_CHOICES)
     status = models.CharField(
-        max_length=20, choices=STATUS_CHOICES, default='need_volunteer')
+        max_length=20, choices=STATUS_CHOICES, default='pending')
 
     created_at = models.DateTimeField(auto_now_add=True)
 

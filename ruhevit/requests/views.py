@@ -12,7 +12,7 @@ def create_request(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.owner = request.user
-            instance.status = 'need_volunteer'
+            instance.status = 'pending'
             instance.save()
             return redirect('requests:create_request')
     else:
