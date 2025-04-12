@@ -99,148 +99,148 @@ html {
     font-size: 15px;
   }
   
-  body {
+body {
+font-weight: 400;
+font-style:normal;
+text-decoration: none;
+text-transform: none;
+letter-spacing: normal;
+line-height: 1.15;
+color: var(--dl-color-theme-neutral-dark);
+background: var(--dl-color-theme-neutral-light);
+
+fill: var(--dl-color-theme-neutral-dark);
+}
+
+.feed-mil {
+    padding-bottom: 100px;
+    background-color: #fefffb;
+    overflow: hidden;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: rgba(254, 255, 251, 0.7);
+    display: flex;
+    min-height: 110px;
+    width: 100%;
+    padding: 30px 25px;
+    align-items: stretch;
+    gap: 40px 100px;
+    overflow: hidden;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.search-and-logo {
+    display: flex;
+    min-width: 240px;
+    align-items: stretch;
+    gap: 30px;
+    font-size: 20px;
+    color: #1d1d20;
+    white-space: nowrap;
+    text-align: center;
+    justify-content: start;
+    height: 100%;
+}
+
+
+/* Search styling */
+.search {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    position: relative;
+}
+
+.search-input {
+    display: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+}
+
+.search.active .search-text {
+    display: none;
+}
+
+.search.active .search-input {
+    display: inline;
+}
+
+.logo {
+    font-family:
+    Vinnytsia Sans,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 20px;
+}
+
+.search {
+    align-items: center;
+    border-radius: 80px;
+    background-color: #f4f7ee;
+    display: flex;
+    min-width: 240px;
+    padding: 20px 30px;
+    gap: 10px;
+    overflow: hidden;
+    font-family:
+    SF Pro,
+    -apple-system,
+    Roboto,
+    Helvetica,
+    sans-serif;
     font-weight: 400;
-    font-style:normal;
-    text-decoration: none;
-    text-transform: none;
-    letter-spacing: normal;
-    line-height: 1.15;
-    color: var(--dl-color-theme-neutral-dark);
-    background: var(--dl-color-theme-neutral-light);
-  
-    fill: var(--dl-color-theme-neutral-dark);
-  }
-  
-  .feed-mil {
-      padding-bottom: 100px;
-      background-color: #fefffb;
-      overflow: hidden;
-      padding-left: 20px;
-      padding-right: 20px;
+    justify-content: start;
+    height: 100%;
+    width: 350px;
+}
+
+.search-icon,
+.search-text {
+    align-self: stretch;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.profile-icon {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: start;
+    height: 100%;
+    width: 60px;
+}
+
+.profile-image {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 60px;
+    border-radius: 100px;
+    align-self: stretch;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Smaller gap */
+    height: 100%;
     }
     
-    /* Navbar Styles */
-    .navbar {
-      background-color: rgba(254, 255, 251, 0.7);
-      display: flex;
-      min-height: 110px;
-      width: 100%;
-      padding: 30px 25px;
-      align-items: stretch;
-      gap: 40px 100px;
-      overflow: hidden;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    
-    .search-and-logo {
-      display: flex;
-      min-width: 240px;
-      align-items: stretch;
-      gap: 30px;
-      font-size: 20px;
-      color: #1d1d20;
-      white-space: nowrap;
-      text-align: center;
-      justify-content: start;
-      height: 100%;
-    }
-  
-  
-    /* Search styling */
-    .search {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      background-color: #f0f0f0;
-      cursor: pointer;
-      position: relative;
-    }
-  
-    .search-input {
-      display: none;
-      border: none;
-      outline: none;
-      font-size: 14px;
-      background: transparent;
-    }
-  
-    .search.active .search-text {
-      display: none;
-    }
-  
-    .search.active .search-input {
-      display: inline;
-    }
-    
-    .logo {
-      font-family:
-        Vinnytsia Sans,
-        -apple-system,
-        Roboto,
-        Helvetica,
-        sans-serif;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-top: auto;
-      margin-bottom: auto;
-      font-size: 20px;
-    }
-    
-    .search {
-      align-items: center;
-      border-radius: 80px;
-      background-color: #f4f7ee;
-      display: flex;
-      min-width: 240px;
-      padding: 20px 30px;
-      gap: 10px;
-      overflow: hidden;
-      font-family:
-        SF Pro,
-        -apple-system,
-        Roboto,
-        Helvetica,
-        sans-serif;
-      font-weight: 400;
-      justify-content: start;
-      height: 100%;
-      width: 350px;
-    }
-    
-    .search-icon,
-    .search-text {
-      align-self: stretch;
-      margin-top: auto;
-      margin-bottom: auto;
-    }
-    
-    .profile-icon {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      justify-content: start;
-      height: 100%;
-      width: 60px;
-    }
-    
-    .profile-image {
-      aspect-ratio: 1;
-      object-fit: contain;
-      object-position: center;
-      width: 60px;
-      border-radius: 100px;
-      align-self: stretch;
-      margin-top: auto;
-      margin-bottom: auto;
-    }
-    .navbar-right {
-        display: flex;
-        align-items: center;
-        gap: 15px; /* Smaller gap */
-        height: 100%;
-      }
-      

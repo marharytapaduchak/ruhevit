@@ -54,83 +54,6 @@ body {
 
 
   /* Search styling */
-  /* .search {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    border-radius: 6px;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    position: relative;
-  }
-
-  .search-input {
-    display: none;
-    border: none;
-    outline: none;
-    font-size: 14px;
-    background: transparent;
-  }
-
-  .search.active .search-text {
-    display: none;
-  }
-
-  .search.active .search-input {
-    display: inline;
-  }
-  
-  .logo {
-    font-family:
-      Vinnytsia Sans,
-      -apple-system,
-      Roboto,
-      Helvetica,
-      sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-top: auto;
-    margin-bottom: auto;
-    font-size: 20px;
-  }
-  
-  .search {
-    align-items: center;
-    border-radius: 80px;
-    background-color: #f0f0f0;
-    display: flex;
-    min-width: 240px;
-    padding: 20px 30px;
-    gap: 10px;
-    overflow: hidden;
-    font-family:
-      SF Pro,
-      -apple-system,
-      Roboto,
-      Helvetica,
-      sans-serif;
-    font-weight: 400;
-    justify-content: start;
-    height: 100%;
-    width: 350px;
-  }
-  
-  .search-icon,
-  .search-text {
-    align-self: stretch;
-    margin-top: auto;
-    margin-bottom: auto;
-  }
-  
-  .profile-icon {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: start;
-    height: 100%;
-    width: 60px;
-  } */
   .search {
     display: inline-flex;
     align-items: center;
@@ -175,7 +98,7 @@ body {
   .search {
     align-items: center;
     border-radius: 80px;
-    background-color: #f4f7ee;
+    background-color: #f8f2e9;
     display: flex;
     min-width: 240px;
     padding: 20px 30px;
