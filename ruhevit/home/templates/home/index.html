@@ -9,12 +9,7 @@
         <meta property="twitter:card" content="summary_large_image" />
 
         <!-- Reset CSS -->
-        <p>Запитів: {{ user_requests|length }}</p>
-        <p>Пропозицій: {{ help_offers|length }}</p>
-        <p>Увійшов: {{ request.user }}</p>
 
-
-        
         <style data-tag="reset-style-sheet">
             html { line-height: 1.15; }
             body { margin: 0; }
@@ -73,7 +68,6 @@
                                 <h3 class="request-title">{{ req.name }}</h3>
                                 <div class="progress-container">
                                     <div class="progress-bar">
-                                        <!-- Приклад статичної ширини, можна динамічно задати, якщо є поле для прогресу -->
                                         <div class="progress-fill" style="width:50%;"></div>
                                     </div>
                                     <p class="progress-status">{{ req.get_status_display }}</p>
@@ -136,12 +130,10 @@
                                     <p class="offer-description">{{ offer.description }}</p>
                                 </div>
                                 <div class="offer-tags">
-                                    {# Якщо у вас є зв’язок тегів, можна перебрати: #}
-                                    {# {% for tag in offer.tags.all %} #}
-                                    {#   <span class="tag">{{ tag.name }}</span> #}
-                                    {# {% endfor %} #}
+                                    {# Можна перебрати теги, якщо вони є #}
                                 </div>
-                                <button class="details-button">Детальніше</button>
+                                <!-- Динамічне посилання "Детальніше" -->
+                                <a class="details-button" href="{% url 'request_detail' offer.id %}">Детальніше</a>
                             </div>
                         </article>
                     {% empty %}

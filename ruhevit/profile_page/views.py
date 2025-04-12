@@ -10,6 +10,8 @@ def profile_page(request):
     active_statuses = ['pending', 'need_volunteer', 'in_progress']
     active_requests = Request.objects.filter(owner=user, status__in=active_statuses).order_by('-created_at')
 
+    # help_offers = Request.objects.filter(status='need_volunteer').order_by('-created_at')
+
     # Історія запитів — виконані запити (status='done')
     history_requests = Request.objects.filter(owner=user, status='done').order_by('-created_at')
 
@@ -21,5 +23,6 @@ def profile_page(request):
         'active_requests': active_requests,
         'history_requests': history_requests,
         'reviews': reviews,
+        # 'help_offers': help_offers,
     }
     return render(request, 'profile_page/index.html', context)
