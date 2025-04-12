@@ -15,23 +15,6 @@
       html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;  -webkit-font-smoothing: antialiased;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;  color: inherit;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}details {  display: block;  margin: 0;  padding: 0;}summary::-webkit-details-marker {  display: none;}[data-thq="accordion"] [data-thq="accordion-content"] {  max-height: 0;  overflow: hidden;  transition: max-height 0.3s ease-in-out;  padding: 0;}[data-thq="accordion"] details[data-thq="accordion-trigger"][open] + [data-thq="accordion-content"] {  max-height: 1000vh;}details[data-thq="accordion-trigger"][open] summary [data-thq="accordion-icon"] {  transform: rotate(180deg);}html { scroll-behavior: smooth  }
     </style>
     <style data-tag="default-style-sheet">
-      html {
-        font-family: Inter;
-        font-size: 16px;
-      }
-
-      body {
-        font-weight: 400;
-        font-style:normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-        line-height: 1.15;
-        color: var(--dl-color-theme-neutral-dark);
-        background: var(--dl-color-theme-neutral-light);
-
-        fill: var(--dl-color-theme-neutral-dark);
-      }
     </style>
     <link
       rel="stylesheet"
@@ -58,15 +41,12 @@
     />
   </head>
   <body>
-    <link rel="stylesheet" href="./style.css" />
     <div>
-      <link href="./index.css" rel="stylesheet" />
-
       <div class="landing-container">
         <div class="landing-landing">
-          <div class="landing-frame143">
-            <span class="landing-text10">Ругевіт</span>
-            <div class="landing-add1 join-button">
+          <div class="logo-button">
+            <span class="logo">Ругевіт</span>
+            <div class="landing-add1">
               <span class="landing-text11">Приєднатись</span>
             </div>
           </div>
@@ -80,7 +60,7 @@
                   та ефективно допомагати тим, хто цього потребує.
                 </span>
               </div>
-              <div class="landing-add2 join-button">
+              <div class="landing-add2">
                 <span class="landing-text14">Приєднатись</span>
               </div>
             </div>
@@ -90,28 +70,36 @@
               class="landing-image635241"
             />
           </div>
-          <div class="landing-frame15435">
-            <div class="landing-frame154371">
-              <span class="landing-text15">7 430</span>
-              <span class="landing-text16">Волонтерів</span>
+          <div class="statistics">
+            <div class="statistic-block">
+              <span class="title">7 430</span>
+              <span class="landing-text">Волонтерів</span>
             </div>
-            <div class="landing-frame154381">
-              <span class="landing-text17">5 203</span>
-              <span class="landing-text18">Виконаних запитів</span>
+            <div class="statistic-block">
+              <span class="title">5 203</span>
+              <span class="landing-text">Виконаних запитів</span>
             </div>
-            <div class="landing-frame15439">
-              <span class="landing-text19">3 291</span>
-              <span class="landing-text20">Військових</span>
+            <div class="statistic-block">
+              <span class="title">3 291</span>
+              <span class="landing-text">Військових</span>
             </div>
           </div>
-          <div class="landing-frame154372">
-            <div class="landing-frame154431">
-              <span class="landing-text21">Відгуки</span>
+          <div class="reviews-page">
+            <div class="landing-frame154433">
+              <span class="block-title">Відгуки</span>
+              <div class="landing-frame441">
+                <button class="slider-arrow" data-slider="reviews" data-direction="prev" aria-label="Попередній відгук">
+                  ←
+                </button>
+                <button class="slider-arrow" data-slider="reviews" data-direction="next" aria-label="Наступний відгук">
+                  →
+                </button>
+              </div>
             </div>
-            <div class="landing-frame154421">
-              <div class="landing-frame1161">
-                <div class="landing-frame1081">
-                  <div class="landing-frame1071">
+            <div class="reviews">
+              <div class="review-post">
+                <div class="review-content">
+                  <div class="avatar-name">
                     <img
                       src="{% static 'landing/pictures/user-pic.png' %}"
                       alt="Ellipse11103"
@@ -131,14 +119,14 @@
                   </div>
                 </div>
               </div>
-              <div class="landing-frame117">
-                <div class="landing-frame1082">
-                  <div class="landing-frame1072">
+              <div class="review-post">
+                <div class="review-content">
+                  <div class="avatar-name">
                     <img
-                      src="{% static 'landing/pictures/user-pic.png' %}"
-                      alt="Ellipse11113"
-                      class="landing-ellipse12"
-                    />
+                    src="{% static 'landing/pictures/user-pic.png' %}"
+                    alt="Ellipse11113"
+                    class="landing-ellipse12"
+                  />
                     <div class="landing-frame154052">
                       <span class="landing-text28">Василь Костенко</span>
                       <span class="landing-text29">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
@@ -153,9 +141,9 @@
                   </div>
                 </div>
               </div>
-              <div class="landing-frame118">
-                <div class="landing-frame1083">
-                  <div class="landing-frame1073">
+              <div class="review-post">
+                <div class="review-content">
+                  <div class="avatar-name">
                     <img
                       src="{% static 'landing/pictures/user-pic.png' %}"
                       alt="Ellipse11123"
@@ -177,46 +165,50 @@
               </div>
             </div>
           </div>
-          <div class="landing-frame154402">
-            <span class="landing-text36">Що пропонує Ругевіт?</span>
-            <div class="landing-frame15446">
-              <div class="landing-frame154373">
-                <span class="landing-text37">📌&nbsp;Актуальні запити</span>
-                <span class="landing-text38">
+          <div class="info-block">
+            <span class="block-title">Що пропонує Ругевіт?</span>
+            <div class="info-blocks">
+              <div class="info">
+                <span class="title">📌&nbsp;Актуальні запити</span>
+                <span class="landing-text">
                   дізнавайся, кому потрібна допомога
                 </span>
               </div>
-              <div class="landing-frame154422">
-                <span class="landing-text39">
-                  <span>🤝&nbsp;Координація</span>
-                  <br />
-                  <span>волонтерів</span>
-                </span>
-                <span class="landing-text43">
+              <div class="info">
+                  <span class="title">🤝&nbsp;Координація волонтерів</span>
+                <span class="landing-text">
                   обирай ініціативи, до яких хочеш долучитися
                 </span>
               </div>
-              <div class="landing-frame154432">
-                <span class="landing-text44">📊&nbsp;Прозорі звіти</span>
-                <span class="landing-text45">
+              <div class="info">
+                <span class="title">📊&nbsp;Прозорі звіти</span>
+                <span class="landing-text">
                   будь у курсі, як твоя допомога змінює життя
                 </span>
               </div>
             </div>
           </div>
-          <div class="landing-frame154382">
+          <div class="requests-page">
             <div class="landing-frame154433">
-              <span class="landing-text46">Актуальні запити</span>
+              <span class="block-title">Актуальні запити</span>
+              <div class="landing-frame442">
+                <button class="slider-arrow" data-slider="requests" data-direction="prev" aria-label="Попередній запит">
+                  ←
+                </button>
+                <button class="slider-arrow" data-slider="requests" data-direction="next" aria-label="Наступний запит">
+                  →
+                </button>
+              </div>              
             </div>
             <div class="landing-frame154423">
               <div class="landing-frame154423">
                 <div class="landing-frame115">
                   <div class="landing-frame1052">
                     <img
-                      src="{% static 'landing/pictures/cover.svg' %}"
-                      alt="ImageiconI115"
-                      class="landing-imageicon2"
-                    />
+                    src="{% static 'landing/pictures/cover.svg' %}"
+                    alt="ImageiconI115"
+                    class="landing-imageicon2"
+                  />
                   </div>
                   <div class="landing-frame1085">
                     <div class="landing-frame1075">
@@ -332,7 +324,7 @@
                   </div>
                 </div>
               </div>
-
+              
               <div class="landing-frame115">
                 <div class="landing-frame1052">
                   <img
@@ -402,14 +394,14 @@
     <script>
       document.querySelectorAll('.join-button').forEach(button => {
         button.addEventListener('click', () => {
-          window.location.href = 'accounts/login/';
+          alert('Форма реєстрації буде відкрита!');
         });
       });
       document.querySelectorAll('.details-button').forEach(button => {
         button.addEventListener('click', () => {
           const card = button.closest('[class^="landing-frame"]');
           if (card) {
-            alert('Відкриваються деталі: ' +
+            alert('Відкриваються деталі: ' + 
                   card.querySelector('[class^="landing-text"]').textContent);
           }
         });
@@ -420,10 +412,10 @@
           const direction = arrow.dataset.direction;
           const container = document.querySelector(`.${sliderId}-container`);
           const items = container.querySelectorAll('.slider-item');
-
+          
           const visibleItems = parseInt(getComputedStyle(container).getPropertyValue('--visible-items')) || 1;
           const scrollAmount = container.clientWidth / visibleItems;
-
+          
           container.scrollBy({
             left: direction === 'next' ? scrollAmount : -scrollAmount,
             behavior: 'smooth'
@@ -435,9 +427,8 @@
           container.style.setProperty('--visible-items', container.dataset.visibleItems || 1);
         });
       };
-
+      
       initSliders();
-
     </script>
   </body>
 </html>
