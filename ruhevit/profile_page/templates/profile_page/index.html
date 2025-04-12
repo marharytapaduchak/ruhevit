@@ -1,10 +1,11 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html lang="english">
+<html lang="uk">
   <head>
-    <title>Ругевіт</title>
+    <meta charset="UTF-8">
+    <title>Ругевіт - Профіль</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
 
     <!-- Reset styles -->
@@ -31,13 +32,6 @@
       img { display: block; }
       details { display: block; margin: 0; padding: 0; }
       summary::-webkit-details-marker { display: none; }
-      [data-thq="accordion"] [data-thq="accordion-content"] {
-         max-height: 0; overflow: hidden; transition: max-height 0.3s ease-in-out;
-         padding: 0; }
-      [data-thq="accordion"] details[data-thq="accordion-trigger"][open] +
-      [data-thq="accordion-content"] { max-height: 1000vh; }
-      details[data-thq="accordion-trigger"][open] summary [data-thq="accordion-icon"] {
-         transform: rotate(180deg); }
       html { scroll-behavior: smooth; }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -47,7 +41,7 @@
   </head>
   <body>
     <div class="feed-mil">
-      <!-- Header -->
+      <!-- HEADER -->
       <header class="navbar">
         <div class="search-and-logo">
           <a href="{% url 'home' %}" class="logo">Ругевіт</a>
@@ -69,7 +63,7 @@
         </div>
       </header>
       
-      <!-- Інформаційний блок користувача -->
+      <!-- ІНФОРМАЦІЙНИЙ БЛОК КОРИСТУВАЧА -->
       <section class="info-section">
         <div class="user-profile">
           <img src="{% static 'profile_page/images/profile_pic2.svg' %}" alt="User" class="user-avatar" />
@@ -102,7 +96,7 @@
         </div>
       </section>
 
-      <!-- Активні запити користувача -->
+      <!-- АКТИВНІ ЗАПИТИ КОРИСТУВАЧА -->
       <section class="active-block">
         <h2 class="section-title">Активні запити</h2>
         <div class="active-posts">
@@ -117,17 +111,18 @@
                 <h3 class="request-title">{{ req.name }}</h3>
                 <div class="progress-container">
                   <div class="progress-bar">
+                    <!-- Приклад: якщо потрібно встановити ширину заповнення залежно від певного поля, зробіть це динамічно -->
                     <div class="progress-fill" style="width:50%;"></div>
                   </div>
                   <p class="progress-status">{{ req.get_status_display }}</p>
                 </div>
                 <div class="request-meta">
                   <div class="deadline-info">
-                    <span class="meta-label">термін виконання:</span>
+                    <span class="meta-label">Дата створення:</span>
                     <span class="meta-value1">{{ req.created_at|date:"d.m.Y" }}</span>
                   </div>
                   <div class="assignee-info">
-                    <span class="meta-label">очікує:</span>
+                    <span class="meta-label">Виконавець:</span>
                     <span class="meta-value">
                       {% if req.executor %}
                         {{ req.executor.get_full_name }}
@@ -149,7 +144,7 @@
         </div>
       </section>
 
-      <!-- Відгуки про користувача -->
+      <!-- ВІДГУКИ ПРО КОРИСТУВАЧА -->
       <section class="reviews-block">
         <h2 class="section-title">Відгуки</h2>
         <div class="reviews-container">
@@ -175,7 +170,7 @@
         </div>
       </section>
 
-      <!-- Історія запитів (виконані) -->
+      <!-- ІСТОРІЯ ЗАПИТІВ (ВИКОНАНІ) -->
       <section class="history-section">
         <h2 class="section-title">Історія запитів</h2>
         <div class="history-posts">
