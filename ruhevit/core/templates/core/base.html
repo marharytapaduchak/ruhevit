@@ -7,19 +7,25 @@
     <link rel="stylesheet" href="{% static 'core/styles.css' %}">
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
     <link rel="stylesheet" href="{% static 'profile_page/style.css' %}">
-    <link rel="stylesheet" href="{% static 'landing/style.css' %}">
+    <link rel="stylesheet" href="{% static 'landing/css/style.css' %}">
     <link rel="icon" href="{% static 'core/images/logo.svg' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style data-tag="default-style-sheet">
+        .profile-page {
+            height: 50px;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <p>base here</p>
     <div class="feed-mil">
-        <!-- Header -->
         <header class="navbar">
             <div class="search-and-logo">
-                <h1 class="logo">Ругевіт</h1>
+                <h1 class="logo" onclick='location.href="{% url 'home' %}"' style="cursor:pointer;">Ругевіт</h1>
                 {% if user.is_authenticated %}
                 <div class="search" role="button" tabindex="0" onclick="activateSearch()" onkeypress="if(event.key === 'Enter') activateSearch()">
                     <i class="fa fa-search"></i>
@@ -30,15 +36,21 @@
             </div>
             {% if user.is_authenticated %}
             <div class="navbar-right">
-                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            <a href="{% url 'profile_page' %}" class="profile-icon">
+                {% if user.photo %}
+                    <img src="{{ user.photo.url }}" alt="Profile" class="profile-page" />
+                {% else %}
+                    <img src="{% static 'core/images/blank.png' %}" alt="Profile" class="profile-page" />
+                {% endif %}
+            </a>
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
                     {% csrf_token %}
                     <button type="submit" class="logout-button">Вийти</button>
-                </form>
-            <a href="{% url 'profile_page' %}" class="profile-icon">
-                <img src="{% static 'home/images/profile_pic.svg' %}" alt="Profile" class="profile-page" />
-            </a>
+            </form>
             {% endif %}
         </header>
+        {% block content %}
+        {% endblock %}
         <script src="{% static 'core/script.js' %}" defer></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 from . import views
 from django.urls import path
-from .views import main_page
+from .views import *
 
 urlpatterns = [
-    path('', main_page, name='create_request'),
+    path('create', views.create_request, name='create_request'),
     path('confirm', views.report_confirm, name='report_confirm'),
     path('view', views.request_view, name='request_view'),
     path('submit', views.report_submit, name='report_submit'),
