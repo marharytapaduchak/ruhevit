@@ -6,7 +6,7 @@ class RequestHistoryForm(forms.ModelForm):
         model = RequestHistory
         fields = ['status', 'comment', 'photo']
         widgets = {
-            'comment': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Опишіть, що вже зроблено…'}),
+            'comment': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Опишіть, що вже зроблено...'}),
         }
 
 

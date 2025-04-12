@@ -2,12 +2,11 @@ from django.shortcuts import render, get_object_or_404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from .forms import *
-from django.shortcuts import render
 from .models import Request
 
 
 @login_required
-def main_page(request):
+def create_request(request):
     if request.method == 'POST':
         form = RequestForm(request.POST, request.FILES)
         if form.is_valid():
@@ -15,7 +14,7 @@ def main_page(request):
             instance.owner = request.user
             instance.status = 'need_volunteer'
             instance.save()
-            return redirect('create_request')
+            return redirect('requests:create_request')
     else:
         form = RequestForm()
 
