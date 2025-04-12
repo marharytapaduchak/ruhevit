@@ -8,7 +8,13 @@
         <meta charset="utf-8" />
         <meta property="twitter:card" content="summary_large_image" />
 
-        <!-- Reset styles -->
+        <!-- Reset CSS -->
+        <p>Запитів: {{ user_requests|length }}</p>
+        <p>Пропозицій: {{ help_offers|length }}</p>
+        <p>Увійшов: {{ request.user }}</p>
+
+
+        
         <style data-tag="reset-style-sheet">
             html { line-height: 1.15; }
             body { margin: 0; }
@@ -30,10 +36,9 @@
             details[data-thq="accordion-trigger"][open] summary [data-thq="accordion-icon"] { transform: rotate(180deg); }
             html { scroll-behavior: smooth; }
         </style>
-        <link rel="icon" href="{% static 'core/images/logo.svg' %}" type="image/x-icon">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style data-tag="default-style-sheet">
-        </style>
+        <style data-tag="default-style-sheet"></style>
     </head>
     <body>
         <link rel="stylesheet" href="{% static 'home/style.css' %}">
@@ -43,22 +48,17 @@
                 <div class="search-and-logo">
                     <h1 class="logo">Ругевіт</h1>
                     <div class="search" role="button" tabindex="0" onclick="activateSearch()" onkeypress="if(event.key === 'Enter') activateSearch()">
-                      <i class="fa fa-search"></i>
-                      <span class="search-text">Пошук</span>
-                      <input type="text" class="search-input" placeholder="Пошук..." />
+                        <i class="fa fa-search"></i>
+                        <span class="search-text">Пошук</span>
+                        <input type="text" class="search-input" placeholder="Пошук..." />
                     </div>
                 </div>
-                <div class="navbar-right">
-                  <form action="{% url 'logout' %}" method="post" style="display: inline;">
-                      {% csrf_token %}
-                      <button type="submit" class="logout-button">Вийти</button>
-                  </form>
                 <a href="{% url 'profile_page' %}" class="profile-icon">
-                    <img src="{% static 'home/images/profile_pic.svg' %}" alt="Profile" class="profile-page" />
+                    <img src="{% static 'home/images/profile_pic.svg' %}" alt="Profile" class="profile-page">
                 </a>
             </header>
 
-            <!-- Секція "Ваші запити" (динамічний цикл) -->
+            <!-- Секція "Ваші запити" -->
             <section class="requests-block">
                 <h2 class="requests-text">Ваші запити</h2>
                 <div class="requests">
@@ -66,14 +66,15 @@
                         <article class="request">
                             <div class="request-pic">
                                 <div class="request-pic-container">
-                                    <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2" />
+                                    <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2">
                                 </div>
                             </div>
                             <div class="request-info">
                                 <h3 class="request-title">{{ req.name }}</h3>
                                 <div class="progress-container">
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 50%;"></div> <!-- Статичний приклад, можна підставити динаміку -->
+                                        <!-- Приклад статичної ширини, можна динамічно задати, якщо є поле для прогресу -->
+                                        <div class="progress-fill" style="width:50%;"></div>
                                     </div>
                                     <p class="progress-status">{{ req.get_status_display }}</p>
                                 </div>
@@ -105,13 +106,12 @@
                 </div>
             </section>
 
-            <!-- Секція "Пропозиції допомоги" (динамічний цикл) -->
+            <!-- Секція "Пропозиції допомоги" -->
             <section class="help-offers">
                 <h2 class="section-title">Пропозиції допомоги</h2>
                 <div class="filters-and-sorting">
                     <button class="filter-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                             class="bi bi-filter" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
                             <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
                         </svg>
                         <span class="filter-text">Фільтри</span>
@@ -136,7 +136,7 @@
                                     <p class="offer-description">{{ offer.description }}</p>
                                 </div>
                                 <div class="offer-tags">
-                                    {# Якщо у тебе є зв’язок тегів, можна пройтися циклом: #}
+                                    {# Якщо у вас є зв’язок тегів, можна перебрати: #}
                                     {# {% for tag in offer.tags.all %} #}
                                     {#   <span class="tag">{{ tag.name }}</span> #}
                                     {# {% endfor %} #}
@@ -145,7 +145,7 @@
                             </div>
                         </article>
                     {% empty %}
-                        <p>Наразі немає пропозицій.</p>
+                        <p>Наразі немає пропозицій допомоги.</p>
                     {% endfor %}
                 </div>
             </section>
