@@ -58,15 +58,15 @@
             <button type="submit" class="logout-button">Вийти</button>
           </form>
           <a href="{% url 'profile_page' %}" class="profile-icon">
-            <img src="{% static 'profile_page/images/profile_pic2.svg' %}" alt="Profile" class="profile-page" />
+            <img src="{% static 'core/images/blank.svg' %}" alt="Profile" class="profile-page" />
           </a>
         </div>
       </header>
-      
+
       <!-- ІНФОРМАЦІЙНИЙ БЛОК КОРИСТУВАЧА -->
       <section class="info-section">
         <div class="user-profile">
-          <img src="{% static 'profile_page/images/profile_pic2.svg' %}" alt="User" class="user-avatar" />
+          <img src="{% static 'core/images/blank.png' %}" alt="User" class="user-avatar" />
           <div class="user-details">
             <h2 class="user-name">
               {{ user.first_name }} {{ user.last_name }}{% if not user.first_name and not user.last_name %}{{ user.username }}{% endif %}
@@ -104,7 +104,7 @@
             <article class="request-card">
               <div class="post-icon">
                 <div class="icon-container">
-                  <img src="{% static 'profile_page/images/img.svg' %}" alt="Request Icon" class="request-icon-image" />
+                  <img src="{% static 'core/images/blank.png' %}" alt="Request Icon" class="request-icon-image" />
                 </div>
               </div>
               <div class="post-info">

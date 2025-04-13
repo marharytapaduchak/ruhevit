@@ -19,6 +19,7 @@
         }
     </style>
 </head>
+
 <body>
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
     <p>base here</p>
@@ -27,11 +28,7 @@
             <div class="search-and-logo">
                 <h1 class="logo" onclick='location.href="{% url 'home' %}"' style="cursor:pointer;">Ругевіт</h1>
                 {% if user.is_authenticated %}
-                <div class="search" role="button" tabindex="0" onclick="activateSearch()" onkeypress="if(event.key === 'Enter') activateSearch()">
-                    <i class="fa fa-search"></i>
-                    <span class="search-text">Пошук</span>
-                    <input type="text" class="search-input" placeholder="Пошук..." />
-                  </div>
+                <input id="search-input" type="text" placeholder="Пошук" class="search" role="search" style="width: 100%; padding: 10px; font-size: 16px;" />
                 {% endif %}
             </div>
             {% if user.is_authenticated %}
@@ -52,5 +49,21 @@
         {% block content %}
         {% endblock %}
         <script src="{% static 'core/script.js' %}" defer></script>
+        <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const query = searchInput.value.trim();
+                    if (query !== "") {
+                        window.location.href = `/search/?q=${encodeURIComponent(query)}`;
+                    }
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
