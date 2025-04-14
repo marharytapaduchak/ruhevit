@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Редагувати профіль</title>
-    <link rel="stylesheet" href="{% static 'changing_info/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'changing_info/css/styles.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css" />
     <style>
@@ -46,7 +46,7 @@
         <div class="user-actions">
           <i class="ti ti-message"></i>
           <i class="ti ti-bell"></i>
-          <img src="{% static 'changing_info/images/profile_photo.png' %}" alt="Profile" class="profile-img" />
+          <img src="{{ user.photo.url }}" alt="User Avatar" class="user-avatar" height=50px />
         </div>
       </header>
       <main class="main-content">
@@ -63,10 +63,10 @@
           <h2 class="section-title">Змінити пароль</h2>
           <div class="section-divider"></div>
           <!-- Реалізація зміни пароля (за потреби) -->
-          <button class="save-btn" id="save-password">Зберегти</button>
+          <a href="/accounts/password_reset/">Змінити пароль</a>
         </section>
       </main>
     </div>
-    <script src="{% static 'changing_info/script.js' %}" defer></script>
+    <script src="{% static 'changing_info/js/script.js' %}" defer></script>
   </body>
 </html>
