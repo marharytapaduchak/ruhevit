@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
@@ -62,3 +63,13 @@ def request_detail(request, request_id):
     return render(request, 'request_view/index.html', {
         'request_obj': request_obj
     })
+
+
+@login_required
+def confirm_request(request, pk):
+    if request.method == "POST":
+        req = Request.objects.get(pk=pk)
+        req.executor = request.user
+        req.save()
+        return HttpResponse(status=204)  # No Content
+    return HttpResponse(status=405)  # Method Not Allowed

@@ -8,4 +8,5 @@ urlpatterns = [
     path('view', views.request_view, name='request_view'),
     path('submit', views.report_submit, name='report_submit'),
     path('<int:request_id>/', views.request_detail, name='request_detail'),
+    path('api/requests/<int:pk>/confirm/', views.confirm_request, name='confirm_request'),
 ]

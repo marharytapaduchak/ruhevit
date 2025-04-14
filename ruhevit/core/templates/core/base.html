@@ -37,7 +37,7 @@
                 {% if user.photo %}
                     <img src="{{ user.photo.url }}" alt="Profile" class="profile-page" />
                 {% else %}
-                    <img src="{% static 'core/images/blank.png' %}" alt="Profile" class="profile-page" />
+                    <img src="{% static 'core/images/blank.png' %}" alt="Profile" class="request-icon-image" />
                 {% endif %}
             </a>
             <form action="{% url 'logout' %}" method="post" style="display: inline;">

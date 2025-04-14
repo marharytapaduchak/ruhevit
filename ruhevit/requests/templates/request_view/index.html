@@ -93,10 +93,41 @@
         </div>
 
         <div class="action-buttons">
-          <button class="contact-button" id="contactButton">
-            Сконтактувати
-          </button>
-          <button class="confirm-button" id="confirmButton" data-request-id="{{ request_obj.id }}">Підтвердити запит</button>
+          {% if request_obj.status == 'pending' %}
+            {% if user == request_obj.owner %}
+              {% if request_obj.executor %}
+                <button class="contact-button" id="contactButton">Сконтактувати</button>
+              {% endif %}
+            {% else %}
+              {% if not request_obj.executor %}
+                <button class="contact-button" id="contactButton">Сконтактувати</button>
+              {% endif %}
+            {% endif %}
+            <button
+              class="confirm-button"
+              id="confirmButton"
+              data-request-id="{{ request_obj.id }}"
+              hx-post="{% url 'confirm_request' request_obj.id %}"
+              hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+              hx-trigger="click"
+              hx-swap="none"
+            >
+              Підтвердити запит
+            </button>
+          {% elif request_obj.status == 'in_progress' %}
+            {% if user == request_obj.owner or user == request_obj.executor %}
+              <button class="contact-button" id="contactButton">Сконтактувати</button>
+            {% endif %}
+            {% if user == request_obj.executor %}
+              <button class="confirm-button" id="reportButton">Написати звіт</button>
+            {% endif %}
+          {% elif request_obj.status == 'done' %}
+            <button class="contact-button" id="contactButton">Сконтактувати</button>
+            <div class="report-summary">
+              <h3>Звіт</h3>
+              <p>{{ request_obj.report|default:"Звіт ще не додано" }}</p>
+            </div>
+          {% endif %}
         </div>
       </main>
     </div>
