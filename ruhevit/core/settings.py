@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'home',
     'profile_page',
     'errors',
+    'changing_info',
 ]
 
 AUTH_USER_MODEL = 'accounts.User'

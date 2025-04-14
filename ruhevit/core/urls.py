@@ -35,6 +35,7 @@ urlpatterns = [
     path('profile/', include('profile_page.urls')),
     path('errors/', include('errors.urls')),
     path('search/', views.search_requests, name='search_requests'),
+    path('changing_info/', include('changing_info.urls')),
 ]
 
 if settings.DEBUG:
