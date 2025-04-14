@@ -30,7 +30,7 @@
                     <span class="tag">{{ req.get_priority_display }}</span>
                     <span class="tag">{{ req.get_location_display }}</span>
                 </div>
-                <a href="#" class="button">Детальніше</a>
+                <a class="action-button confirm" href="{% url 'request_detail' req.id %}">Детальніше</a>
             </div>
         {% endif %}
     {% empty %}

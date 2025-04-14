@@ -2,17 +2,18 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_GET
 from django.shortcuts import render
 from requests.models import Request
+from django.contrib.auth.decorators import login_required
 
 
 def home_redirect(request):
     if request.user.is_authenticated:
         user = request.user
-        user_requests = Request.objects.filter(
-            owner=user).order_by('-created_at')
-        help_offers = Request.objects.filter(status='pending').exclude(
-            owner=user).order_by('-created_at')
+        user_owner_requests = Request.objects.filter(owner=user).order_by('-created_at')
+        user_exec_requests = Request.objects.filter(executor__isnull=False, executor=user).order_by('-created_at')
+        help_offers = Request.objects.filter(status='pending').exclude(owner=user).order_by('-created_at')
         context = {
-            'user_requests': user_requests,
+            'user_owner_requests': user_owner_requests,
+            'user_exec_requests': user_exec_requests,
             'help_offers': help_offers,
         }
         return render(request, 'home/index.html', context)
