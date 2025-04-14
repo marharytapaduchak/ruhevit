@@ -36,7 +36,7 @@ urlpatterns = [
     path('errors/', include('errors.urls')),
     path('search/', views.search_requests, name='search_requests'),
     path('changing_info/', include('changing_info.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

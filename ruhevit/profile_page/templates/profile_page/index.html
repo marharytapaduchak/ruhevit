@@ -10,7 +10,11 @@
       <!-- ІНФОРМАЦІЙНИЙ БЛОК КОРИСТУВАЧА -->
       <section class="info-section">
         <div class="user-profile">
-          <img src="{% static 'core/images/blank.png' %}" alt="User" class="request-icon-image" />
+          {% if user.photo %}
+            <img src="{{ user.photo.url }}" alt="User Avatar" class="user-avatar" />
+          {% else %}
+            <img src="{% static 'core/images/blank.png' %}" alt="User Avatar" class="user-avatar" />
+          {% endif %}
           <div class="user-details">
             <h2 class="user-name">
               {{ user.first_name }} {{ user.last_name }}{% if not user.first_name and not user.last_name %}{{ user.username }}{% endif %}

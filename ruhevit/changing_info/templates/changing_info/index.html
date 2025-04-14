@@ -30,12 +30,8 @@
         animation: spin 1s linear infinite;
       }
       @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
     </style>
   </head>
@@ -57,7 +53,7 @@
         <section class="edit-profile-section">
           <h2 class="section-title">Редагувати профіль</h2>
           <div class="section-divider"></div>
-          <form method="post" action="">
+          <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="save-btn" id="save-profile">Зберегти</button>
@@ -66,7 +62,7 @@
         <section class="change-password-section">
           <h2 class="section-title">Змінити пароль</h2>
           <div class="section-divider"></div>
-          <!-- Тут можна реалізувати форму для зміни пароля, якщо потрібно -->
+          <!-- Реалізація зміни пароля (за потреби) -->
           <button class="save-btn" id="save-password">Зберегти</button>
         </section>
       </main>
