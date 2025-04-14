@@ -36,6 +36,7 @@
         </div>
       </header>
 
+
       <main class="report-form">
         <h2 class="report-title">{{ request_obj.name }}</h2>
 
@@ -53,7 +54,7 @@
         <section class="image-gallery">
           {% for image in request_obj.images.all %}
             <div class="gallery-item">
-              <img src="{{ image.url }}" alt="Запит фото" class="gallery-image" />
+              <img src="{{ image.url }}" alt="Запит фото" class="gallery-image" style="max-width: 300px; height: auto;" />
             </div>
           {% empty %}
             <p>Немає зображень</p>
@@ -61,8 +62,12 @@
         </section>
 
         <div class="meta-info">
-          <p><strong>Категорія:</strong> {{ request_obj.category }}</p>
-          <p><strong>Локація:</strong> {{ request_obj.location }}</p>
+          <p><strong>Категорія:</strong>
+            <span class="tag">{{ request_obj.get_type_display }}</span>
+            <span class="tag">{{ request_obj.get_priority_display }}</span>
+            <span class="tag">{{ request_obj.get_location_display }}</span>
+          </p>
+          <p><strong>Локація:</strong> {{ request_obj.get_location_display }}</p>
         </div>
 
         <div class="report-footer">
@@ -70,66 +75,77 @@
             <span class="info-label">Статус</span>
             <span class="info-value">{{ request_obj.get_status_display }}</span>
           </div>
-          <div class="volunteer-info">
-            <span class="info-label">Волонтер</span>
-            <span class="info-value">
-              {% if request_obj.executor %}
-                {{ request_obj.executor.first_name|add:" "|add:request_obj.executor.last_name|default:request_obj.executor.username }}
-              {% else %}
-                (не призначено)
-              {% endif %}
-            </span>
-          </div>
+          {% if request_obj.executor %}
+            <div class="volunteer-info">
+              <span class="info-label">Волонтер</span>
+              <span class="info-value">
+                {{ request_obj.executor.username }}
+              </span>
+            </div>
+          {% endif %}
           <div class="volunteer-status">
             <span class="info-label">Автор запиту</span>
             <span class="info-value">
-              {% if request_obj.owner %}
-                {{ request_obj.owner.first_name|add:" "|add:request_obj.owner.last_name|default:request_obj.owner.username }}
-              {% else %}
-                (невідомо)
-              {% endif %}
+              {{ request_obj.owner.username }}
             </span>
           </div>
         </div>
 
         <div class="action-buttons">
           {% if request_obj.status == 'pending' %}
-            {% if user == request_obj.owner %}
-              {% if request_obj.executor %}
-                <button class="contact-button" id="contactButton">Сконтактувати</button>
-              {% endif %}
-            {% else %}
-              {% if not request_obj.executor %}
-                <button class="contact-button" id="contactButton">Сконтактувати</button>
-              {% endif %}
+            {% if user != request_obj.owner %}
+              <a class="contact-button" href="mailto:{{ request_obj.owner.email }}">Сконтактувати</a>
+              <a
+                class="confirm-button"
+                href="{% url 'confirm_request' request_obj.id %}"
+              >
+                Підтвердити запит
+              </a>
             {% endif %}
-            <button
-              class="confirm-button"
-              id="confirmButton"
-              data-request-id="{{ request_obj.id }}"
-              hx-post="{% url 'confirm_request' request_obj.id %}"
-              hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-              hx-trigger="click"
-              hx-swap="none"
-            >
-              Підтвердити запит
-            </button>
+
           {% elif request_obj.status == 'in_progress' %}
-            {% if user == request_obj.owner or user == request_obj.executor %}
-              <button class="contact-button" id="contactButton">Сконтактувати</button>
+            {% if user == request_obj.owner %}
+              <a class="contact-button" href="mailto:{{ request_obj.executor.email }}">Сконтактувати</a>
             {% endif %}
             {% if user == request_obj.executor %}
-              <button class="confirm-button" id="reportButton">Написати звіт</button>
+              <a class="contact-button" href="mailto:{{ request_obj.owner.email }}">Сконтактувати</a>
+              <a class="confirm-button" href="{% url 'report_submit' request_obj.id %}">Написати звіт</a>
             {% endif %}
+
           {% elif request_obj.status == 'done' %}
-            <button class="contact-button" id="contactButton">Сконтактувати</button>
-            <div class="report-summary">
-              <h3>Звіт</h3>
-              <p>{{ request_obj.report|default:"Звіт ще не додано" }}</p>
-            </div>
+            {% if user == request_obj.owner %}
+              <a class="contact-button" href="mailto:{{ request_obj.executor.email }}">Сконтактувати</a>
+            {% else %}
+              <a class="contact-button" href="mailto:{{ request_obj.owner.email }}">Сконтактувати</a>
+            {% endif %}
           {% endif %}
         </div>
+
       </main>
+
+      <section class="request-history">
+        <h3>Історія запиту</h3>
+        {% if history %}
+          {% for entry in history %}
+            <div class="history-entry">
+              <p><strong>Дата:</strong> {{ entry.date|date:"d.m.Y H:i" }}</p>
+              <p><strong>Статус:</strong> {{ entry.get_status_display }}</p>
+              <p><strong>Коментар:</strong> {{ entry.comment }}</p>
+              {% if entry.photos.all %}
+                <div class="history-photos">
+                  {% for photo in entry.photos.all %}
+                    <img src="{{ photo.image.url }}" alt="Фото зі звіту" class="history-photo" width="200" height="auto" />
+                  {% endfor %}
+                </div>
+              {% endif %}
+              <hr />
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>Немає записів історії.</p>
+        {% endif %}
+      </section>
+
     </div>
   </body>
 </html>

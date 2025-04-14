@@ -121,6 +121,29 @@
           </button>
           <button class="confirm-button" id="confirmButton">Закрити запит</button>
         </div>
+
+        <section class="request-history">
+          <h3>Історія запиту</h3>
+          {% if history %}
+            {% for entry in history %}
+              <div class="history-entry">
+                <p><strong>Дата:</strong> {{ entry.date|date:"d.m.Y H:i" }}</p>
+                <p><strong>Статус:</strong> {{ entry.get_status_display }}</p>
+                <p><strong>Коментар:</strong> {{ entry.comment }}</p>
+                {% if entry.photos.all %}
+                  <div class="history-photos">
+                    {% for photo in entry.photos.all %}
+                      <img src="{{ photo.image.url }}" alt="Фото зі звіту" class="history-photo" width="200" height="auto" />
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                <hr />
+              </div>
+            {% endfor %}
+          {% else %}
+            <p>Немає записів історії.</p>
+          {% endif %}
+        </section>
       </main>
     </div>
 

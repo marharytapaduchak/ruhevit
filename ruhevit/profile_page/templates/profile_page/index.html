@@ -66,50 +66,24 @@
                     <span class="meta-value1">{{ req.created_at|date:"d.m.Y" }}</span>
                   </div>
                   <div class="assignee-info">
+                    {% if req.executor %}
                     <span class="meta-label">Виконавець:</span>
                     <span class="meta-value">
-                      {% if req.executor %}
-                        {{ req.executor.get_full_name }}
-                      {% else %}
-                        Не визначено
+                        {{ req.executor.get_full_name|default:req.executor.get_username }}
                       {% endif %}
                     </span>
                   </div>
                 </div>
                 <div class="request-actions">
-                  <button class="contact-button">Сконтактувати</button>
-                  <button class="update-button">Оновити статус</button>
+                  {% if req.executor %}
+                        <a class="action-button contact" href="mailto:{{ req.owner.email }}">Сконтактувати</a>
+                  {% endif %}
+                  <a class="action-button confirm" href="{% url 'request_detail' req.id %}">Детальніше</a>
                 </div>
               </div>
             </article>
           {% empty %}
             <p>Немає активних запитів.</p>
-          {% endfor %}
-        </div>
-      </section>
-
-      <!-- ВІДГУКИ ПРО КОРИСТУВАЧА -->
-      <section class="reviews-block">
-        <h2 class="section-title">Відгуки</h2>
-        <div class="reviews-container">
-          {% for review in reviews %}
-            <article class="review-card">
-              <div class="review-content">
-                <div class="reviewer-info">
-                  <img src="{% static 'profile_page/images/profile.png' %}" alt="Reviewer" class="reviewer-avatar" />
-                  <div class="reviewer-details">
-                    <h3 class="reviewer-name">{{ review.executor.get_full_name }}</h3>
-                    <div class="reviewer-rating">{{ review.rating }}⭐</div>
-                  </div>
-                </div>
-                <div class="review-text">
-                  <h4 class="review-title">Відгук до {{ review.request.name }}</h4>
-                  <p class="review-description">{{ review.comment }}</p>
-                </div>
-              </div>
-            </article>
-          {% empty %}
-            <p>Немає відгуків.</p>
           {% endfor %}
         </div>
       </section>
@@ -137,6 +111,9 @@
                     <span class="meta-label">Дата:</span>
                     <span class="meta-value">{{ req.created_at|date:"d.m.Y" }}</span>
                   </div>
+                </div>
+                <div class="action-buttons">
+                    <a class="action-button confirm" href="{% url 'request_detail' req.id %}">Детальніше</a>
                 </div>
               </div>
             </article>

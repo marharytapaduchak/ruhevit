@@ -1,7 +1,7 @@
 {% load static %}
 
-<link rel="stylesheet" href="{% static 'report_volunteer/css/styles.css' %}">
-<script src="{% static 'report_volunteer/js/script.js' %}" defer></script>
+<link rel="stylesheet" href="{% static 'report_submit/css/styles.css' %}">
+<script src="{% static 'report_submit/js/script.js' %}" defer></script>
 <!doctype html>
 <html lang="uk">
   <head>
@@ -28,13 +28,15 @@
           </div>
         </div>
         <div class="user-actions">
-          <img src="{% static 'report_volunteer/images/profile photo.png' %}" alt="Profile" class="profile-photo" />
+          <img src="{% static 'report_submit/images/profile photo.png' %}" alt="Profile" class="profile-photo" />
         </div>
       </header>
       <main class="report-form-container">
         <h2 class="form-title">Звіт про закриття потреби</h2>
         <hr class="form-divider" />
-        <form id="reportForm" enctype="multipart/form-data" method="post">
+        <form id="reportForm" enctype="multipart/form-data" method="post" action="{% url 'report_submit' request_obj.id %}">
+          {% csrf_token %}
+          <input type="hidden" name="status" value="in_progress" />
           <div class="form-group">
             <label for="reportTitle" class="form-label">
               <span>Заголовок</span>
@@ -43,6 +45,7 @@
             <input
               type="text"
               id="reportTitle"
+              name="title"
               class="input-field"
               value="10 турнікетів CAT Generation 7"
               placeholder="Введіть заголовок звіту"
@@ -57,6 +60,7 @@
             </label>
             <textarea
               id="reportText"
+              name="comment"
               class="text-area"
               placeholder="Введіть текст звіту"
               required
@@ -78,7 +82,7 @@
                   <span>Перетягніть фото сюди. Або </span>
                   <span class="upload-link">завантажте</span>
                 </p>
-                <input type="file" id="photoUpload" name="photos" class="file-input" accept="image/*" multiple style="display: none;" />
+                <input type="file" id="photoUpload" name="photos[]" class="file-input" accept="image/*" multiple style="display: none;" />
               </label>
             </div>
           </div>

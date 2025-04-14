@@ -62,8 +62,6 @@ class RequestHistory(models.Model):
         Request, on_delete=models.CASCADE, related_name='history')
     status = models.CharField(max_length=20, choices=Request.STATUS_CHOICES)
     comment = models.TextField(blank=True)
-    photo = models.ImageField(
-        upload_to='report_photos/', blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -79,3 +77,10 @@ class Review(models.Model):
 
     def __str__(self):
         return f'{self.executor.username} – {self.rating}⭐'
+
+
+class RequestPhoto(models.Model):
+    history = models.ForeignKey(
+        'RequestHistory', on_delete=models.CASCADE, related_name='photos')
+    image = models.ImageField(upload_to='request_photos/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)

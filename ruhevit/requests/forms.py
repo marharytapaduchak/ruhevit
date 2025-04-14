@@ -4,7 +4,7 @@ from .models import *
 class RequestHistoryForm(forms.ModelForm):
     class Meta:
         model = RequestHistory
-        fields = ['status', 'comment', 'photo']
+        fields = ['status', 'comment']
         widgets = {
             'comment': forms.Textarea(attrs={'rows': 4, 'placeholder': 'Опишіть, що вже зроблено...'}),
         }
