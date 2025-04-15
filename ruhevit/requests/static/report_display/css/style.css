@@ -450,4 +450,41 @@
       white-space: initial;
     }
   }
+
+ 
+  .navbar {
+    align-items: center;
+    gap: 40px;
+    flex-wrap: nowrap;
+}
+
+.searchbar {
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.notifications {
+  flex-shrink: 0; 
+}
+
+@media (max-width: 991px) {
+    .navbar {
+        overflow-x: auto;
+        overflow-y: hidden;  
+        -webkit-overflow-scrolling: touch; 
+    }
+    
+    .search-input {
+        min-width: 200px; 
+    }
+}@media (max-width: 991px) {
+  .navbar {
+      overflow-x: auto;  
+      overflow-y: hidden;  
+      -webkit-overflow-scrolling: touch; 
+  }
   
+  .search-input {
+      min-width: 200px; 
+  }
+}
