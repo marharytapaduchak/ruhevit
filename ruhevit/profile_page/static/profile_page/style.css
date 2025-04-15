@@ -488,6 +488,7 @@ body {
     align-items: center;
     border-radius: 13px;
     background-color: #f8f2e9;
+    color: black !important;
     display: flex;
     min-width: 240px;
     padding: 15px 20px;
@@ -504,6 +505,7 @@ body {
       sans-serif;
   }
 
+  
   .button-icon,
   .button-text {
     align-self: stretch;

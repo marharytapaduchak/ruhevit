@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: 'Helvetica Neue', sans-serif;
     background-color: #f6f5f2;
     margin: 0;
@@ -15,8 +15,25 @@ body {
 html {
     font-family: Inter, 'Helvetica Neue', sans-serif;
     font-size: 15px;
-}
+} */
 
+html {
+    font-family: Inter;
+    font-size: 15px;
+  }
+  
+  body {
+    font-weight: 400;
+    font-style:normal;
+    text-decoration: none;
+    text-transform: none;
+    letter-spacing: normal;
+    line-height: 1.15;
+    color: var(--dl-color-theme-neutral-dark);
+    background: var(--dl-color-theme-neutral-light);
+  
+    fill: var(--dl-color-theme-neutral-dark);
+  }
 .feed-mil {
     padding-bottom: 100px;
     background-color: #fefffb;
@@ -37,9 +54,9 @@ html {
     overflow: hidden;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-
-.search-and-logo {
+  }
+  
+  .search-and-logo {
     display: flex;
     min-width: 240px;
     align-items: stretch;
@@ -50,8 +67,7 @@ html {
     text-align: center;
     justify-content: start;
     height: 100%;
-}
-
+  }
 .logo {
     font-family: 'Vinnytsia Sans', -apple-system, Roboto, Helvetica, sans-serif;
     font-weight: 700;
@@ -63,38 +79,38 @@ html {
 }
 
 /* Search styling */
+
 .search {
+    display: inline-flex;
     align-items: center;
-    border-radius: 80px;
-    background-color: #f4f7ee;
-    display: flex;
-    min-width: 240px;
-    padding: 20px 30px;
-    gap: 10px;
-    overflow: hidden;
-    font-family: 'SF Pro', -apple-system, Roboto, Helvetica, sans-serif;
-    font-weight: 400;
-    justify-content: start;
-    height: 100%;
-    width: 350px;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border-color: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
     position: relative;
-}
-
-.search-input {
-    display: block;
     width: 100%;
-    height: 30px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    background: white;
-    color: #000;
-    pointer-events: auto;
-    position: relative;
-    z-index: 10;
-}
+    padding: 10px;
+    font-size: 16px;
+  }
 
+  .search-input {
+    display: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+  }
+
+  .search.active .search-text {
+    display: none;
+  }
+
+  .search.active .search-input {
+    display: inline;
+  }
+  
 .search-icon,
 .search-text {
     align-self: stretch;
@@ -160,7 +176,7 @@ html {
     aspect-ratio: 1;
     object-fit: cover;
     width: 60px;
-    border-radius: 50%;
+    border-radius: 60%;
     align-self: stretch;
     margin-top: auto;
     margin-bottom: auto;
@@ -193,7 +209,9 @@ html {
 .logout-button:hover {
     background: #6f7d48;
 }
-
+.button-text {
+    color:black;
+}
 /* Сітка для карток */
 .container {
     max-width: 1200px;

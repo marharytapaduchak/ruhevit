@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'core/styles.css' %}">
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
     <link rel="stylesheet" href="{% static 'profile_page/style.css' %}">
-    <link rel="stylesheet" href="{% static 'landing/css/style.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'landing/css/style.css' %}"> -->
     <link rel="icon" href="{% static 'core/images/logo.svg' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style data-tag="default-style-sheet">
@@ -28,7 +28,7 @@
             <div class="search-and-logo">
                 <h1 class="logo" onclick='location.href="{% url 'home' %}"' style="cursor:pointer;">Ругевіт</h1>
                 {% if user.is_authenticated %}
-                <input id="search-input" type="text" placeholder="Пошук" class="search" role="search" style="width: 100%; padding: 10px; font-size: 16px;" />
+                <input id="search-input" type="text" placeholder="Пошук" class="search" role="search" style="width: 100%; padding: 10px; font-size: 16px; border-style: none;" />
                 {% endif %}
             </div>
             {% if user.is_authenticated %}
