@@ -78,7 +78,7 @@
 
               <div class="frame15432-getstarted1">
                 <span class="frame15432-text11">Зареєструватись</span>
-              </div>
+
                 <div>
                   {% for field in form %}
                     {% for error in field.errors %}
@@ -90,9 +90,9 @@
                   {% endfor %}
                   </div>
                 <div class="frame15432-frame101">
-                  <span class="frame15432-text19">Імʼя користувача</span>
+                  <span class="frame15432-text19">Нік користувача</span>
                   <div class="frame15432-frame244">
-                   <input type="text" name="username" id="username" class="frame15432-frame241" required placeholder="Введіть імʼя користувача">
+                   <input type="text" name="username" id="username" class="frame15432-frame241" required placeholder="Введіть нік користувача">
                   </div>
                 </div>
                 <div class="frame15432-frame101">
@@ -121,7 +121,7 @@
                     {{ form.password2 }}
                   </div>
                 </div>
-                
+
                 <div class="frame15432-frame981">
                   <button type="submit" class="frame15432-add1">
                     <span class="frame15432-text22">Створити акаунт</span>
@@ -134,55 +134,54 @@
                 </div>
               </div>
             </form>
+            </div>
           </div>
+        </div>
       </div>
     </div>
-  </body>
-</html>
-<script>
-
-          document.querySelectorAll('.role-option').forEach(option => {
-              option.addEventListener('click', function() {
-                  document.querySelectorAll('.role-option').forEach(el => el.classList.remove('active'));
-                  this.classList.add('active');
-                  document.getElementById('role-input').value = this.getAttribute('data-role').toLowerCase();
-              });
+    <script>
+      document.querySelectorAll('.role-option').forEach(option => {
+          option.addEventListener('click', function() {
+              document.querySelectorAll('.role-option').forEach(el => el.classList.remove('active'));
+              this.classList.add('active');
+              document.getElementById('role-input').value = this.getAttribute('data-role').toLowerCase();
           });
+      });
 
-          document.addEventListener('DOMContentLoaded', function() {
-            const inputs = document.querySelectorAll('input[type="email"], input[type="password"]');
-            inputs.forEach(input => {
-              const originalPlaceholder = input.placeholder;
-              input.addEventListener('focus', function() {
-                this.placeholder = '';
-              });
-              input.addEventListener('blur', function() {
-                if (this.value === '') {
-                  this.placeholder = originalPlaceholder;
-                }
-              });
-            });
-
-            const form = document.querySelector('form');
-
-            if (form) {
-              form.addEventListener('submit', function(event) {
-                const email = document.querySelector('input[type="email"]').value;
-                const password = document.querySelectorAll('input[type="password"]')[0].value;
-                const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
-                const role = document.getElementById('role-input').value;
-
-                if (!email || !password || !confirmPassword || !role || password !== confirmPassword) {
-                  event.preventDefault();
-                  if (!email) alert('Будь ласка, введіть email');
-                  else if (!password) alert('Будь ласка, введіть пароль');
-                  else if (password !== confirmPassword) alert('Паролі не співпадають');
-                  else if (!role) alert('Будь ласка, оберіть роль');
-                  return;
-                }
-              });
+      document.addEventListener('DOMContentLoaded', function() {
+        const inputs = document.querySelectorAll('input[type="email"], input[type="password"]');
+        inputs.forEach(input => {
+          const originalPlaceholder = input.placeholder;
+          input.addEventListener('focus', function() {
+            this.placeholder = '';
+          });
+          input.addEventListener('blur', function() {
+            if (this.value === '') {
+              this.placeholder = originalPlaceholder;
             }
           });
-          </script>
-        </body>
+        });
+
+        const form = document.querySelector('form');
+
+        if (form) {
+          form.addEventListener('submit', function(event) {
+            const email = document.querySelector('input[type="email"]').value;
+            const password = document.querySelectorAll('input[type="password"]')[0].value;
+            const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
+            const role = document.getElementById('role-input').value;
+
+            if (!email || !password || !confirmPassword || !role || password !== confirmPassword) {
+              event.preventDefault();
+              if (!email) alert('Будь ласка, введіть email');
+              else if (!password) alert('Будь ласка, введіть пароль');
+              else if (password !== confirmPassword) alert('Паролі не співпадають');
+              else if (!role) alert('Будь ласка, оберіть роль');
+              return;
+            }
+          });
+        }
+      });
+    </script>
+  </body>
 </html>

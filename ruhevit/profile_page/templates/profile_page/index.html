@@ -17,7 +17,7 @@
           {% endif %}
           <div class="user-details">
             <h2 class="user-name">
-              {{ user.first_name }} {{ user.last_name }}{% if not user.first_name and not user.last_name %}{{ user.username }}{% endif %}
+              {{ user.get_full_name|default:user.get_username }}
             </h2>
             <div class="user-meta">
               <span class="username">{{ user.email }}</span>
@@ -37,10 +37,10 @@
               <span class="button-text">Створити запит</span>
             </button>
           </form>
-          <a href="{% url 'changing_info' %}" class="edit-button">
+          <button onclick="window.location.href='{% url 'changing_info' %}'" class="edit-button">
             <i style="font-size:20px" class="fa">&#xf040;</i>
             <span class="button-text">Редагувати профіль</span>
-          </a>
+          </button>
         </div>
       </section>
 

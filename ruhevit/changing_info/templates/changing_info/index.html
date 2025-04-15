@@ -1,72 +1,23 @@
+{% extends "core/base.html" %}
 {% load static %}
-<!doctype html>
-<html lang="uk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Редагувати профіль</title>
-    <link rel="stylesheet" href="{% static 'changing_info/css/styles.css' %}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro:wght@400;500;600;700&display=swap" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.30.0/tabler-icons.min.css" />
-    <style>
-      .photo-upload-container {
-        position: relative;
-      }
-      .upload-progress {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 50%;
-        align-items: center;
-        justify-content: center;
-      }
-      .upload-progress i {
-        color: white;
-        font-size: 24px;
-        animation: spin 1s linear infinite;
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="page-container">
-      <header class="main-header">
-        <h1 class="logo">Ругевіт</h1>
-        <div class="search-bar">
-          <i class="ti ti-search"></i>
-          <input type="text" class="search-text" placeholder="Пошук" />
-        </div>
-        <div class="user-actions">
-          <i class="ti ti-message"></i>
-          <i class="ti ti-bell"></i>
-          <img src="{{ user.photo.url }}" alt="User Avatar" class="user-avatar" height=50px />
-        </div>
-      </header>
-      <main class="main-content">
-        <section class="edit-profile-section">
-          <h2 class="section-title">Редагувати профіль</h2>
-          <div class="section-divider"></div>
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="save-btn" id="save-profile">Зберегти</button>
-          </form>
-        </section>
-        <section class="change-password-section">
-          <h2 class="section-title">Змінити пароль</h2>
-          <div class="section-divider"></div>
-          <!-- Реалізація зміни пароля (за потреби) -->
-          <a href="/accounts/password_reset/">Змінити пароль</a>
-        </section>
-      </main>
-    </div>
-    <script src="{% static 'changing_info/js/script.js' %}" defer></script>
-  </body>
+{% block content %}
+  <main class="main-content">
+    <section class="edit-profile-section">
+      <h2 class="section-title">Редагувати профіль</h2>
+      <div class="section-divider"></div>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save-btn" id="save-profile">Зберегти</button>
+      </form>
+    </section>
+    <section class="change-password-section">
+      <h2 class="section-title">Змінити пароль</h2>
+      <div class="section-divider"></div>
+      <!-- Реалізація зміни пароля (за потреби) -->
+      <button onclick="window.location.href='/accounts/password_reset/'" class="landing-add1 landing-text14">Змінити пароль</button>
+    </section>
+  </main>
+<script src="{% static 'changing_info/js/script.js' %}" defer></script>
+{% endblock %}
 </html>
