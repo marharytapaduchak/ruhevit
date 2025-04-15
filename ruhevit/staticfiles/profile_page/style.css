@@ -235,16 +235,7 @@
       gap: 28px;
       justify-content: center;
     }
-    
-    .user-avatar {
-      aspect-ratio: 1;
-      object-fit: contain;
-      object-position: center;
-      width: 98px;
-      border-radius: 100px;
-      flex-shrink: 0;
-    }
-    
+
     .user-details {
       display: flex;
       min-width: 240px;
@@ -258,12 +249,14 @@
     .user-name {
       font-size: 30px;
       font-weight: 590;
-    }
     
+    }
+    h2.user-name {
+      padding-bottom: 0%;
+    }
     .user-meta {
       align-self: start;
       display: flex;
-      margin-top: 10px;
       align-items: start;
       gap: 5px;
       white-space: nowrap;

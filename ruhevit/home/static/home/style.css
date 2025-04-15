@@ -221,7 +221,7 @@ html {
     }
     .request-icon {
       aspect-ratio: 1.12;
-      object-fit: contain;
+      /* object-fit: contain; */
       object-position: center;
       width: 45px;
     }
