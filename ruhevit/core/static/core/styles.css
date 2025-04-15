@@ -188,7 +188,7 @@ html {
 }
 
 /* Кнопки */
-.button,
+/* .button,
 .logout-button {
     display: inline-block;
     background: #8a9a5b;
@@ -203,7 +203,8 @@ html {
     border: none;
     cursor: pointer;
     transition: background 0.2s ease;
-}
+    
+} */
 
 .button:hover,
 .logout-button:hover {

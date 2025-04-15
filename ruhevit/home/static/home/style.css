@@ -141,12 +141,12 @@ html {
       margin-top: auto;
       margin-bottom: auto;
     }
-    .navbar-right {
+    /* .navbar-right {
       display: flex;
       align-items: center;
-      gap: 15px; /* Smaller gap */
+      gap: 15px; 
       height: 100%;
-    }
+    } */
     
     /* Requests Section */
     .requests-block {
