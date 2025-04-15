@@ -46,9 +46,7 @@
         <div class="landing-landing">
           <div class="logo-button">
             <span class="logo">Ругевіт</span>
-            <div class="landing-add1">
-              <a href="{% url 'login' %}" class="landing-text14">Приєднатись</a>
-            </div>
+            <button onclick="window.location.href='/accounts/login/'" class="landing-add1 landing-text14">Приєднатись</button>
           </div>
           <div class="landing-frame15436">
             <div class="landing-frame15441">
@@ -60,9 +58,7 @@
                   та ефективно допомагати тим, хто цього потребує.
                 </span>
               </div>
-                <div class="landing-add2">
-                  <a href="{% url 'login' %}" class="landing-text14">Приєднатись</a>
-                </div>
+                <button onclick="window.location.href='/accounts/login/'" class="landing-add2 landing-text14">Приєднатись</button>
             </div>
             <img
               src="{% static 'landing/pictures/big-logo.png' %}"
@@ -205,9 +201,7 @@
                       <span class="landing-text69">{{ req.created_at|date:"d.m.Y" }}</span>
                     </div>
                   </div>
-                  <div class="landing-add4">
-                      <a href="{% url 'request_detail' req.id %}" class="landing-text72">Детальніше</a>
-                  </div>
+                  <button onclick="window.location.href='{% url 'requests:request_detail' req.id %}'" class="landing-text72 landing-add4">Детальніше</button>
                 </div>
               </div>
             {% endfor %}
