@@ -181,30 +181,34 @@
               <span class="block-title">Актуальні запити</span>
             </div>
             <div class="landing-frame154423">
-              {% for req in latest_requests %}
-              <div class="landing-frame115">
-                <div class="landing-frame1052">
-                  <img src="{% static 'landing/pictures/cover.svg' %}" alt="cover" class="landing-imageicon2" />
-                </div>
-                <div class="landing-frame1085">
-                  <div class="landing-frame1075">
-                    <img src="{{ req.executor.profile_picture.url }}" alt="user" class="landing-ellipse15" />
-                    <span class="landing-text61">{{ req.executor.get_full_name|default:req.executor.get_username }}</span>
-                  </div>
-                  <div class="landing-frame1235">
-                    <span class="landing-text62">{{ req.title }}</span>
-                    <span class="landing-text63">{{ req.description|truncatechars:150 }}</span>
-                  </div>
-                  <div class="landing-frame1262">
-                    <div class="landing-frame1272">
-                      <span class="landing-text68">запит з</span>
-                      <span class="landing-text69">{{ req.created_at|date:"d.m.Y" }}</span>
+              {% if latest_requests %}
+                {% for req in latest_requests %}
+                  <div class="landing-frame115">
+                    <div class="landing-frame1052">
+                      <img src="{% static 'landing/pictures/cover.svg' %}" alt="cover" class="landing-imageicon2" />
+                    </div>
+                    <div class="landing-frame1085">
+                      <div class="landing-frame1075">
+                        <img src="{{ req.executor.profile_picture.url }}" alt="user" class="landing-ellipse15" />
+                        <span class="landing-text61">{{ req.executor.get_full_name|default:req.executor.get_username }}</span>
+                      </div>
+                      <div class="landing-frame1235">
+                        <span class="landing-text62">{{ req.title }}</span>
+                        <span class="landing-text63">{{ req.description|truncatechars:150 }}</span>
+                      </div>
+                      <div class="landing-frame1262">
+                        <div class="landing-frame1272">
+                          <span class="landing-text68">запит з</span>
+                          <span class="landing-text69">{{ req.created_at|date:"d.m.Y" }}</span>
+                        </div>
+                      </div>
+                      <button onclick="window.location.href='{% url 'requests:request_detail' req.id %}'" class="landing-text72 landing-add4">Детальніше</button>
                     </div>
                   </div>
-                  <button onclick="window.location.href='{% url 'requests:request_detail' req.id %}'" class="landing-text72 landing-add4">Детальніше</button>
-                </div>
-              </div>
-            {% endfor %}
+                {% endfor %}
+              {% else %}
+              <p>Немає запитів</p>
+              {% endif %}
           </div>
         </div>
       </div>
