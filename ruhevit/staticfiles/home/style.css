@@ -548,7 +548,7 @@ html {
       display: flex;
       min-height: 148px;
       width: 100%;
-      padding: 54px 215px 54px 193px;
+      /* padding: 54px 215px 54px 193px; */
       flex-direction: column;
       overflow: hidden;
     }
