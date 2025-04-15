@@ -71,6 +71,7 @@ body {
     outline: none;
     font-size: 14px;
     background: transparent;
+    padding: 20px;
   }
 
   .search.active .search-text {
@@ -161,10 +162,12 @@ body {
   }
   .navbar-right .logout-button {
     align-self: stretch;
-    border-radius: 13px;
+    border-radius: 80px;
     background-color: #f8f2e9;
     padding-left:20px;
     padding-right:20px;
+    padding-top:20px;
+    padding-bottom: 20px;
     gap: 10px;
     overflow: hidden;
     color: #1d1d20;

@@ -95,13 +95,13 @@ html {
     font-size: 16px;
   }
 
-  .search-input {
+  /* .search-input {
     display: none;
     border: none;
     outline: none;
     font-size: 14px;
     background: transparent;
-  }
+  } */
 
   .search.active .search-text {
     display: none;
@@ -188,23 +188,7 @@ html {
 }
 
 /* Кнопки */
-/* .button,
-.logout-button {
-    display: inline-block;
-    background: #8a9a5b;
-    color: white;
-    padding: 0.4rem 1rem;
-    text-decoration: none;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
-    text-align: center;
-    width: fit-content;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    
-} */
+
 
 .button:hover,
 .logout-button:hover {
