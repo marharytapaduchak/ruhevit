@@ -98,10 +98,6 @@
                 <img src="{% static 'profile_page/images/img.svg' %}" alt="History Icon" class="history-icon-image" />
               </div>
               <div class="history-info">
-                <div class="requester-info">
-                  <img src="{% static 'profile_page/images/profile.png' %}" alt="Requester" class="requester-avatar" />
-                  <h3 class="requester-name">{{ req.owner.get_full_name }}</h3>
-                </div>
                 <div class="history-text">
                   <h4 class="history-title">{{ req.name }}</h4>
                   <p class="history-description">{{ req.description }}</p>
