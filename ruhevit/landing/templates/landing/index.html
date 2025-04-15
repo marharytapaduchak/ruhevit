@@ -47,7 +47,7 @@
           <div class="logo-button">
             <span class="logo">Ругевіт</span>
             <div class="landing-add1">
-              <a class="landing-text11">Приєднатись</a>
+              <a href="{% url 'login' %}" class="landing-text14">Приєднатись</a>
             </div>
           </div>
           <div class="landing-frame15436">
@@ -60,9 +60,9 @@
                   та ефективно допомагати тим, хто цього потребує.
                 </span>
               </div>
-              <div class="landing-add2">
-                <span class="landing-text14">Приєднатись</span>
-              </div>
+                <div class="landing-add2">
+                  <a href="{% url 'login' %}" class="landing-text14">Приєднатись</a>
+                </div>
             </div>
             <img
               src="{% static 'landing/pictures/big-logo.png' %}"
@@ -72,29 +72,21 @@
           </div>
           <div class="statistics">
             <div class="statistic-block">
-              <span class="title">7 430</span>
+              <span class="title">{{ volunteer_count }}</span>
               <span class="landing-text">Волонтерів</span>
             </div>
             <div class="statistic-block">
-              <span class="title">5 203</span>
+              <span class="title">{{ completed_count }}</span>
               <span class="landing-text">Виконаних запитів</span>
             </div>
             <div class="statistic-block">
-              <span class="title">3 291</span>
+              <span class="title">{{ military_count }}</span>
               <span class="landing-text">Військових</span>
             </div>
           </div>
           <div class="reviews-page">
             <div class="landing-frame154433">
               <span class="block-title">Відгуки</span>
-              <div class="landing-frame441">
-                <button class="slider-arrow" data-slider="reviews" data-direction="prev" aria-label="Попередній відгук">
-                  ←
-                </button>
-                <button class="slider-arrow" data-slider="reviews" data-direction="next" aria-label="Наступний відгук">
-                  →
-                </button>
-              </div>
             </div>
             <div class="reviews">
               <div class="review-post">
@@ -191,202 +183,34 @@
           <div class="requests-page">
             <div class="landing-frame154433">
               <span class="block-title">Актуальні запити</span>
-              <div class="landing-frame442">
-                <button class="slider-arrow" data-slider="requests" data-direction="prev" aria-label="Попередній запит">
-                  ←
-                </button>
-                <button class="slider-arrow" data-slider="requests" data-direction="next" aria-label="Наступний запит">
-                  →
-                </button>
-              </div>              
             </div>
             <div class="landing-frame154423">
-              <div class="landing-frame154423">
-                <div class="landing-frame115">
-                  <div class="landing-frame1052">
-                    <img
-                    src="{% static 'landing/pictures/cover.svg' %}"
-                    alt="ImageiconI115"
-                    class="landing-imageicon2"
-                  />
-                  </div>
-                  <div class="landing-frame1085">
-                    <div class="landing-frame1075">
-                      <img
-                        src="{% static 'landing/pictures/user-pic.png' %}"
-                        alt="Ellipse1I115"
-                        class="landing-ellipse15"
-                      />
-                      <span class="landing-text61">Василь Костенко</span>
-                    </div>
-                    <div class="landing-frame1235">
-                      <span class="landing-text62">
-                        10 турнікетів CAT Generation 7
-                      </span>
-                      <span class="landing-text63">
-                        Lorem ipsum malesuada commodo et pulvinar blandit
-                        adipiscing iaculis non convallis vitae.
-                      </span>
-                    </div>
-                    <div class="landing-frame1363">
-                      <div class="landing-frame1292">
-                        <div class="landing-frame13514">
-                          <span class="landing-text64">Фронт</span>
-                        </div>
-                      </div>
-                      <div class="landing-frame1342">
-                        <div class="landing-frame13515">
-                          <span class="landing-text65">Медицина</span>
-                        </div>
-                      </div>
-                      <div class="landing-frame13516">
-                        <div class="landing-frame13517">
-                          <span class="landing-text66">Високий пріоритет</span>
-                        </div>
-                      </div>
-                      <div class="landing-frame1364">
-                        <span class="landing-text67">Потрібен волонтер</span>
-                      </div>
-                    </div>
-                    <div class="landing-frame1262">
-                      <div class="landing-frame1272">
-                        <span class="landing-text68">запит з</span>
-                        <span class="landing-text69">10.02.2025</span>
-                      </div>
-                      <div class="landing-frame1282">
-                        <span class="landing-text70">сума збору</span>
-                        <span class="landing-text71">15&nbsp;500&nbsp;₴</span>
-                      </div>
-                    </div>
-                    <div class="landing-add4">
-                      <span class="landing-text72">Детальніше</span>
-                    </div>
-                  </div>
-                </div>
+              {% for req in latest_requests %}
               <div class="landing-frame115">
                 <div class="landing-frame1052">
-                  <img
-                    src="{% static 'landing/pictures/cover.svg' %}"
-                    alt="ImageiconI115"
-                    class="landing-imageicon2"
-                  />
+                  <img src="{% static 'landing/pictures/cover.svg' %}" alt="cover" class="landing-imageicon2" />
                 </div>
                 <div class="landing-frame1085">
                   <div class="landing-frame1075">
-                    <img
-                      src="{% static 'landing/pictures/user-pic.png' %}"
-                      alt="Ellipse1I115"
-                      class="landing-ellipse15"
-                    />
-                    <span class="landing-text61">Василь Костенко</span>
+                    <img src="{{ req.executor.profile_picture.url }}" alt="user" class="landing-ellipse15" />
+                    <span class="landing-text61">{{ req.executor.get_full_name|default:req.executor.get_username }}</span>
                   </div>
                   <div class="landing-frame1235">
-                    <span class="landing-text62">
-                      10 турнікетів CAT Generation 7
-                    </span>
-                    <span class="landing-text63">
-                      Lorem ipsum malesuada commodo et pulvinar blandit
-                      adipiscing iaculis non convallis vitae.
-                    </span>
-                  </div>
-                  <div class="landing-frame1363">
-                    <div class="landing-frame1292">
-                      <div class="landing-frame13514">
-                        <span class="landing-text64">Фронт</span>
-                      </div>
-                    </div>
-                    <div class="landing-frame1342">
-                      <div class="landing-frame13515">
-                        <span class="landing-text65">Медицина</span>
-                      </div>
-                    </div>
-                    <div class="landing-frame13516">
-                      <div class="landing-frame13517">
-                        <span class="landing-text66">Високий пріоритет</span>
-                      </div>
-                    </div>
-                    <div class="landing-frame1364">
-                      <span class="landing-text67">Потрібен волонтер</span>
-                    </div>
+                    <span class="landing-text62">{{ req.title }}</span>
+                    <span class="landing-text63">{{ req.description|truncatechars:150 }}</span>
                   </div>
                   <div class="landing-frame1262">
                     <div class="landing-frame1272">
                       <span class="landing-text68">запит з</span>
-                      <span class="landing-text69">10.02.2025</span>
-                    </div>
-                    <div class="landing-frame1282">
-                      <span class="landing-text70">сума збору</span>
-                      <span class="landing-text71">15&nbsp;500&nbsp;₴</span>
+                      <span class="landing-text69">{{ req.created_at|date:"d.m.Y" }}</span>
                     </div>
                   </div>
                   <div class="landing-add4">
-                    <span class="landing-text72">Детальніше</span>
+                      <a href="{% url 'request_detail' req.id %}" class="landing-text72">Детальніше</a>
                   </div>
                 </div>
               </div>
-              
-              <div class="landing-frame115">
-                <div class="landing-frame1052">
-                  <img
-                    src="{% static 'landing/pictures/cover.svg' %}"
-                    alt="ImageiconI115"
-                    class="landing-imageicon2"
-                  />
-                </div>
-                <div class="landing-frame1085">
-                  <div class="landing-frame1075">
-                    <img
-                      src="{% static 'landing/pictures/user-pic.png' %}"
-                      alt="Ellipse1I115"
-                      class="landing-ellipse15"
-                    />
-                    <span class="landing-text61">Василь Костенко</span>
-                  </div>
-                  <div class="landing-frame1235">
-                    <span class="landing-text62">
-                      10 турнікетів CAT Generation 7
-                    </span>
-                    <span class="landing-text63">
-                      Lorem ipsum malesuada commodo et pulvinar blandit
-                      adipiscing iaculis non convallis vitae.
-                    </span>
-                  </div>
-                  <div class="landing-frame1363">
-                    <div class="landing-frame1292">
-                      <div class="landing-frame13514">
-                        <span class="landing-text64">Фронт</span>
-                      </div>
-                    </div>
-                    <div class="landing-frame1342">
-                      <div class="landing-frame13515">
-                        <span class="landing-text65">Медицина</span>
-                      </div>
-                    </div>
-                    <div class="landing-frame13516">
-                      <div class="landing-frame13517">
-                        <span class="landing-text66">Високий пріоритет</span>
-                      </div>
-                    </div>
-                    <div class="landing-frame1364">
-                      <span class="landing-text67">Потрібен волонтер</span>
-                    </div>
-                  </div>
-                  <div class="landing-frame1262">
-                    <div class="landing-frame1272">
-                      <span class="landing-text68">запит з</span>
-                      <span class="landing-text69">10.02.2025</span>
-                    </div>
-                    <div class="landing-frame1282">
-                      <span class="landing-text70">сума збору</span>
-                      <span class="landing-text71">15&nbsp;500&nbsp;₴</span>
-                    </div>
-                  </div>
-                  <div class="landing-add4">
-                    <span class="landing-text72">Детальніше</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -401,7 +225,7 @@
         button.addEventListener('click', () => {
           const card = button.closest('[class^="landing-frame"]');
           if (card) {
-            alert('Відкриваються деталі: ' + 
+            alert('Відкриваються деталі: ' +
                   card.querySelector('[class^="landing-text"]').textContent);
           }
         });
@@ -412,10 +236,10 @@
           const direction = arrow.dataset.direction;
           const container = document.querySelector(`.${sliderId}-container`);
           const items = container.querySelectorAll('.slider-item');
-          
+
           const visibleItems = parseInt(getComputedStyle(container).getPropertyValue('--visible-items')) || 1;
           const scrollAmount = container.clientWidth / visibleItems;
-          
+
           container.scrollBy({
             left: direction === 'next' ? scrollAmount : -scrollAmount,
             behavior: 'smooth'
@@ -427,7 +251,7 @@
           container.style.setProperty('--visible-items', container.dataset.visibleItems || 1);
         });
       };
-      
+
       initSliders();
     </script>
   </body>
