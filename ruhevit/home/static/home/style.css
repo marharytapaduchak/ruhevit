@@ -175,7 +175,7 @@ html {
       overflow-x: auto;
       display: flex;
       margin-top: 20px;
-      width: 100%;
+      /* width: 100%; */
       padding-left: 20px;
       padding-right: 20px;
       align-items: center;
@@ -555,7 +555,7 @@ html {
     
     .offer-info {
       display: flex;
-      width: 100%;
+      /* width: 100%; */
       padding: 25px;
       flex-direction: column;
       align-items: stretch;
@@ -651,7 +651,7 @@ html {
         2px 2px 4px 0px rgba(0, 0, 0, 0.08);
       background-color: #879e36;
       margin-top: 20px;
-      width: 100%;
+      /* width: 100%; */
       padding: 15px 20px;
       gap: 10px;
       overflow: hidden;

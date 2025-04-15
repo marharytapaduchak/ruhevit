@@ -559,7 +559,6 @@ html {
       object-position: center;
       width: 45px;
     }
-    
     .offer-info {
       display: flex;
       width: 100%;
@@ -859,3 +858,10 @@ html {
       } */
     }
     
+    .request,
+    .offer-card {
+      flex-direction: column;
+      width: 100%;
+      min-width: unset;
+      max-width: 100%;
+    }
