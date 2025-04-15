@@ -94,29 +94,24 @@
         <div class="action-buttons">
           {% if request_obj.status == 'pending' %}
             {% if user != request_obj.owner %}
-              <a class="contact-button" href="mailto:{{ request_obj.owner.email }}">Сконтактувати</a>
-              <a
-                class="confirm-button"
-                href="{% url 'confirm_request' request_obj.id %}"
-              >
-                Підтвердити запит
-              </a>
+            <button onclick="window.location.href='mailto:{{ request_obj.owner.email }}'" class="contact-button">Сконтактувати</button>
+            <button onclick="window.location.href='{% url 'confirm_request' request_obj.id %}'" class="confirm-button">Підтвердити запит</button>
             {% endif %}
 
           {% elif request_obj.status == 'in_progress' %}
             {% if user == request_obj.owner %}
-              <a class="contact-button" href="mailto:{{ request_obj.executor.email }}">Сконтактувати</a>
+            <button onclick="window.location.href='mailto:{{ request_obj.executor.email }}'" class="contact-button">Сконтактувати</button>
             {% endif %}
             {% if user == request_obj.executor %}
-              <a class="contact-button" href="mailto:{{ request_obj.owner.email }}">Сконтактувати</a>
-              <a class="confirm-button" href="{% url 'report_submit' request_obj.id %}">Написати звіт</a>
+            <button onclick="window.location.href='mailto:{{ request_obj.owner.email }}'" class="contact-button">Сконтактувати</button>
+            <button onclick="window.location.href='{% url 'report_submit' request_obj.id %}'" class="confirm-button">Написати звіт</button>
             {% endif %}
 
           {% elif request_obj.status == 'done' %}
             {% if user == request_obj.owner %}
-              <a class="contact-button" href="mailto:{{ request_obj.executor.email }}">Сконтактувати</a>
+            <button onclick="window.location.href='mailto:{{ request_obj.executor.email }}'" class="contact-button">Сконтактувати</button>
             {% else %}
-              <a class="contact-button" href="mailto:{{ request_obj.owner.email }}">Сконтактувати</a>
+            <button onclick="window.location.href='mailto:{{ request_obj.owner.email }}'" class="contact-button">Сконтактувати</button>
             {% endif %}
           {% endif %}
         </div>
