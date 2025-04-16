@@ -113,8 +113,8 @@
                     </button>
                 </div>
                 <div class="offers-container">
-                    {% if user_exec_requests %}
-                        {% for req in user_owner_requests %}
+                    {% if help_offers %}
+                        {% for offer in help_offers %}
                             <article class="offer-card">
                             <div class="offer-image">
                                 <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer Icon" class="offer-icon">
