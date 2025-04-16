@@ -1,187 +1,123 @@
+{% extends "core/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ukrainian">
-  <head>
-    <title>Ругевіт - Реєстрація</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <meta property="twitter:card" content="summary_large_image" />
 
-    <style data-tag="reset-style-sheet">
-      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;  -webkit-font-smoothing: antialiased;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;  color: inherit;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}details {  display: block;  margin: 0;  padding: 0;}summary::-webkit-details-marker {  display: none;}[data-thq="accordion"] [data-thq="accordion-content"] {  max-height: 0;  overflow: hidden;  transition: max-height 0.3s ease-in-out;  padding: 0;}[data-thq="accordion"] details[data-thq="accordion-trigger"][open] + [data-thq="accordion-content"] {  max-height: 1000vh;}details[data-thq="accordion-trigger"][open] summary [data-thq="accordion-icon"] {  transform: rotate(180deg);}html { scroll-behavior: smooth  }
-    </style>
-    <style data-tag="default-style-sheet">
-      html {
-        font-family: Inter;
-        font-size: 16px;
-      }
+{% block title %}Ругевіт - Реєстрація{% endblock %}
 
-      body {
-        font-weight: 400;
-        font-style:normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-        line-height: 1.15;
-        color: var(--dl-color-theme-neutral-dark);
-        background: var(--dl-color-theme-neutral-light);
-        fill: var(--dl-color-theme-neutral-dark);
-      }
+{% block extra_head %}
+<link rel="stylesheet" href="https://unpkg.com/animate.css@4.1.1/animate.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100..900&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css">
+<link rel="stylesheet" href="{% static 'accounts/style.css' %}">
+<link rel="stylesheet" href="{% static 'accounts/index.css' %}">
 
-      :root {
-        --dl-color-theme-neutral-dark: #333333;
-        --dl-color-theme-neutral-light: #f5f5f5;
-      }
-    </style>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/animate.css@4.1.1/animate.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
-      data-tag="font"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap"
-      data-tag="font"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
-      data-tag="font"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
-      data-tag="font"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@teleporthq/teleport-custom-scripts/dist/style.css"
-    />
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'accounts/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'accounts/index.css' %}" />
-  </head>
-  <body>
-    <div>
-      <div class="frame15432-container">
-        <div class="frame15432-frame15432">
-          <div class="frame15432-signup" style="display: flex; justify-content: center;">
-            <form method="post" style="max-width: 480px; width: 100%; padding: 20px;">
-              {% csrf_token %}
-              <div class="frame15432-frame143">
-                <span class="frame15432-text10">Ругевіт</span>
-              </div>
+{% endblock %}
 
-              <div class="frame15432-getstarted1">
-                <span class="frame15432-text11">Зареєструватись</span>
+{% block content %}
+<div class="registration-container">
+  <form method="post">
+    {% csrf_token %}
+    <div class="frame15432-frame143">
+      <span class="frame15432-text10">Ругевіт</span>
+    </div>
 
-                <div>
-                  {% for field in form %}
-                    {% for error in field.errors %}
-                      <p style="color: red;">{{ error }}</p>
-                    {% endfor %}
-                  {% endfor %}
-                  {% for error in form.non_field_errors %}
-                    <p style="color: red;">{{ error }}</p>
-                  {% endfor %}
-                  </div>
-                <div class="frame15432-frame101">
-                  <span class="frame15432-text19">Нік користувача</span>
-                  <div class="frame15432-frame244">
-                   <input type="text" name="username" id="username" class="frame15432-frame241" required placeholder="Введіть нік користувача">
-                  </div>
-                </div>
-                <div class="frame15432-frame101">
-                  <span class="frame15432-text19">Email</span>
-                  <div class="frame15432-frame244">
-                    {{ form.email }}
-                  </div>
-                </div>
-                <div class="frame15432-frame139">
-                  <span class="frame15432-text14">Роль</span>
-                  <div class="frame15432-frame242 toggle-role">
-                      <div class="role-option active" data-role="волонтер">Волонтер</div>
-                      <div class="role-option" data-role="Військовий">Військовий</div>
-                  </div>
-                  <input type="hidden" name="role" id="role-input" value="волонтер">
-                </div>
-                <div class="frame15432-frame971">
-                  <span class="frame15432-text17">Пароль</span>
-                  <div class="frame15432-frame243">
-                    {{ form.password1 }}
-                  </div>
-                </div>
-                <div class="frame15432-frame101">
-                  <span class="frame15432-text19">Підтвердьте пароль</span>
-                  <div class="frame15432-frame244">
-                    {{ form.password2 }}
-                  </div>
-                </div>
+    <div class="frame15432-getstarted1">
+      <span class="frame15432-text11">Зареєструватись</span>
 
-                <div class="frame15432-frame981">
-                  <button type="submit" class="frame15432-add1">
-                    <span class="frame15432-text22">Створити акаунт</span>
-                  </button>
-                  <span class="frame15432-text23">
-                    <span class="frame15432-text24">Вже маєте акаунт?</span>
-                    <span class="frame15432-text25"></span>
-                    <a href="{% url 'login' %}"><span style="color: #F9A826;">Увійти</span></a>
-                  </span>
-                </div>
-              </div>
-            </form>
-            </div>
-          </div>
+      <div>
+        {% for field in form %}
+          {% for error in field.errors %}
+            <p class="error-message">{{ error }}</p>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <p class="error-message">{{ error }}</p>
+        {% endfor %}
+      </div>
+      
+      <div class="frame15432-frame101">
+        <span class="frame15432-text19">Нік користувача</span>
+        <div class="frame15432-frame244">
+          <input type="text" name="username" id="username" class="frame15432-frame241" required placeholder="Введіть нік користувача">
         </div>
       </div>
+      
+      <div class="frame15432-frame101">
+        <span class="frame15432-text19">Email</span>
+        <div class="frame15432-frame244">
+          {{ form.email }}
+        </div>
+      </div>
+      
+      <div class="frame15432-frame139">
+        <span class="frame15432-text14">Роль</span>
+        <div class="frame15432-frame242 toggle-role">
+          <div class="role-option active" data-role="волонтер">Волонтер</div>
+          <div class="role-option" data-role="Військовий">Військовий</div>
+        </div>
+        <input type="hidden" name="role" id="role-input" value="волонтер">
+      </div>
+      
+      <div class="frame15432-frame971">
+        <span class="frame15432-text17">Пароль</span>
+        <div class="frame15432-frame243">
+          {{ form.password1 }}
+        </div>
+      </div>
+      
+      <div class="frame15432-frame101">
+        <span class="frame15432-text19">Підтвердьте пароль</span>
+        <div class="frame15432-frame244">
+          {{ form.password2 }}
+        </div>
+      </div>
+
+      <div class="frame15432-frame981">
+        <button type="submit" class="frame15432-add1">
+          <span class="frame15432-text22">Створити акаунт</span>
+        </button>
+        <span class="frame15432-text23">
+          <span class="frame15432-text24">Вже маєте акаунт?</span>
+          <a href="{% url 'login' %}"><span style="color: #F9A826;">Увійти</span></a>
+        </span>
+      </div>
     </div>
-    <script>
-      document.querySelectorAll('.role-option').forEach(option => {
-          option.addEventListener('click', function() {
-              document.querySelectorAll('.role-option').forEach(el => el.classList.remove('active'));
-              this.classList.add('active');
-              document.getElementById('role-input').value = this.getAttribute('data-role').toLowerCase();
-          });
+  </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Role selection
+    document.querySelectorAll('.role-option').forEach(option => {
+      option.addEventListener('click', function() {
+        document.querySelectorAll('.role-option').forEach(el => el.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById('role-input').value = this.getAttribute('data-role').toLowerCase();
       });
+    });
 
-      document.addEventListener('DOMContentLoaded', function() {
-        const inputs = document.querySelectorAll('input[type="email"], input[type="password"]');
-        inputs.forEach(input => {
-          const originalPlaceholder = input.placeholder;
-          input.addEventListener('focus', function() {
-            this.placeholder = '';
-          });
-          input.addEventListener('blur', function() {
-            if (this.value === '') {
-              this.placeholder = originalPlaceholder;
-            }
-          });
-        });
+    // Form validation
+    const form = document.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', function(event) {
+        const email = document.querySelector('input[type="email"]').value;
+        const password = document.querySelectorAll('input[type="password"]')[0].value;
+        const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
+        const role = document.getElementById('role-input').value;
 
-        const form = document.querySelector('form');
-
-        if (form) {
-          form.addEventListener('submit', function(event) {
-            const email = document.querySelector('input[type="email"]').value;
-            const password = document.querySelectorAll('input[type="password"]')[0].value;
-            const confirmPassword = document.querySelectorAll('input[type="password"]')[1].value;
-            const role = document.getElementById('role-input').value;
-
-            if (!email || !password || !confirmPassword || !role || password !== confirmPassword) {
-              event.preventDefault();
-              if (!email) alert('Будь ласка, введіть email');
-              else if (!password) alert('Будь ласка, введіть пароль');
-              else if (password !== confirmPassword) alert('Паролі не співпадають');
-              else if (!role) alert('Будь ласка, оберіть роль');
-              return;
-            }
-          });
+        if (!email || !password || !confirmPassword || !role || password !== confirmPassword) {
+          event.preventDefault();
+          if (!email) alert('Будь ласка, введіть email');
+          else if (!password) alert('Будь ласка, введіть пароль');
+          else if (password !== confirmPassword) alert('Паролі не співпадають');
+          else if (!role) alert('Будь ласка, оберіть роль');
+          return;
         }
       });
-    </script>
-  </body>
-</html>
+    }
+  });
+</script>
+{% endblock %}
