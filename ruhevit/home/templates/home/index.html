@@ -10,45 +10,47 @@
             <section class="requests-block">
                 <h2 class="requests-text">Ваші запити як ініціатора</h2>
                 <div class="requests">
-                    {% for req in user_owner_requests %}
-                        <article class="request">
-                            <div class="request-pic">
-                                <div class="request-pic-container">
-                                    <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2">
-                                </div>
-                            </div>
-                            <div class="request-info">
-                                <h3 class="request-title">{{ req.name }}</h3>
-                                <p class="progress-status">{{ req.get_status_display }}</p>
-                                <div class="request-details">
-                                    <div class="deadline-info">
-                                        <p class="detail-label">дата публікації</p>
-                                        <p class="detail-value">{{ req.created_at|date:"d.m.Y" }}</p>
-                                    </div>
-                                    <div class="volunteer-info">
-                                        <p class="detail-label">виконавець</p>
-                                        <p class="detail-value">
-                                            {% if req.executor %}
-                                                {{ req.executor.get_full_name|default:req.executor.get_username }}
-                                            {% else %}
-                                                Не визначено
-                                            {% endif %}
-                                        </p>
+                    {% if user_exec_requests %}
+                        {% for req in user_owner_requests %}
+                            <article class="request">
+                                <div class="request-pic">
+                                    <div class="request-pic-container">
+                                        <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2">
                                     </div>
                                 </div>
+                                <div class="request-info">
+                                    <h3 class="request-title">{{ req.name }}</h3>
+                                    <p class="progress-status">{{ req.get_status_display }}</p>
+                                    <div class="request-details">
+                                        <div class="deadline-info">
+                                            <p class="detail-label">дата публікації</p>
+                                            <p class="detail-value">{{ req.created_at|date:"d.m.Y" }}</p>
+                                        </div>
+                                        <div class="volunteer-info">
+                                            <p class="detail-label">виконавець</p>
+                                            <p class="detail-value">
+                                                {% if req.executor %}
+                                                    {{ req.executor.get_full_name|default:req.executor.get_username }}
+                                                {% else %}
+                                                    Не визначено
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
 
-                                <div class="action-buttons">
-                                    {% if req.executor.email %}
-                                    <button onclick="window.location.href='mailto:{{ req.executor.email }}'" class="action-button contac">Сконтактувати</button>
-                                    {% endif %}
-                                    <button onclick="window.location.href='{% url 'request_detail' req.id %}'" class="action-button confirm">Детальніше</button>
+                                    <div class="action-buttons">
+                                        {% if req.executor.email %}
+                                        <button onclick="window.location.href='mailto:{{ req.executor.email }}'" class="action-button contac">Сконтактувати</button>
+                                        {% endif %}
+                                        <button onclick="window.location.href='{% url 'request_detail' req.id %}'" class="action-button confirm">Детальніше</button>
 
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
-                    {% empty %}
+                            </article>
+                        {% endfor %}
+                    {% else %}
                         <p>У вас поки що немає запитів.</p>
-                    {% endfor %}
+                    {% endif %}
                 </div>
             </section>
 
@@ -111,8 +113,9 @@
                     </button>
                 </div>
                 <div class="offers-container">
-                    {% for offer in help_offers %}
-                        <article class="offer-card">
+                    {% if user_exec_requests %}
+                        {% for req in user_owner_requests %}
+                            <article class="offer-card">
                             <div class="offer-image">
                                 <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer Icon" class="offer-icon">
                             </div>
@@ -136,10 +139,11 @@
                                 <button onclick="window.location.href='{% url 'request_detail' offer.id %}'" class="details-button">Детальніше</button>
 
                             </div>
-                        </article>
-                    {% empty %}
+                            </article>
+                        {% endfor %}
+                    {% else %}
                         <p>Наразі немає пропозицій допомоги.</p>
-                    {% endfor %}
+                    {% endif %}
                 </div>
             </section>
         </div>
