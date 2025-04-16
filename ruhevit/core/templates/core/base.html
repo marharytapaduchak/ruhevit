@@ -10,14 +10,6 @@
     <link rel="stylesheet" href="{% static 'landing/css/style.css' %}">
     <link rel="icon" href="{% static 'core/images/logo.svg' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style data-tag="default-style-sheet">
-        .profile-page {
-            height: 50px;
-            aspect-ratio: 1;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-    </style>
 </head>
 
 <body>
@@ -35,7 +27,7 @@
             <div class="navbar-right">
             <a href="{% url 'profile_page' %}" class="profile-icon">
                 {% if user.photo %}
-                    <img src="{{ user.photo.url }}" alt="Profile" class="profile-page" />
+                    <img src="{{ user.photo.url }}" alt="Profile" class="request-icon-image" />
                 {% else %}
                     <img src="{% static 'core/images/blank.png' %}" alt="Profile" class="request-icon-image" />
                 {% endif %}
