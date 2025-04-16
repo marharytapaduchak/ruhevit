@@ -756,3 +756,7 @@ html, body {
   width: 100%;
   overflow-x: hidden;
 }
+
+html, body, div, span, p, h1, h2, h3, h4, h5, h6, a, button, input, textarea, select, ul, ol, li {
+    font-family: Vinnytsia Sans !important;
+}
