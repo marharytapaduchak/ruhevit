@@ -189,8 +189,8 @@
                     </div>
                     <div class="landing-frame1085">
                       <div class="landing-frame1075">
-                        <img src="{{ req.executor.profile_picture.url }}" alt="user" class="landing-ellipse15" />
-                        <span class="landing-text61">{{ req.executor.get_full_name|default:req.executor.get_username }}</span>
+                        <img src="{{ req.owner.profile_picture.url }}" alt="user" class="landing-ellipse15" />
+                        <span class="landing-text61">{{ req.owner.get_full_name|default:req.owner.get_username }}</span>
                       </div>
                       <div class="landing-frame1235">
                         <span class="landing-text62">{{ req.title }}</span>
