@@ -26,11 +26,12 @@
             {% if user.is_authenticated %}
             <div class="navbar-right">
             <a href="{% url 'profile_page' %}" class="profile-icon">
-                {% if user.photo %}
+                <img src="{{ user.photo.url }}" alt="Profile" class="request-icon-image" />
+                <!-- {% if user.photo %}
                     <img src="{{ user.photo.url }}" alt="Profile" class="request-icon-image" />
                 {% else %}
                     <img src="{% static 'core/images/blank.png' %}" alt="Profile" class="request-icon-image" />
-                {% endif %}
+                {% endif %} -->
             </a>
             <form action="{% url 'logout' %}" method="post" style="display: inline;">
                     {% csrf_token %}

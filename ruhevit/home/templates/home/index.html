@@ -121,11 +121,12 @@
                             </div>
                             <div class="offer-info">
                                 <div class="author-info">
-                                    {% if offer.owner.profile_picture %}
+                                    <img src="{{ offer.owner.profile_picture.url }}" alt="Author" class="request-icon-image" width="60" height="60" />
+                                    <!-- {% if offer.owner.profile_picture %}
                                         <img src="{{ offer.owner.profile_picture.url }}" alt="Author" class="request-icon-image" width="60" height="60" />
                                     {% else %}
                                         <img src="{% static 'core/images/blank.png' %}" alt="Author" class="request-icon-image" width="60" height="60" />
-                                    {% endif %}
+                                    {% endif %} -->
                                     <p class="author-name">{{ offer.owner.get_full_name|default:offer.owner.get_username }}</p>
                                 </div>
                                 <div class="offer-content">

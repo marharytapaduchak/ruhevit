@@ -11,7 +11,11 @@ class User(AbstractUser):
         max_length=20, choices=USER_TYPES)
     name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to='user_photos/', blank=True, null=True)
+    photo = models.ImageField(
+        upload_to='user_photos/',
+        default='user_photos/blank.png',
+        blank=True
+    )
     description = models.TextField(blank=True)
 
     def __str__(self):
