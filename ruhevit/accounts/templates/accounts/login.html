@@ -1,9 +1,7 @@
 {% extends "core/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ukrainian">
+{% block content %}
   <head>
-   {% block title %}Ругевіт - Вхід{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
@@ -75,9 +73,6 @@
         <div class="frame15432-container">
           <div class="frame15432-frame15432">
             <div class="frame15432-login">
-              <div class="frame15432-frame144">
-                <span class="frame15432-text27"><h1 class="logo" onclick='location.href="{% url 'home' %}"' style="cursor:pointer;">Ругевіт</h1>т</span>
-              </div>
               <div class="frame15432-getstarted2">
                 <span class="frame15432-text28">Увійти</span>
                 {% if form.errors %}
@@ -121,145 +116,147 @@
         </div>
       </div>
     </form>
+  </body>
   <script>
-document.addEventListener('DOMContentLoaded', function() {
-  function styleInputFields() {
-    const emailField = document.querySelector('input[type="text"]');
-    const passwordField = document.querySelector('input[type="password"]');
+    document.addEventListener('DOMContentLoaded', function() {
+    function styleInputFields() {
+      const emailField = document.querySelector('input[type="text"]');
+      const passwordField = document.querySelector('input[type="password"]');
 
-    const inputFields = [emailField, passwordField];
+      const inputFields = [emailField, passwordField];
 
-    inputFields.forEach(field => {
-      if (field) {
-        field.style.width = '100%';
-        field.style.padding = '10px 15px';
-        field.style.borderRadius = '4px';
-        field.style.border = '1px solid #ccc';
-        field.style.fontSize = '16px';
+      inputFields.forEach(field => {
+        if (field) {
+          field.style.width = '100%';
+          field.style.padding = '10px 15px';
+          field.style.borderRadius = '4px';
+          field.style.border = '1px solid #ccc';
+          field.style.fontSize = '16px';
 
-        field.addEventListener('focus', function() {
-          this.style.borderColor = '#F9A826';
-          this.style.boxShadow = '0 0 5px rgba(249, 168, 38, 0.5)';
-        });
+          field.addEventListener('focus', function() {
+            this.style.borderColor = '#F9A826';
+            this.style.boxShadow = '0 0 5px rgba(249, 168, 38, 0.5)';
+          });
 
-        field.addEventListener('blur', function() {
-          this.style.borderColor = '#ccc';
-          this.style.boxShadow = 'none';
-        });
-      }
-    });
-  }
-
-  function setupLoginButton() {
-    const loginButton = document.querySelector('.frame15432-add2');
-
-    if (loginButton) {
-      loginButton.addEventListener('mousedown', function() {
-        this.style.backgroundColor = '#D88500';
-        this.style.transform = 'scale(0.98)';
-      });
-
-      loginButton.addEventListener('mouseup', function() {
-        this.style.backgroundColor = '#E89619';
-        this.style.transform = 'scale(1)';
-      });
-
-      loginButton.addEventListener('click', function(event) {
-        const emailField = document.querySelector('input[type="text"]');
-        const passwordField = document.querySelector('input[type="password"]');
-
-        if (!emailField.value) {
-          emailField.style.borderColor = '#dc3545';
-          alert('Будь ласка, введіть адресу електронної пошти');
-          event.preventDefault();
-          return;
+          field.addEventListener('blur', function() {
+            this.style.borderColor = '#ccc';
+            this.style.boxShadow = 'none';
+          });
         }
-
-        if (!passwordField.value) {
-          passwordField.style.borderColor = '#dc3545';
-          alert('Будь ласка, введіть пароль');
-          event.preventDefault();
-          return;
-        }
-
       });
     }
-  }
 
-  function setupOtherLinks() {
-    const forgotPasswordLink = document.querySelector('.frame15432-text33');
-    const signupLink = document.querySelector('.frame15432-text37 + a');
+    function setupLoginButton() {
+      const loginButton = document.querySelector('.frame15432-add2');
 
-    const links = [forgotPasswordLink, signupLink].filter(link => link);
+      if (loginButton) {
+        loginButton.addEventListener('mousedown', function() {
+          this.style.backgroundColor = '#D88500';
+          this.style.transform = 'scale(0.98)';
+        });
 
-    links.forEach(link => {
-      link.style.color = '#F9A826';
-      link.style.textDecoration = 'none';
-      link.style.cursor = 'pointer';
+        loginButton.addEventListener('mouseup', function() {
+          this.style.backgroundColor = '#E89619';
+          this.style.transform = 'scale(1)';
+        });
 
-      link.addEventListener('mouseover', function() {
-        this.style.textDecoration = 'underline';
-        this.style.color = '#E89619';
+        loginButton.addEventListener('click', function(event) {
+          const emailField = document.querySelector('input[type="text"]');
+          const passwordField = document.querySelector('input[type="password"]');
+
+          if (!emailField.value) {
+            emailField.style.borderColor = '#dc3545';
+            alert('Будь ласка, введіть адресу електронної пошти');
+            event.preventDefault();
+            return;
+          }
+
+          if (!passwordField.value) {
+            passwordField.style.borderColor = '#dc3545';
+            alert('Будь ласка, введіть пароль');
+            event.preventDefault();
+            return;
+          }
+
+        });
+      }
+    }
+
+    function setupOtherLinks() {
+      const forgotPasswordLink = document.querySelector('.frame15432-text33');
+      const signupLink = document.querySelector('.frame15432-text37 + a');
+
+      const links = [forgotPasswordLink, signupLink].filter(link => link);
+
+      links.forEach(link => {
+        link.style.color = '#F9A826';
+        link.style.textDecoration = 'none';
+        link.style.cursor = 'pointer';
+
+        link.addEventListener('mouseover', function() {
+          this.style.textDecoration = 'underline';
+          this.style.color = '#E89619';
+        });
+
+        link.addEventListener('mouseout', function() {
+          this.style.textDecoration = 'none';
+          this.style.color = '#F9A826';
+        });
       });
+    }
 
-      link.addEventListener('mouseout', function() {
-        this.style.textDecoration = 'none';
-        this.style.color = '#F9A826';
-      });
-    });
-  }
+    function addGlobalStyles() {
+      const style = document.createElement('style');
+      style.textContent = `
+        .frame15432-add2 {
+          gap: 10px;
+          display: flex;
+          padding: 20px;
+          overflow: hidden;
+          align-self: stretch;
+          box-shadow: 0px 0px 8px 0px rgba(210, 210, 215, 0.05000000074505806);
+          align-items: center;
+          flex-shrink: 0;
+          border-radius: 15px;
+          justify-content: center;
+          background-color: var(--dl-color-default-orange);
+        }
 
-  function addGlobalStyles() {
-    const style = document.createElement('style');
-    style.textContent = `
-      .frame15432-add2 {
-        gap: 10px;
-        display: flex;
-        padding: 20px;
-        overflow: hidden;
-        align-self: stretch;
-        box-shadow: 0px 0px 8px 0px rgba(210, 210, 215, 0.05000000074505806);
-        align-items: center;
-        flex-shrink: 0;
-        border-radius: 15px;
-        justify-content: center;
-        background-color: var(--dl-color-default-orange);
-      }
+        .frame15432-add2:hover {
+          background-color: #E89619 !important;
+        }
 
-      .frame15432-add2:hover {
-        background-color: #E89619 !important;
-      }
+        .frame15432-add2:active {
+          background-color: #D88500 !important;
+          transform: scale(0.98) !important;
+        }
 
-      .frame15432-add2:active {
-        background-color: #D88500 !important;
-        transform: scale(0.98) !important;
-      }
+        .frame15432-text33, .frame15432-text37 + a, a[href="login.html"] {
+          color: #F9A826 !important;
+          text-decoration: none !important;
+        }
 
-      .frame15432-text33, .frame15432-text37 + a, a[href="login.html"] {
-        color: #F9A826 !important;
-        text-decoration: none !important;
-      }
+        .frame15432-text33:hover, .frame15432-text37 + a:hover, a[href="login.html"]:hover {
+          color: #E89619 !important;
+          text-decoration: underline !important;
+        }
 
-      .frame15432-text33:hover, .frame15432-text37 + a:hover, a[href="login.html"]:hover {
-        color: #E89619 !important;
-        text-decoration: underline !important;
-      }
+        input[type="text"], input[type="password"] {
+          outline: none;
+        }
 
-      input[type="text"], input[type="password"] {
-        outline: none;
-      }
+        input[type="text"]:focus, input[type="password"]:focus {
+          border-color: #F9A826;
+          box-shadow: 0 0 5px rgba(249, 168, 38, 0.5);
+        }
+      `;
+      document.head.appendChild(style);
+    }
 
-      input[type="text"]:focus, input[type="password"]:focus {
-        border-color: #F9A826;
-        box-shadow: 0 0 5px rgba(249, 168, 38, 0.5);
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
-  styleInputFields();
-  setupLoginButton();
-  setupOtherLinks();
-  addGlobalStyles();
-});
-</script>
+    styleInputFields();
+    setupLoginButton();
+    setupOtherLinks();
+    addGlobalStyles();
+  });
+  </script>
+{% endblock %}

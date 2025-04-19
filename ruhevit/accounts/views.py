@@ -32,7 +32,6 @@ def login_view(request):
             print(form.errors)
     else:
         form = LoginForm()
-
     return render(request, 'accounts/login.html', {'form': form})
 
 
