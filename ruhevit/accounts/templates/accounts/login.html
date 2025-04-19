@@ -1,12 +1,13 @@
+{% extends "core/base.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="ukrainian">
   <head>
-    <title>Ругевіт - Вхід</title>
+   {% block title %}Ругевіт - Вхід{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
-
+    {% block extra_css %}
     <link rel="stylesheet" href="{% static 'accounts/style.css' %}">
     <link rel="stylesheet" href="{% static 'accounts/index.css' %}">
 
@@ -37,6 +38,7 @@
         --dl-color-theme-neutral-light: #f5f5f5;
       }
     </style>
+    {% endblock %}
     <link
       rel="stylesheet"
       href="https://unpkg.com/animate.css@4.1.1/animate.css"
@@ -74,7 +76,7 @@
           <div class="frame15432-frame15432">
             <div class="frame15432-login">
               <div class="frame15432-frame144">
-                <span class="frame15432-text27">Ругевіт</span>
+                <span class="frame15432-text27"><h1 class="logo" onclick='location.href="{% url 'home' %}"' style="cursor:pointer;">Ругевіт</h1>т</span>
               </div>
               <div class="frame15432-getstarted2">
                 <span class="frame15432-text28">Увійти</span>
