@@ -15,7 +15,7 @@ def home_redirect(request):
             owner=user).order_by('-created_at')
         user_exec_requests = Request.objects.filter(
             executor__isnull=False, executor=user).order_by('-created_at')
-        help_offers = Request.objects.filter(status='pending').exclude(
+        help_offers = Request.objects.filter(status='pending', executor__isnull=True).exclude(
             owner=user).order_by('-created_at')
 
         context = {

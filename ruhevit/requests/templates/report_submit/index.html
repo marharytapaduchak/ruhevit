@@ -47,7 +47,6 @@
               id="reportTitle"
               name="title"
               class="input-field"
-              value="10 турнікетів CAT Generation 7"
               placeholder="Введіть заголовок звіту"
               required
             />
@@ -64,13 +63,7 @@
               class="text-area"
               placeholder="Введіть текст звіту"
               required
-            >
-Вітаю! Хочу надати проміжний звіт щодо виконання запиту на 10 турнікетів.
-
-На даний момент:
-• Я придбала 5 турнікетів, які вже доставлено до складу.
-• Ще 3 турнікетів наразі перебувають на етапі замовлення, очікую їх доставку протягом наступних 3 днів.</textarea
-            >
+            ></textarea>
             <div class="error-message" id="textError"></div>
           </div>
           <div class="form-group">
@@ -79,11 +72,11 @@
               <label for="photoUpload" class="upload-label">
                 <i class="ti ti-photo-plus upload-icon"></i>
                 <p class="upload-text">
-                  <span>Перетягніть фото сюди. Або </span>
-                  <span class="upload-link">завантажте</span>
+                  <span class="upload-link">Завантажте фото</span>
                 </p>
                 <input type="file" id="photoUpload" name="photos[]" class="file-input" accept="image/*" multiple style="display: none;" />
               </label>
+              <div id="photoPreview" class="photo-preview"></div>
             </div>
           </div>
           <button type="submit" class="submit-button" id="submitButton">
@@ -92,5 +85,52 @@
         </form>
       </main>
     </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const uploadInput = document.getElementById('photoUpload');
+        const uploadLabel = document.querySelector('.upload-label');
+        const previewContainer = document.getElementById('photoPreview');
+
+        function previewImages(files) {
+          previewContainer.innerHTML = '';
+          Array.from(files).forEach(file => {
+            if (!file.type.startsWith('image/')) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              const img = document.createElement('img');
+              img.src = e.target.result;
+              img.classList.add('preview-image');
+              previewContainer.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+          });
+        }
+
+        uploadInput.addEventListener('change', () => previewImages(uploadInput.files));
+
+        // Drag and drop support
+        ['dragenter', 'dragover'].forEach(eventName => {
+          uploadLabel.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadLabel.classList.add('drag-over');
+          });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+          uploadLabel.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadLabel.classList.remove('drag-over');
+          });
+        });
+
+        uploadLabel.addEventListener('drop', (e) => {
+          const files = e.dataTransfer.files;
+          uploadInput.files = files;
+          previewImages(files);
+        });
+      });
+    </script>
   </body>
 </html>

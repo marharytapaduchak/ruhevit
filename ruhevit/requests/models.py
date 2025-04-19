@@ -24,7 +24,7 @@ class Request(models.Model):
     ]
 
     STATUS_CHOICES = [
-        ('pending', 'Очікує'),
+        ('pending', 'Очікує'), 
         ('in_progress', 'Виконується'),
         ('done', 'Виконано'),
     ]
