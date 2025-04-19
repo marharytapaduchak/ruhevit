@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Ругевіт{% endblock %}</title>
+    <title>{% block title %}{% endblock %} | Ругевіт</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'core/styles.css' %}">
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
@@ -20,7 +20,7 @@
             <div class="search-and-logo">
                 <h1 class="logo" onclick='location.href="{% url 'home' %}"' style="cursor:pointer;">Ругевіт</h1>
                 {% if user.is_authenticated %}
-                <input id="search-input" type="text" placeholder="Пошук" class="search" role="search" style="width: 100%; padding: 20px; font-size: 16px; border-style: none;" />
+                    <input id="search-input" type="text" placeholder="Пошук" class="search"  style="border-style: none;" />
                 {% endif %}
             </div>
             {% if user.is_authenticated %}

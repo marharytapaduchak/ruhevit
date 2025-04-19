@@ -16,29 +16,37 @@
 <form method="post" enctype="multipart/form-data" class="request-form">
     {% csrf_token %}
     {{ form.as_p }}
+    <p>
+        <label for="id_photo">Фото (необов’язково):</label>
+        <input type="file" name="photo" accept="image/*" id="id_photo">
+    </p>
     <button type="submit" class="button">Зберегти запит</button>
 </form>
 
 <div class="card-grid">
-    {% for req in requests %}
-        {% if req.owner == request.user %}
-            <div class="card">
-                <h3>{{ req.name }}</h3>
-                <div class="meta">
-                    Статус: <strong>{{ req.get_status_display }}</strong><br>
-                    Власник: {{ req.owner.username }}<br>
-                    Пріоритет: {{ req.get_priority_display }}<br>
-                    Локація: {{ req.get_location_display }}
+    {% for offer in requests %}
+        {% if offer.owner == request.user %}
+            <article class="offer-card" data-created-at="{{ offer.created_at|date:'Y-m-d-H-i-s' }}" data-type="{{ offer.help_type }}">
+                <div class="offer-image">
+                    {% if offer.photo %}
+                        <img src="{{ offer.photo.url }}" alt="Фото запиту" class="offer-icon" style="object-fit: cover; width: 100%; height: 100%;" />
+                    {% else %}
+                        <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer Icon" class="offer-icon">
+                    {% endif %}
                 </div>
-                <p>{{ req.description|truncatewords:20 }}</p>
-                <div class="tags">
-                    <span class="tag">{{ req.get_type_display }}</span>
-                    <span class="tag">{{ req.get_priority_display }}</span>
-                    <span class="tag">{{ req.get_location_display }}</span>
+                <div class="offer-info">
+                    <div class="author-info">
+                        <img src="{{ offer.owner.photo.url }}" alt="Author" class="request-icon-image" width="60" height="60" />
+                        <p class="author-name">{{ offer.owner.get_full_name|default:offer.owner.get_username }}</p>
+                    </div>
+                    <div class="offer-content">
+                        <h3 class="offer-title">{{ offer.name }}</h3>
+                        <p class="offer-description">{{ offer.description }}</p>
+                    </div>
+                    <div class="offer-tags"></div>
+                    <button onclick="window.location.href='{% url 'request_detail' offer.id %}'" class="details-button">Детальніше</button>
                 </div>
-                <button onclick="window.location.href='mailto:{{ req.owner.email }}'" class="action-button contact">Сконтактувати</button>
-                <a class="action-button confirm" href="{% url 'request_detail' req.id %}">Детальніше</a>
-            </div>
+            </article>
         {% endif %}
     {% empty %}
         <p>Наразі немає запитів.</p>

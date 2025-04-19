@@ -24,7 +24,7 @@ class Request(models.Model):
     ]
 
     STATUS_CHOICES = [
-        ('pending', 'Очікує'), 
+        ('pending', 'Очікує'),
         ('in_progress', 'Виконується'),
         ('done', 'Виконано'),
     ]
@@ -50,6 +50,8 @@ class Request(models.Model):
     location = models.CharField(max_length=15, choices=LOCATION_CHOICES)
     status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default='pending')
+
+    photo = models.ImageField(upload_to='request_main_photos/', blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 

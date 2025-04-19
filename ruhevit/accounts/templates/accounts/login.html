@@ -71,6 +71,7 @@
   <body>
     <form method="post" action="">
       {% csrf_token %}
+      <div id="login-error-message" style="color: red; margin: 10px 0;"></div>
       <div>
         <div class="frame15432-container">
           <div class="frame15432-frame15432">
@@ -163,19 +164,13 @@
         });
 
         loginButton.addEventListener('click', function(event) {
+          document.getElementById('login-error-message').textContent = '';
           const emailField = document.querySelector('input[type="text"]');
           const passwordField = document.querySelector('input[type="password"]');
 
-          if (!emailField.value) {
+          if (!emailField.value) or (!passwordField.value) {
             emailField.style.borderColor = '#dc3545';
-            alert('Будь ласка, введіть адресу електронної пошти');
-            event.preventDefault();
-            return;
-          }
-
-          if (!passwordField.value) {
-            passwordField.style.borderColor = '#dc3545';
-            alert('Будь ласка, введіть пароль');
+            document.getElementById('login-error-message').textContent = 'Будь ласка, перевірте імʼя та пароль';
             event.preventDefault();
             return;
           }

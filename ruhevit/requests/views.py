@@ -14,6 +14,9 @@ def create_request(request):
             instance.owner = request.user
             instance.status = 'pending'
             instance.save()
+            if 'photo' in request.FILES:
+                instance.photo = request.FILES['photo']
+                instance.save()
             return redirect('requests:create_request')
     else:
         form = RequestForm()

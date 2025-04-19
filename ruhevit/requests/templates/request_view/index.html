@@ -1,52 +1,18 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-<!-- {% block extra_css %}
+{% block extra_css %}
 <link rel="stylesheet" href="{% static 'report_display/css/style.css' %}">
-
 {% endblock %}
 
 {% block title %}Мої запити{% endblock %}
 
-{% block content %} -->
+{% block content %}
 
 <link rel="stylesheet" href="{% static 'report_display/css/style.css' %}">
 
-<!doctype html>
-<html lang="uk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Запит</title>
-  </head>
   <body>
     <div class="report-container">
-      <header class="navbar">
-        <div class="searchbar">
-          <h1 class="logo">Ругевіт</h1>
-          <div class="search-input" id="searchInput">
-            <span class="search-icon"></span>
-            <span class="search-placeholder" id="searchPlaceholder">Пошук</span>
-            <input
-              type="text"
-              class="search-field"
-              id="searchField"
-              aria-label="Пошук"
-            />
-          </div>
-        </div>
-        <div class="notifications">
-          <button class="notification-icon"></button>
-          <button class="message-icon"></button>
-          <img
-            src="{% static 'report_display/images/profile photo.png' %}"
-            alt="User profile"
-            class="profile-image"
-          />
-        </div>
-      </header>
-
-
       <main class="report-form">
         <h2 class="report-title">{{ request_obj.name }}</h2>
 
@@ -59,6 +25,11 @@
 
         <article class="report-content">
           {{ request_obj.description|linebreaksbr }}
+          {% if request_obj.photo %}
+            <div class="main-photo">
+              <img src="{{ request_obj.photo.url }}" alt="Основне фото запиту" style="max-width: 100%; height: auto; margin-top: 15px;" />
+            </div>
+          {% endif %}
         </article>
 
         <section class="image-gallery">
@@ -155,4 +126,4 @@
     <script src="{% static 'report_display/js/script.js' %}" defer></script>
   </body>
 </html>
-{%endblock%}
+{% endblock %}

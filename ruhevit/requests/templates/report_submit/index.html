@@ -1,6 +1,10 @@
 {% extends "core/base.html" %}
 {% load static %}
 
+{% block title %}Звіт{% endblock %}
+
+{% block content %}
+
 <link rel="stylesheet" href="{% static 'report_submit/css/styles.css' %}">
 <script src="{% static 'report_submit/js/script.js' %}" defer></script>
 <!doctype html>
@@ -20,18 +24,6 @@
   </head>
   <body>
     <div class="app-container">
-      <header class="main-header">
-        <div class="header-left">
-          <h1 class="brand-name">Ругевіт</h1>
-          <div class="search-bar">
-            <i class="ti ti-search search-icon"></i>
-            <span class="search-placeholder">Пошук</span>
-          </div>
-        </div>
-        <div class="user-actions">
-          <img src="{% static 'report_submit/images/profile photo.png' %}" alt="Profile" class="profile-photo" />
-        </div>
-      </header>
       <main class="report-form-container">
         <h2 class="form-title">Звіт про закриття потреби</h2>
         <hr class="form-divider" />
@@ -135,3 +127,4 @@
     </script>
   </body>
 </html>
+{% endblock %}

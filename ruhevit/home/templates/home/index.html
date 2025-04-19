@@ -15,7 +15,11 @@
                             <article class="request">
                                 <div class="request-pic">
                                     <div class="request-pic-container">
-                                        <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2">
+                                        {% if req.photo %}
+                                            <img src="{{ req.photo.url }}" alt="Фото запиту" class="landing-imageicon2" style="height: 100%; width: 100%; object-fit: cover;" />
+                                        {% else %}
+                                            <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2" style="height: auto; width: auto; max-height: 100%; max-width: 100%; object-fit: contain;">
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="request-info">
@@ -62,7 +66,11 @@
                         <article class="request">
                             <div class="request-pic">
                                 <div class="request-pic-container">
-                                    <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2">
+                                    {% if req.photo %}
+                                        <img src="{{ req.photo.url }}" alt="Фото запиту" class="landing-imageicon2" style="height: 100%; width: 100%; object-fit: cover;" />
+                                    {% else %}
+                                        <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2" style="height: auto; width: auto; max-height: 100%; max-width: 100%; object-fit: contain;">
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="request-info">
@@ -108,25 +116,40 @@
                         </svg>
                         <span class="filter-text">Фільтри</span>
                     </button>
-                    <button class="sorting-button">
-                        <span class="sort-text">&#8645;Сортування</span>
-                    </button>
+                    <div id="filter-menu" class="filter-menu" style="display: none;">
+                        <div class="filter-options">
+                            <label><input type="checkbox" name="type" value="medical"> Медична допомога</label>
+                            <label><input type="checkbox" name="type" value="logistics"> Логістика</label>
+                            <label><input type="checkbox" name="type" value="equipment"> Спорядження</label>
+                            <label><input type="checkbox" name="type" value="humanitarian"> Гуманітарна допомога</label>
+                        </div>
+                        <button class="apply-filters">Застосувати</button>
+                    </div>
+                    <div class="sort-dropdown">
+                        <button class="sorting-button" id="sorting-button">
+                            <span class="sort-text">&#8645;Сортування</span>
+                        </button>
+                        <div id="sort-options" class="sort-options" style="display: none;">
+                            <label><input type="radio" name="sort" value="newest"> Найновіші</label>
+                            <label><input type="radio" name="sort" value="oldest"> Найстаріші</label>
+                            <label><input type="radio" name="sort" value="alphabetical"> За алфавітом</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="offers-container">
                     {% if help_offers %}
                         {% for offer in help_offers %}
-                            <article class="offer-card">
+                            <article class="offer-card" data-created-at="{{ offer.created_at|date:'Y-m-d-H-i-s' }}" data-type="{{ offer.help_type }}">
                             <div class="offer-image">
-                                <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer Icon" class="offer-icon">
+                                {% if offer.photo %}
+                                    <img src="{{ offer.photo.url }}" alt="Фото запиту" class="offer-icon" style="object-fit: cover; width: 100%; height: 100%;" />
+                                {% else %}
+                                    <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer Icon" class="offer-icon">
+                                {% endif %}
                             </div>
                             <div class="offer-info">
                                 <div class="author-info">
-                                    <img src="{{ offer.owner.profile_picture.url }}" alt="Author" class="request-icon-image" width="60" height="60" />
-                                    <!-- {% if offer.owner.profile_picture %}
-                                        <img src="{{ offer.owner.profile_picture.url }}" alt="Author" class="request-icon-image" width="60" height="60" />
-                                    {% else %}
-                                        <img src="{% static 'core/images/blank.png' %}" alt="Author" class="request-icon-image" width="60" height="60" />
-                                    {% endif %} -->
+                                    <img src="{{ offer.owner.photo.url }}" alt="Author" class="request-icon-image" width="60" height="60" />
                                     <p class="author-name">{{ offer.owner.get_full_name|default:offer.owner.get_username }}</p>
                                 </div>
                                 <div class="offer-content">
@@ -149,5 +172,86 @@
             </section>
         </div>
         <script src="{% static 'home/script.js' %}" defer></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const filterButton = document.querySelector(".filter-button");
+                const filterMenu = document.getElementById("filter-menu");
+
+                if (filterButton && filterMenu) {
+                    filterButton.addEventListener("click", () => {
+                        filterMenu.style.display = filterMenu.style.display === "none" ? "block" : "none";
+                    });
+                }
+
+                const sortButton = document.getElementById("sorting-button");
+                const sortOptions = document.getElementById("sort-options");
+                const sortSelect = document.createElement('select');
+                sortSelect.id = "sort-select";
+                sortSelect.style.display = "none";
+                document.body.appendChild(sortSelect);
+                ["newest", "oldest", "alphabetical"].forEach(value => {
+                    const opt = document.createElement('option');
+                    opt.value = value;
+                    sortSelect.appendChild(opt);
+                });
+
+                if (sortButton && sortOptions) {
+                    sortButton.addEventListener("click", () => {
+                        sortOptions.style.display = sortOptions.style.display === "none" ? "block" : "none";
+                    });
+
+                    sortOptions.addEventListener("change", (e) => {
+                        if (e.target.name === "sort") {
+                            const sortType = e.target.value;
+                            sortSelect.value = sortType;
+                            sortSelect.dispatchEvent(new Event('change'));
+                            // Не ховаємо sortOptions після вибору
+                        }
+                    });
+                }
+
+                const offersContainer = document.querySelector(".offers-container");
+
+                if (sortSelect && offersContainer) {
+                    sortSelect.addEventListener("change", () => {
+                        const cards = Array.from(offersContainer.querySelectorAll(".offer-card"));
+                        let sorted;
+
+                        if (sortSelect.value === "newest") {
+                            sorted = cards.sort((a, b) => b.dataset.createdAt.localeCompare(a.dataset.createdAt));
+                        } else if (sortSelect.value === "oldest") {
+                            sorted = cards.sort((a, b) => a.dataset.createdAt.localeCompare(b.dataset.createdAt));
+                        } else if (sortSelect.value === "alphabetical") {
+                            sorted = cards.sort((a, b) => {
+                                const titleA = a.querySelector(".offer-title").textContent.trim();
+                                const titleB = b.querySelector(".offer-title").textContent.trim();
+                                return titleA.localeCompare(titleB);
+                            });
+                        }
+
+                        offersContainer.innerHTML = "";
+                        sorted.forEach(card => offersContainer.appendChild(card));
+                    });
+                }
+
+                const filterCheckboxes = document.querySelectorAll('#filter-menu input[type="checkbox"]');
+                const applyFilterButton = document.querySelector('.apply-filters');
+
+                if (applyFilterButton && offersContainer) {
+                    applyFilterButton.addEventListener('click', () => {
+                        const selectedTypes = Array.from(filterCheckboxes)
+                            .filter(cb => cb.checked)
+                            .map(cb => cb.value);
+
+                        const cards = offersContainer.querySelectorAll(".offer-card");
+                        cards.forEach(card => {
+                            const type = card.dataset.type;
+                            const shouldShow = selectedTypes.length === 0 || selectedTypes.includes(type);
+                            card.style.display = shouldShow ? "flex" : "none";
+                        });
+                    });
+                }
+            });
+        </script>
     </body>
 {% endblock %}
