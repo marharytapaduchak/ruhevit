@@ -108,7 +108,7 @@
 
             <!-- Секція "Пропозиції допомоги" -->
             <section class="help-offers">
-                <h2 class="section-title">Пропозиції допомоги</h2>
+                <h2 class="section-title">Пропозиції</h2>
                 <div class="filters-and-sorting">
                     <button class="filter-button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
@@ -118,28 +118,39 @@
                     </button>
                     <div id="filter-menu" class="filter-menu" style="display: none;">
                         <div class="filter-options">
-                            <label><input type="checkbox" name="type" value="medical"> Медична допомога</label>
-                            <label><input type="checkbox" name="type" value="logistics"> Логістика</label>
-                            <label><input type="checkbox" name="type" value="equipment"> Спорядження</label>
-                            <label><input type="checkbox" name="type" value="humanitarian"> Гуманітарна допомога</label>
+                            <label><input type="checkbox" name="type" value="medicine">Медицина</label>
+                            <label><input type="checkbox" name="type" value="ammo">Амуніція</label>
+                            <label><input type="checkbox" name="type" value="drones">Дрони</label>
+                            <label><input type="checkbox" name="type" value="transport">Транспорт</label>
+                            <label><input type="checkbox" name="type" value="repair">Ремонт</label>
+                            <p>Локація:</p>
+                            <label><input type="checkbox" name="location" value="front">Фронт</label>
+                            <label><input type="checkbox" name="location" value="near_rear">Близький тил</label>
+                            <label><input type="checkbox" name="location" value="far_rear">Далекий тил</label>
+
+                            <p>Пріоритет:</p>
+                            <label><input type="checkbox" name="priority" value="high">Високий</label>
+                            <label><input type="checkbox" name="priority" value="medium">Середній</label>
+                            <label><input type="checkbox" name="priority" value="low">Низький</label>
                         </div>
-                        <button class="apply-filters">Застосувати</button>
+                        <button class="apply-filters edit-button">Застосувати</button>
                     </div>
                     <div class="sort-dropdown">
                         <button class="sorting-button" id="sorting-button">
                             <span class="sort-text">&#8645;Сортування</span>
                         </button>
                         <div id="sort-options" class="sort-options" style="display: none;">
-                            <label><input type="radio" name="sort" value="newest"> Найновіші</label>
-                            <label><input type="radio" name="sort" value="oldest"> Найстаріші</label>
-                            <label><input type="radio" name="sort" value="alphabetical"> За алфавітом</label>
+                        <label><input type="radio" name="sort" value="default" checked>За релевантністю</label>
+                            <label><input type="radio" name="sort" value="newest">Від новіших</label>
+                            <label><input type="radio" name="sort" value="oldest">Від старіших</label>
+                            <label><input type="radio" name="sort" value="alphabetical">За алфавітом</label>
                         </div>
                     </div>
                 </div>
                 <div class="offers-container">
-                    {% if help_offers %}
-                        {% for offer in help_offers %}
-                            <article class="offer-card" data-created-at="{{ offer.created_at|date:'Y-m-d-H-i-s' }}" data-type="{{ offer.help_type }}">
+                    {% if personalized_requests %}
+                        {% for offer in personalized_requests %}
+                            <article class="offer-card" data-created-at="{{ offer.created_at|date:'Y-m-d-H-i-s' }}" data-type="{{ offer.type }}" data-relevance="{{ offer.relevance_score }}" data-location="{{ offer.location }}" data-priority="{{ offer.priority }}">
                             <div class="offer-image">
                                 {% if offer.photo %}
                                     <img src="{{ offer.photo.url }}" alt="Фото запиту" class="offer-icon" style="object-fit: cover; width: 100%; height: 100%;" />
@@ -157,7 +168,12 @@
                                     <p class="offer-description">{{ offer.description }}</p>
                                 </div>
                                 <div class="offer-tags">
-                                    {# Можна перебрати теги, якщо вони є #}
+                                    <span class="tag">{{ offer.get_type_display }}</span>
+                                    <span class="tag">{{ offer.get_priority_display }}</span>
+                                    <span class="tag">{{ offer.get_location_display }}</span>
+                                    {% for tag in offer.tags.all %}
+                                        <span class="tag">{{ tag.name }}</span>
+                                    {% endfor %}
                                 </div>
                                 <!-- Динамічне посилання "Детальніше" -->
                                 <button onclick="window.location.href='{% url 'request_detail' offer.id %}'" class="details-button">Детальніше</button>
@@ -179,17 +195,16 @@
 
                 if (filterButton && filterMenu) {
                     filterButton.addEventListener("click", () => {
-                        filterMenu.style.display = filterMenu.style.display === "none" ? "block" : "none";
+                        filterMenu.style.display = (filterMenu.style.display === "none" || filterMenu.style.display === "") ? "block" : "none";
                     });
                 }
-
                 const sortButton = document.getElementById("sorting-button");
                 const sortOptions = document.getElementById("sort-options");
                 const sortSelect = document.createElement('select');
                 sortSelect.id = "sort-select";
                 sortSelect.style.display = "none";
                 document.body.appendChild(sortSelect);
-                ["newest", "oldest", "alphabetical"].forEach(value => {
+                ["default", "newest", "oldest", "alphabetical"].forEach(value => {
                     const opt = document.createElement('option');
                     opt.value = value;
                     sortSelect.appendChild(opt);
@@ -212,43 +227,71 @@
 
                 const offersContainer = document.querySelector(".offers-container");
 
-                if (sortSelect && offersContainer) {
-                    sortSelect.addEventListener("change", () => {
-                        const cards = Array.from(offersContainer.querySelectorAll(".offer-card"));
-                        let sorted;
+                function applyFiltersAndSorting() {
+                    const originalCards = Array.from(document.querySelectorAll(".offer-card"));
+                    let sortedCards = originalCards.slice();
 
-                        if (sortSelect.value === "newest") {
-                            sorted = cards.sort((a, b) => b.dataset.createdAt.localeCompare(a.dataset.createdAt));
-                        } else if (sortSelect.value === "oldest") {
-                            sorted = cards.sort((a, b) => a.dataset.createdAt.localeCompare(b.dataset.createdAt));
-                        } else if (sortSelect.value === "alphabetical") {
-                            sorted = cards.sort((a, b) => {
-                                const titleA = a.querySelector(".offer-title").textContent.trim();
-                                const titleB = b.querySelector(".offer-title").textContent.trim();
-                                return titleA.localeCompare(titleB);
-                            });
-                        }
+                    if (sortSelect.value === "newest") {
+                        sortedCards.sort((a, b) => b.dataset.createdAt.localeCompare(a.dataset.createdAt));
+                    } else if (sortSelect.value === "oldest") {
+                        sortedCards.sort((a, b) => a.dataset.createdAt.localeCompare(b.dataset.createdAt));
+                    } else if (sortSelect.value === "alphabetical") {
+                        sortedCards.sort((a, b) => {
+                            const titleA = a.querySelector(".offer-title").textContent.trim();
+                            const titleB = b.querySelector(".offer-title").textContent.trim();
+                            return titleA.localeCompare(titleB);
+                        });
+                    } else if (sortSelect.value === "default") {
+                        sortedCards.sort((a, b) => {
+                            const relA = parseInt(a.dataset.relevance || 0);
+                            const relB = parseInt(b.dataset.relevance || 0);
+                            return relB - relA;
+                        });
+                    }
 
-                        offersContainer.innerHTML = "";
-                        sorted.forEach(card => offersContainer.appendChild(card));
+                    offersContainer.innerHTML = "";
+                    sortedCards.forEach(card => {
+                        offersContainer.appendChild(card);
                     });
                 }
 
-                const filterCheckboxes = document.querySelectorAll('#filter-menu input[type="checkbox"]');
-                const applyFilterButton = document.querySelector('.apply-filters');
-
-                if (applyFilterButton && offersContainer) {
-                    applyFilterButton.addEventListener('click', () => {
-                        const selectedTypes = Array.from(filterCheckboxes)
-                            .filter(cb => cb.checked)
-                            .map(cb => cb.value);
-
-                        const cards = offersContainer.querySelectorAll(".offer-card");
-                        cards.forEach(card => {
-                            const type = card.dataset.type;
-                            const shouldShow = selectedTypes.length === 0 || selectedTypes.includes(type);
-                            card.style.display = shouldShow ? "flex" : "none";
+                if (sortSelect && offersContainer) {
+                    sortSelect.addEventListener('change', applyFiltersAndSorting);
+                }
+                sortSelect.value = "default";
+                sortSelect.dispatchEvent(new Event('change'));
+                const applyFiltersBtn = document.querySelector(".apply-filters");
+                if (applyFiltersBtn) {
+                    applyFiltersBtn.addEventListener("click", function () {
+                        const checkedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(input => input.value);
+                        const checkedLocations = Array.from(document.querySelectorAll('input[name="location"]:checked')).map(input => input.value);
+                        const checkedPriorities = Array.from(document.querySelectorAll('input[name="priority"]:checked')).map(input => input.value);
+                        const allCards = document.querySelectorAll(".offer-card");
+                        allCards.forEach(card => {
+                        const type = card.dataset.type;
+                        const location = card.dataset.location;
+                        const priority = card.dataset.priority;
+                        if (
+                          (checkedTypes.length === 0 || checkedTypes.includes(type)) &&
+                          (checkedLocations.length === 0 || checkedLocations.includes(location)) &&
+                          (checkedPriorities.length === 0 || checkedPriorities.includes(priority))
+                        ) {
+                                card.style.display = "";
+                        } else {
+                                card.style.display = "none";
+                        }
                         });
+                        const offersContainer = document.querySelector(".offers-container");
+                        const visibleCards = Array.from(document.querySelectorAll(".offer-card")).filter(card => card.style.display !== "none");
+                        let emptyMessage = document.querySelector(".no-matching-offers");
+
+                        if (!emptyMessage) {
+                            emptyMessage = document.createElement("p");
+                            emptyMessage.className = "no-matching-offers";
+                            emptyMessage.textContent = "Немає пропозицій, що відповідають вибраним фільтрам.";
+                            offersContainer.appendChild(emptyMessage);
+                        }
+                        emptyMessage.style.display = visibleCards.length === 0 ? "block" : "none";
                     });
                 }
             });

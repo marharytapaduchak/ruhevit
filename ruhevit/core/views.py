@@ -11,10 +11,43 @@ from requests.models import Request
 def home_redirect(request):
     if request.user.is_authenticated:
         user = request.user
+        from collections import Counter
+
+        # Запити створені та прийняті користувачем
+        user_created = Request.objects.filter(owner=user)
+        user_accepted = Request.objects.filter(executor=user)
+
+        # Об'єднані для аналізу
+        user_related_requests = user_created | user_accepted
+
+        # Витягуємо популярні типи, локації, пріоритети
+        types = Counter(req.type for req in user_related_requests if req.type)
+        locations = Counter(req.location for req in user_related_requests if req.location)
+        priorities = Counter(req.priority for req in user_related_requests if req.priority)
+
+        top_types = [item[0] for item in types.most_common(3)]
+        top_locations = [item[0] for item in locations.most_common(3)]
+        top_priorities = [item[0] for item in priorities.most_common(2)]
+
         user_owner_requests = Request.objects.filter(
             owner=user).order_by('-created_at')
         user_exec_requests = Request.objects.filter(
             executor__isnull=False, executor=user).order_by('-created_at')
+
+        all_potential_requests = Request.objects.filter(
+            status='pending',
+            executor__isnull=True
+        ).exclude(owner=user)
+
+        from django.db.models import Case, When, IntegerField, Value
+        personalized_requests = all_potential_requests.annotate(
+            relevance_score=(
+                Case(When(type__in=top_types, then=Value(1)), default=Value(0), output_field=IntegerField()) +
+                Case(When(location__in=top_locations, then=Value(1)), default=Value(0), output_field=IntegerField()) +
+                Case(When(priority__in=top_priorities, then=Value(1)), default=Value(0), output_field=IntegerField())
+            )
+        ).order_by('-relevance_score', '-created_at')
+
         help_offers = Request.objects.filter(status='pending', executor__isnull=True).exclude(
             owner=user).order_by('-created_at')
 
@@ -22,6 +55,10 @@ def home_redirect(request):
             'user_owner_requests': user_owner_requests,
             'user_exec_requests': user_exec_requests,
             'help_offers': help_offers,
+            'personalized_requests': personalized_requests,
+            'top_types': top_types,
+            'top_locations': top_locations,
+            'top_priorities': top_priorities,
         }
         return render(request, 'home/index.html', context)
     else:

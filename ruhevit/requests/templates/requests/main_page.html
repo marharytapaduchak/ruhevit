@@ -26,7 +26,7 @@
 <div class="card-grid">
     {% for offer in requests %}
         {% if offer.owner == request.user %}
-            <article class="offer-card" data-created-at="{{ offer.created_at|date:'Y-m-d-H-i-s' }}" data-type="{{ offer.help_type }}">
+            <article class="offer-card" data-created-at="{{ offer.created_at|date:'Y-m-d-H-i-s' }}" data-type="{{ offer.type }}">
                 <div class="offer-image">
                     {% if offer.photo %}
                         <img src="{{ offer.photo.url }}" alt="Фото запиту" class="offer-icon" style="object-fit: cover; width: 100%; height: 100%;" />
