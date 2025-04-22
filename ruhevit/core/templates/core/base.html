@@ -20,18 +20,17 @@
             <div class="search-and-logo">
                 <h1 class="logo" onclick='location.href="{% url 'home' %}"' style="cursor:pointer;">Ругевіт</h1>
                 {% if user.is_authenticated %}
-                    <input id="search-input" type="text" placeholder="Пошук" class="search"  style="border-style: none;" />
+                <div class="search">
+                    <i class="fa fa-search search-icon"></i>
+                    <input id="search-input" type="text" placeholder="Пошук" class="search" style="border-style: none;"/>
+                  </div>
+                    <!-- <input id="search-input" type="text" placeholder="Пошук" class="search"  style="border-style: none;" /> -->
                 {% endif %}
             </div>
             {% if user.is_authenticated %}
             <div class="navbar-right">
             <a href="{% url 'profile_page' %}" class="profile-icon">
                 <img src="{{ user.photo.url }}" alt="Profile" class="request-icon-image" />
-                <!-- {% if user.photo %}
-                    <img src="{{ user.photo.url }}" alt="Profile" class="request-icon-image" />
-                {% else %}
-                    <img src="{% static 'core/images/blank.png' %}" alt="Profile" class="request-icon-image" />
-                {% endif %} -->
             </a>
             <form action="{% url 'logout' %}" method="post" style="display: inline;">
                     {% csrf_token %}

@@ -60,7 +60,7 @@ body {
     gap: 8px;
     padding: 6px 12px;
     border-radius: 6px;
-    background-color: #f0f0f0;
+    background-color: #f4f7ee;
     cursor: pointer;
     position: relative;
   }
@@ -99,10 +99,10 @@ body {
   .search {
     align-items: center;
     border-radius: 80px;
-    background-color: #f8f2e9;
+    background-color: #f4f7ee;
     display: flex;
     min-width: 240px;
-    padding: 20px 30px;
+    padding: 6px 12px;
     gap: 10px;
     overflow: hidden;
     font-family:
@@ -162,8 +162,8 @@ body {
   }
   .navbar-right .logout-button {
     align-self: stretch;
-    border-radius: 80px;
-    background-color: #f8f2e9;
+    border-radius: 13px;
+    background-color: #f4f7ee;
     padding-left:20px;
     padding-right:20px;
     padding-top:20px;
@@ -491,7 +491,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 13px;
-    background-color: #f8f2e9;
+    background-color: #f4f7ee;
     color: black !important;
     display: flex;
     min-width: 240px;
@@ -602,7 +602,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background-color: #f3eee9;
+    background-color: #fefffb;
     display: flex;
     min-height: 279px;
     padding: 120px 77px 120px 78px;
@@ -690,7 +690,7 @@ body {
   .progress-bar {
     align-items: start;
     border-radius: 100px;
-    background-color: #f8f2e9;
+    background-color: #fefffb;
     display: flex;
     min-height: 10px;
     width: 100%;
@@ -706,7 +706,7 @@ body {
 
   .progress-fill {
     border-radius: 100px;
-    background-color: #f9a72d;
+    background-color: #879e36;
     display: flex;
     min-height: 10px;
     width: 235px;
@@ -815,7 +815,7 @@ body {
   .contact-button {
     align-self: stretch;
     border-radius: 13px;
-    background-color: #f8f2e9;
+    background-color: #fefffb;
     padding: 15px 20px;
     gap: 10px;
     overflow: hidden;
@@ -854,7 +854,7 @@ body {
     box-shadow:
       0px 0px 6px 0px rgba(0, 0, 0, 0.02),
       2px 2px 4px 0px rgba(0, 0, 0, 0.08);
-    background-color: #f9a72d;
+    background-color: #879e36;
     padding: 15px 20px;
     gap: 10px;
     overflow: hidden;
@@ -1089,7 +1089,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    background-color: #f3eee9;
+    background-color: #f4f7ee;
     display: flex;
     min-height: 148px;
     width: 100%;
@@ -1221,7 +1221,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 40px;
-    background-color: #f8f2e9;
+    background-color: #f4f7ee;
     align-self: stretch;
     display: flex;
     margin: auto 0;

@@ -64,13 +64,7 @@ html {
       position: relative;
     }
   
-    /* .search-input {
-      display: none;
-      border: none;
-      outline: none;
-      font-size: 14px;
-      background: transparent;
-    } */
+
   
     .search.active .search-text {
       display: none;
@@ -100,7 +94,7 @@ html {
       background-color: #f4f7ee;
       display: flex;
       min-width: 240px;
-      padding: 20px 30px;
+      padding: 6px 12px;
       gap: 10px;
       overflow: hidden;
       font-family:

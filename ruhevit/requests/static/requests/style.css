@@ -7,6 +7,12 @@
 
   h2 {
     color: #1d1d20;
+    font-family:
+        SF Pro,
+        -apple-system,
+        Roboto,
+        Helvetica,
+        sans-serif;
     font-size: 36px;
     font-weight: 590;
     margin: 30px 0;
@@ -14,11 +20,17 @@
 
   h3 {
     color: #1d1d20;
+    font-family:
+        SF Pro,
+        -apple-system,
+        Roboto,
+        Helvetica,
+        sans-serif;
     font-size: 24px;
     font-weight: 590;
     margin-bottom: 20px;
   }
-
+/* 
   .request-form {
     border-radius: 30px;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.04), 
@@ -83,8 +95,73 @@
   .button:focus {
     outline: 2px solid #879e36;
     outline-offset: 2px;
+  } */
+  .request-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: SF Pro, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 18px;
   }
-
+  
+  .request-form p {
+    margin-bottom: 20px;
+  }
+  
+  .request-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .request-form input[type="text"],
+  .request-form input[type="email"],
+  .request-form input[type="file"],
+  .request-form textarea,
+  .request-form select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+  
+  .request-form .button {
+    border-radius: 100px;
+    background-color: #879e36;
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-family: SF Pro, -apple-system, Roboto, Helvetica, sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .request-form .button:hover {
+    background-color: #6f862f;
+  }
+  
+  .request-form .buttons {
+    display: flex;
+    margin-top: 10px;
+    width: 100%;
+    align-items: center;
+    gap: 15px;
+    font-family: SF Pro, -apple-system, Roboto, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+  
   .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

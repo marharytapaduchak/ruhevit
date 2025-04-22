@@ -69,7 +69,8 @@
     font-family: "SF Pro", sans-serif;
     font-size: 20px;
     color: #1d1d20;
-    width: 100%;
+    /* width: 100%; */
+    /* min-width: 200px; */
     padding: 20px;
   }
   
