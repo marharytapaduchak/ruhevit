@@ -195,7 +195,8 @@ h2 {
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
+    gap: 5rem;
+    padding-top: 20px;
 }
 
 /* Картка запиту */
@@ -248,127 +249,4 @@ h2 {
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 500;
-}
-@media (max-width: 991px) {
-    .navbar {
-      max-width: 100%;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-      .history-block {
-        padding: 0px 15px;
-        margin: 5px 0;
-      }
-
-    .search-and-logo {
-      max-width: 100%;
-      white-space: initial;
-    }
-
-    .search {
-      padding-left: 20px;
-      padding-right: 20px;
-      white-space: initial;
-    }}
-
- @media (max-width: 767px) {
-
-  .profile-image {
-    display: none;
-  }
-
-  .active-posts {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .request-card {
-    width: 100%;
-  }
-
-  .review-card {
-    width: 90%;
-    max-width: 350px;
-  }
-}
-@media (max-width: 767px) {
-  .profile {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .user-profile {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  max-width: 100px;
-  max-height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-  .user-details {
-    width: 100%;
-  }
-
-  .user-meta {
-    justify-content: center;
-  }
-
-
-  .icon-container {
-    padding: 60px 20px;
-  }
-
-  .active-posts {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .request-card {
-    width: 100%;
-  }
-
-  .reviews-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .review-card {
-    width: 90%;
-    max-width: 350px;
-  }
-
-  .action-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .section-title {
-    font-size: 24px;
-    text-align: center;
-  }
-
-  .user-name {
-    font-size: 24px;
-  }
-
-  .user-description {
-    font-size: 16px;
-  }
-
-  .request-title {
-    font-size: 18px;
-  }
-
-  .progress-status {
-    font-size: 16px;
-  }
-
-  .meta-value,
-  .meta-value1 {
-    font-size: 16px;
-  }
 }
