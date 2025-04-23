@@ -78,7 +78,20 @@ def home_redirect(request):
         })
 
 def custom_404_view(request, exception):
-    return render(request, 'errors/404.html', status=404)
+    context = {
+        'error_code': 404,
+        'error_message': 'Сторінку не знайдено'
+    }
+    return render(request, 'errors/404.html', context=context, status=404)
+
+
+# Generic custom error view for other error codes (e.g., 403, 500)
+def custom_error_view(request, error_code=500, error_message='Виникла помилка сервера'):
+    context = {
+        'error_code': error_code,
+        'error_message': error_message
+    }
+    return render(request, 'errors/404.html', context=context, status=error_code)
 
 
 def search_requests(request):
