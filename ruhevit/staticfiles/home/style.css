@@ -64,13 +64,7 @@ html {
       position: relative;
     }
   
-    .search-input {
-      display: none;
-      border: none;
-      outline: none;
-      font-size: 14px;
-      background: transparent;
-    }
+
   
     .search.active .search-text {
       display: none;
@@ -100,7 +94,7 @@ html {
       background-color: #f4f7ee;
       display: flex;
       min-width: 240px;
-      padding: 20px 30px;
+      padding: 6px 12px;
       gap: 10px;
       overflow: hidden;
       font-family:
@@ -141,6 +135,7 @@ html {
       margin-top: auto;
       margin-bottom: auto;
     }
+ 
     
     /* Requests Section */
     .requests-block {
@@ -174,12 +169,12 @@ html {
       overflow-x: auto;
       display: flex;
       margin-top: 20px;
-      width: 100%;
-      padding-left: 25px;
-      padding-right: 25px;
-      align-items: start;
+      /* width: 100%; */
+      padding-left: 20px;
+      padding-right: 20px;
+      align-items: center;
       gap: 40px;
-      justify-content: start;
+      justify-content: center;
       flex-wrap: wrap;
     }
   
@@ -187,7 +182,6 @@ html {
     .request {
       min-width: 320px;
       max-width: 800px;
-      /* align-items: stretch; */
       border-radius: 30px;
       box-shadow:
         0px 0px 4px 0px rgba(0, 0, 0, 0.04),
@@ -195,7 +189,6 @@ html {
       background-color: #fefffb;
       display: flex;
       overflow: hidden;
-      /* justify-content: start; */
       flex-direction: row;
       flex-wrap: nowrap;
       flex-grow: 1;
@@ -203,22 +196,6 @@ html {
       width: 587px;
     }
     
-    /* .request-pic {
-      border-radius: 10px;
-      width: 200px;
-    }
-    
-    .request-pic-container {
-      justify-content: center;
-      align-items: center;
-      border-radius: 10px;
-      background-color: #e5e9df;
-      display: flex;
-      min-height: 279px;
-      padding: 120px 77px 120px 78px;
-      flex-direction: column;
-      overflow: hidden;
-    } */
     .request-pic-container {
       flex: 0 0 200px;
       background-color: #e5e9df;
@@ -233,7 +210,7 @@ html {
     }
     .request-icon {
       aspect-ratio: 1.12;
-      object-fit: contain;
+      /* object-fit: contain; */
       object-position: center;
       width: 45px;
     }
@@ -385,8 +362,8 @@ html {
         Roboto,
         Helvetica,
         sans-serif;
-      font-size: 15px;
-      font-weight: 600;
+      font-size: 20px;
+      font-weight: 400;
       border: none;
       cursor: pointer;
       flex: 1;
@@ -406,7 +383,17 @@ html {
       background-color: #879e36;
       color: #fefffb;
     }
+    @media (max-width: 991px) {
+      .button-group {
+        flex-direction: column;
+      }
     
+      .contact,
+      .confirm {
+        width: 100%;
+        flex: none;
+      }
+    }
     .confirm-container {
       display: flex;
       margin-top: 20px;
@@ -559,9 +546,10 @@ html {
       object-position: center;
       width: 45px;
     }
+    
     .offer-info {
       display: flex;
-      width: 100%;
+      /* width: 100%; */
       padding: 25px;
       flex-direction: column;
       align-items: stretch;
@@ -657,7 +645,7 @@ html {
         2px 2px 4px 0px rgba(0, 0, 0, 0.08);
       background-color: #879e36;
       margin-top: 20px;
-      width: 100%;
+      /* width: 100%; */
       padding: 15px 20px;
       gap: 10px;
       overflow: hidden;
@@ -676,6 +664,13 @@ html {
     }
     
     /* Media Queries */
+    @media (max-width: 767px) {
+      .requests {
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+        gap: 16px !important;
+      }
+    }
     @media (max-width: 991px) {
       .navbar {
         max-width: 100%;
@@ -706,8 +701,8 @@ html {
     
       .requests {
         max-width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 0px;
+        padding-right: 0px;
       }
     
       .request {
@@ -782,8 +777,8 @@ html {
     
       .offers-container {
         max-width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 0px;
+        padding-right: 0px;
       }
     
       .offer-card {
@@ -848,20 +843,5 @@ html {
         margin-right: -4px;
         padding-right: 51px;
       }
-    
-      /* .offer-card:nth-child(n + 2) .offer-image {
-        display: none;
-      }
-    
-      .offer-card:nth-child(n + 2) .offer-info {
-        display: none;
-      } */
     }
     
-    .request,
-    .offer-card {
-      flex-direction: column;
-      width: 100%;
-      min-width: unset;
-      max-width: 100%;
-    }

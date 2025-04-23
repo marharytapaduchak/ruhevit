@@ -44,11 +44,21 @@ body {
 }
 
 h1, h2 {
-    font-family: 'STIX Two Text', serif;
+  font-family:
+  SF Pro,
+  -apple-system,
+  Roboto,
+  Helvetica,
+  sans-serif;
 }
 
 p, span {
-    font-family: 'Noto Sans', sans-serif;
+  font-family:
+  SF Pro,
+  -apple-system,
+  Roboto,
+  Helvetica,
+  sans-serif;
 }
 
 .button {

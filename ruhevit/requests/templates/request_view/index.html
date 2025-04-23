@@ -43,12 +43,14 @@
         </section>
 
         <div class="meta-info">
-          <p><strong>Категорія:</strong>
-            <span class="tag">{{ request_obj.get_type_display }}</span>
-            <span class="tag">{{ request_obj.get_priority_display }}</span>
-            <span class="tag">{{ request_obj.get_location_display }}</span>
-          </p>
-          <p><strong>Локація:</strong> {{ request_obj.get_location_display }}</p>
+          <div class="offer-tags">
+              <span class="tag">{{ request_obj.get_type_display }}</span>
+              <span class="tag">{{ request_obj.get_priority_display }}</span>
+              <span class="tag">{{ request_obj.get_location_display }}</span>
+              {% for tag in request_obj.tags.all %}
+                  <span class="tag">{{ tag.name }}</span>
+              {% endfor %}
+          </div>
         </div>
 
         <div class="report-footer">

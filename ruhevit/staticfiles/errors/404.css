@@ -260,3 +260,156 @@ body {
   margin: 0;
   padding: 0;
 }
+.error-container {
+  justify-content: flex-start;
+  overflow-x: hidden; 
+}
+
+.navigation-bar {
+  padding: 25px 5%; 
+.brand-name {
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.search-button {
+  padding: 15px 25px;
+}
+
+.profile-image {
+  height: 60px;
+  object-fit: cover;
+}
+
+.error-content {
+  padding: 40px 20px;
+  flex-grow: 1; 
+}
+
+.error-number-container {
+  line-height: 1;
+  margin: 30px 0;
+}
+
+.error-message {
+  max-width: 600px;
+}
+@media (max-width: 991px) {
+  .navigation-bar {
+    padding: 20px; 
+    gap: 20px;
+  }
+  
+  .error-number-container {
+    font-size: 120px; 
+  }
+  
+  .error-message {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navigation-bar {
+    flex-direction: column;
+    padding: 15px; 
+  }
+  
+  .search-section {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .error-number-container {
+    font-size: 80px;
+  }
+  
+  .error-message {
+    font-size: 20px;
+  }
+  
+  .home-button {
+    width: 100%; 
+    max-width: 300px;
+  }
+}
+.home-button {
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #6c7e2b;
+}
+
+.error-container {
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
+.navigation-bar {
+  width: calc(100% - 48px);
+  padding: 32px 40px;
+  margin: 0 auto;
+  border-radius: 16px;
+  max-width: 1400px;
+}
+
+.error-content {
+  width: calc(100% - 48px);
+  padding: 60px 40px;
+  margin: 40px 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  max-width: 1200px;
+}
+
+.error-number-container {
+  margin: 40px 0;
+  padding: 0 40px;
+}
+
+.error-message {
+  margin: 40px 0;
+  max-width: 800px;
+  padding: 0 40px;
+  line-height: 1.4;
+}
+
+.home-button {
+  padding: 18px 36px;
+  margin: 40px 0;
+}
+
+@media (max-width: 991px) {
+  .error-container {
+    padding: 32px 20px;
+  }
+  .navigation-bar {
+    width: calc(100% - 40px);
+    padding: 24px 32px;
+  }
+  .error-content {
+    width: calc(100% - 40px);
+    padding: 48px 32px;
+  }
+  .error-number-container,
+  .error-message {
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .error-container {
+    padding: 24px 16px;
+  }
+  .navigation-bar {
+    width: calc(100% - 32px);
+    padding: 20px 24px;
+    gap: 24px;
+  }
+  .error-content {
+    width: calc(100% - 32px);
+    padding: 40px 24px;
+  }
+}
