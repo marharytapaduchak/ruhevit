@@ -14,7 +14,9 @@ def home_redirect(request):
         from collections import Counter
 
         # Запити створені та прийняті користувачем
-        user_created = Request.objects.filter(owner=user)
+        user_created = Request.objects.filter(
+            owner=user, status__in=['pending', 'active']).order_by('-created_at')
+
         user_accepted = Request.objects.filter(executor=user)
 
         # Об'єднані для аналізу
@@ -30,7 +32,7 @@ def home_redirect(request):
         top_priorities = [item[0] for item in priorities.most_common(2)]
 
         user_owner_requests = Request.objects.filter(
-            owner=user).order_by('-created_at')
+            owner=user, status__in=['pending', 'in_progress']).order_by('-created_at')
         user_exec_requests = Request.objects.filter(
             executor__isnull=False, executor=user).order_by('-created_at')
 
