@@ -34,7 +34,7 @@ def home_redirect(request):
         user_owner_requests = Request.objects.filter(
             owner=user, status__in=['pending', 'in_progress']).order_by('-created_at')
         user_exec_requests = Request.objects.filter(
-            executor__isnull=False, executor=user).order_by('-created_at')
+            executor=user, status__in=['in_progress']).order_by('-created_at')
 
         all_potential_requests = Request.objects.filter(
             status='pending',
