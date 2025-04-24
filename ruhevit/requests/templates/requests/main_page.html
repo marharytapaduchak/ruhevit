@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'requests/style.css' %}">
 {% endblock %}
 
 {% block title %}Створити запит{% endblock %}
@@ -11,7 +11,7 @@
 {% block content %}
 
 <h2>Створити запит</h2>
-
+<div class="form-container">
 <form method="post" enctype="multipart/form-data" class="request-form">
     {% csrf_token %}
     {{ form.as_p }}
@@ -19,9 +19,9 @@
         <label for="id_photo">Фото (необов’язково):</label>
         <input type="file" name="photo" accept="image/*" id="id_photo">
     </p>
-    <button type="submit" class="button">Зберегти запит</button>
+    <button type="submit" class="submit-btn">Зберегти запит</button>
 </form>
-
+</div>
 <div class="card-grid">
     {% for offer in requests %}
         {% if offer.owner == request.user %}
