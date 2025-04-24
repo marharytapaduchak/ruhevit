@@ -28,7 +28,7 @@ handler404 = 'core.views.custom_404_view'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('__debug__/', include(debug_toolbar.urls)),
+    # path('__debug__/', include(debug_toolbar.urls)),
     path('', views.home_redirect, name='home'),
     path('accounts/', include('accounts.urls')),
     path('requests/', include(('requests.urls', 'requests'), namespace='requests')),

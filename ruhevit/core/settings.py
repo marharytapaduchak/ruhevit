@@ -26,7 +26,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 SECRET_KEY = 'django-insecure-g+a7d7xfooaedv%n%s+*v!gu3*z6ht2i$r6_nq7xclc#o127qb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
+    # 'debug_toolbar',
     'accounts',
     'requests',
     'landing',
@@ -68,7 +68,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware"
+    # "debug_toolbar.middleware.DebugToolbarMiddleware"
 ]
 
 ROOT_URLCONF = 'core.urls'

@@ -76,11 +76,7 @@ def request_detail(request, request_id):
 
 @login_required
 def confirm_request(request, request_id):
-    print("⚙️ Працює confirm_request")
     req_obj = get_object_or_404(Request, id=request_id)
-
-    print("Поточний виконавець:", req_obj.executor)
-    print("Поточний ініціатор:", req_obj.owner)
 
     if not req_obj.executor:
         req_obj.executor = request.user
@@ -92,9 +88,5 @@ def confirm_request(request, request_id):
             status='in_progress',
             comment=f"{request.user.get_username()} підтвердив запит"
         )
-
-        print(f"✅ Призначено виконавця: {req_obj.executor.username}")
-    else:
-        print("❌ Виконавець вже був призначений:", req_obj.executor)
 
     return redirect('request_detail', request_id=req_obj.id)

@@ -14,12 +14,9 @@ from django.shortcuts import render
 
 def login_view(request):
     if request.method == 'POST':
-        print("POST data:", request.POST)
         form = LoginForm(request.POST)
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(f"Username: {username}")
-        print(f"Password: {password}")
 
         if form.is_valid():
             user = authenticate(request, username=username, password=password)
@@ -37,13 +34,10 @@ def login_view(request):
 
 def signup_view(request):
     if request.method == 'POST':
-        print("POST data:", request.POST)
         form = RegisterForm(request.POST)
-        print("➡️ Пароль із форми:", request.POST.get('password1'))
         if form.is_valid():
             user = form.save(commit=False)
             user.role = form.cleaned_data['role']
-            print("➡️ ROLE перед збереженням:", user.role)
             user.save()
             login(request, user)
             return redirect('home')
