@@ -30,24 +30,6 @@ def create_request(request):
 
 
 @login_required
-def submit_report(request, request_id):
-    req = get_object_or_404(Request, id=request_id)
-
-    if request.method == 'POST':
-        form = RequestHistoryForm(request.POST, request.FILES)
-        if form.is_valid():
-            history = form.save(commit=False)
-            history.request = req
-            history.save()
-
-            return redirect('request_detail', request_id=req.id)
-    else:
-        form = RequestHistoryForm()
-
-    return render(request, 'requests/submit_report.html', {'form': form, 'request_obj': req})
-
-
-@login_required
 def report_confirm(request):
     return render(request, 'report_confirm/index.html')
 
@@ -65,10 +47,9 @@ def report_submit(request, request_id):
         if form.is_valid():
             history = form.save(commit=False)
             history.request = req_obj
-            history.status = 'in_progress'
+            history.status = 'done'
             history.save()
 
-            req_obj.status = 'done'
             req_obj.save()
 
             uploaded_photos = request.FILES.getlist('photos[]')

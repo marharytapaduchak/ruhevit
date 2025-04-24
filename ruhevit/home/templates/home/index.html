@@ -10,7 +10,7 @@
             <section class="requests-block">
                 <h2 class="requests-text">Ваші запити як ініціатора</h2>
                 <div class="requests">
-                    {% if user_exec_requests %}
+                    {% if user_owner_requests %}
                         {% for req in user_owner_requests %}
                             <article class="request">
                                 <div class="request-pic">
@@ -53,7 +53,7 @@
                             </article>
                         {% endfor %}
                     {% else %}
-                        <p>У вас поки що немає запитів.</p>
+                        <p>Поки що ви не створили жодного запиту.</p>
                     {% endif %}
                 </div>
             </section>
@@ -101,7 +101,7 @@
                             </div>
                         </article>
                     {% empty %}
-                        <p>У вас поки що немає запитів.</p>
+                        <p>Поки що ви не прийняли жодного запиту.</p>
                     {% endfor %}
                 </div>
             </section>

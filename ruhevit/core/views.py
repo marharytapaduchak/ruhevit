@@ -14,7 +14,9 @@ def home_redirect(request):
         from collections import Counter
 
         # Запити створені та прийняті користувачем
-        user_created = Request.objects.filter(owner=user)
+        user_created = Request.objects.filter(
+            owner=user, status__in=['pending', 'active']).order_by('-created_at')
+
         user_accepted = Request.objects.filter(executor=user)
 
         # Об'єднані для аналізу
@@ -30,9 +32,9 @@ def home_redirect(request):
         top_priorities = [item[0] for item in priorities.most_common(2)]
 
         user_owner_requests = Request.objects.filter(
-            owner=user).order_by('-created_at')
+            owner=user, status__in=['pending', 'in_progress']).order_by('-created_at')
         user_exec_requests = Request.objects.filter(
-            executor__isnull=False, executor=user).order_by('-created_at')
+            executor=user, status__in=['in_progress']).order_by('-created_at')
 
         all_potential_requests = Request.objects.filter(
             status='pending',
@@ -76,7 +78,20 @@ def home_redirect(request):
         })
 
 def custom_404_view(request, exception):
-    return render(request, 'errors/404.html', status=404)
+    context = {
+        'error_code': 404,
+        'error_message': 'Сторінку не знайдено'
+    }
+    return render(request, 'errors/404.html', context=context, status=404)
+
+
+# Generic custom error view for other error codes (e.g., 403, 500)
+def custom_error_view(request, error_code=500, error_message='Виникла помилка сервера'):
+    context = {
+        'error_code': error_code,
+        'error_message': error_message
+    }
+    return render(request, 'errors/404.html', context=context, status=error_code)
 
 
 def search_requests(request):

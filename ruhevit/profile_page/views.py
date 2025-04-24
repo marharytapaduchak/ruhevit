@@ -7,8 +7,8 @@ def profile_page(request):
     user = request.user
 
     # Активні запити — наприклад, статуси pending, need_volunteer, in_progress
-    active_statuses = ['pending', 'need_volunteer', 'in_progress']
-    active_requests = Request.objects.filter(owner=user, status__in=active_statuses).order_by('-created_at')
+    active_requests = Request.objects.filter(
+        owner=user, status__in=['pending', 'in_progress']).order_by('-created_at')
 
     # help_offers = Request.objects.filter(status='need_volunteer').order_by('-created_at')
 

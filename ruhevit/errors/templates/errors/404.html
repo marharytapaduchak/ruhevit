@@ -1,4 +1,7 @@
+{% extends "core/base.html" %}
 {% load static %}
+{% block title %}Ругевіт - Редагування профілю{% endblock %}
+{% block content %}
 <link rel="stylesheet" href="{% static 'errors/404.css' %}" />
 <!doctype html>
 <html lang="uk">
@@ -9,32 +12,12 @@
   </head>
   <body>
     <main class="error-container">
-      <header class="navigation-bar">
-        <nav class="search-section">
-          <h1 class="brand-name">Ругевіт</h1>
-          <div class="search-button">
-            <span class="search-icon"></span>
-            <input
-              type="text"
-              id="search-input"
-              class="search-text"
-              placeholder="Пошук"
-            />
-          </div>
-        </nav>
-        <div class="user-notifications">
-          <span class="notification-icon"></span>
-          <span class="message-icon"></span>
-          <img src="{% static 'errors/images/profile_photo.png' %}" class="profile-image" alt="User profile" />
-        </div>
-      </header>
-
       <section class="error-number-container">
-        <h2 id="error-code" class="error-number">404</h2>
+        <h2 id="error-code" class="error-number">{{ error_code|default:"404" }}</h2>
         <img src="{% static 'errors/images/image_1.png' %}" class="error-image" alt="Error illustration" />
       </section>
 
-      <p id="error-message" class="error-message">Сторінку не знайдено</p>
+      <p id="error-message" class="error-message">{{ error_message|default:"Сторінку не знайдено" }}</p>
 
       <button id="home-button" class="home-button">
         Повернутися на головну
@@ -43,3 +26,4 @@
   </body>
 </html>
 <script src="{% static 'errors/script.js' %}" defer></script>
+{% endblock %}

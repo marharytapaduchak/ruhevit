@@ -1,0 +1,402 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "SF Pro", sans-serif;
+  }
+  
+  /* Main container */
+  .app-container {
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fefffb;
+  }
+  
+  /* Header styles */
+  .main-header {
+    display: flex;
+    width: 100%;
+    padding: 25px 110px;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(254, 255, 251, 0.7);
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .brand-name {
+    color: #1d1d20;
+    font-family: "SF Pro", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .search-bar {
+    display: flex;
+    width: 350px;
+    padding: 20px 30px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 80px;
+    background-color: #f8f2e9;
+    cursor: text;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .search-bar:hover {
+    box-shadow: 0 0 0 2px rgba(249, 167, 45, 0.3);
+  }
+  
+  .search-input {
+    background: none;
+    border: none;
+    font-family: "SF Pro", sans-serif;
+    font-size: 20px;
+    color: #1d1d20;
+    /* width: 100%; */
+    /* min-width: 200px; */
+    padding: 20px;
+  }
+  
+  .search-input:focus {
+    outline: none;
+  }
+  
+  .search-icon,
+  .ti {
+    color: #1d1d20;
+    font-size: 20px;
+  }
+  
+  .search-placeholder {
+    color: #1d1d20;
+    font-family: "SF Pro", sans-serif;
+    font-size: 20px;
+  }
+  
+  .user-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+  
+  .icon-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .icon-button:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Focus styles for keyboard navigation */
+  .keyboard-navigation *:focus {
+    outline: 2px solid #f9a72d;
+    outline-offset: 2px;
+  }
+  
+  .profile-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  
+  .profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 2px rgba(249, 167, 45, 0.5);
+  }
+  
+  /* Form container */
+  .report-form-container {
+    width: 700px;
+    padding: 30px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 30px;
+    box-shadow:
+      0 0 4px rgba(0, 0, 0, 0.04),
+      0 8px 16px rgba(0, 0, 0, 0.08);
+    background-color: #fefffb;
+  }
+  
+  .form-title {
+    color: #1d1d20;
+    font-family: "SF Pro", sans-serif;
+    font-size: 30px;
+    font-weight: 590;
+    text-align: center;
+  }
+  
+  .form-divider {
+    height: 3px;
+    width: 100%;
+    background-color: #f8f2e9;
+    border: none;
+  }
+  
+  /* Form elements */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .form-label {
+    color: #7b7f6e;
+    font-family: "SF Pro", sans-serif;
+    font-size: 16px;
+  }
+  
+  .required-mark {
+    color: #f9a72d;
+    font-weight: 700;
+  }
+  
+  .input-field {
+    padding: 26px;
+    border-radius: 15px;
+    border: 3px solid #f8f2e9;
+    color: #1d1d20;
+    font-family: "SF Pro", sans-serif;
+    font-size: 20px;
+    background-color: #fefffb;
+    width: 100%;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-field:focus {
+    outline: none;
+    border-color: #f9a72d;
+  }
+  
+  .text-area {
+    padding: 26px;
+    border-radius: 15px;
+    border: 3px solid #f8f2e9;
+    color: #1d1d20;
+    font-family: "SF Pro", sans-serif;
+    font-size: 20px;
+    background-color: #fefffb;
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    line-height: 1.5;
+  }
+  
+  .text-area:focus {
+    outline: none;
+    border-color: #f9a72d;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 5px;
+    font-family: "SF Pro", sans-serif;
+    min-height: 20px;
+  }
+  
+  .photo-upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    gap: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #f8f2e9;
+  }
+  
+  .upload-icon {
+    color: #f9a72d;
+    font-size: 100px;
+  }
+  
+  .upload-text {
+    color: #1d1d20;
+    font-family: "SF Pro", sans-serif;
+    font-size: 16px;
+  }
+  
+  .upload-link {
+    color: #f9a72d;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
+  .photo-upload-area.drag-over {
+    background-color: #f5e9d9;
+    border: 3px dashed #f9a72d;
+  }
+  
+  .photo-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .preview-item {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .remove-image {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .add-more-photos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px 15px;
+    background-color: #f8f2e9;
+    color: #1d1d20;
+    border: none;
+    border-radius: 10px;
+    font-family: "SF Pro", sans-serif;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .submit-button {
+    padding: 20px;
+    width: 100%;
+    color: #fefffb;
+    border: none;
+    border-radius: 15px;
+    font-family: "SF Pro", sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow:
+      0 0 8px rgba(210, 210, 215, 0.05),
+      0 3px 12px rgba(210, 210, 215, 0.2);
+    background-color: #f9a72d;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #e89a29;
+  }
+  
+  .submit-button:active {
+    background-color: #d88c25;
+    transform: translateY(1px);
+  }
+  
+  .submit-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  /* Responsive styles */
+  @media (max-width: 991px) {
+    .app-container {
+      max-width: 991px;
+    }
+  
+    .main-header {
+      padding: 20px;
+    }
+  
+    .search-bar {
+      width: 250px;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .input-field,
+    .text-area {
+      padding: 20px;
+      font-size: 18px;
+    }
+  
+    .text-area {
+      min-height: 150px;
+    }
+  
+    .main-header {
+      padding: 15px;
+    }
+  
+    .header-left {
+      gap: 15px;
+    }
+  
+    .search-bar {
+      display: none;
+    }
+  
+    .report-form-container {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .form-title {
+      font-size: 24px;
+    }
+  
+    .input-field,
+    .text-area {
+      padding: 20px;
+    }
+  
+    .photo-upload-area {
+      padding: 30px;
+    }
+  }
+  
