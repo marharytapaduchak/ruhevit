@@ -80,79 +80,43 @@
               <span class="landing-text">Військових</span>
             </div>
           </div>
-          <div class="reviews-page">
+
+          <div class="requests-page">
             <div class="landing-frame154433">
-              <span class="block-title">Відгуки</span>
+              <span class="block-title">Актуальні запити</span>
             </div>
-            <div class="reviews">
-              <div class="review-post">
-                <div class="review-content">
-                  <div class="avatar-name">
-                    <img
-                      src="{% static 'landing/pictures/user-pic.png' %}"
-                      alt="Ellipse11103"
-                      class="landing-ellipse11"
-                    />
-                    <div class="landing-frame154051">
-                      <span class="landing-text24">Василь Костенко</span>
-                      <span class="landing-text25">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
+            <div class="landing-frame154423">
+              {% if latest_requests %}
+                {% for req in latest_requests %}
+                  <div class="landing-frame115">
+                    <div class="landing-frame1052">
+                      <img src="{% static 'landing/pictures/cover.svg' %}" alt="cover" class="landing-imageicon2" />
+                    </div>
+                    <div class="landing-frame1085">
+                      <div class="landing-frame1075">
+                        <img src="{{ req.owner.photo.url }}" alt="user" class="landing-ellipse15" style="border-radius: 100px;"/>
+                        <span class="landing-text61">{{ req.owner.get_full_name|default:req.owner.get_username }}</span>
+                      </div>
+                      <div class="landing-frame1235">
+                        <span class="landing-text62">{{ req.title }}</span>
+                        <span class="landing-text63">{{ req.description|truncatechars:150 }}</span>
+                      </div>
+                      <div class="landing-frame1262">
+                        <div class="landing-frame1272">
+                          <span class="landing-text68">запит з</span>
+                          <span class="landing-text69">{{ req.created_at|date:"d.m.Y" }}</span>
+                        </div>
+                      </div>
+                      <button onclick="window.location.href='{% url 'requests:request_detail' req.id %}'" class="landing-text72 landing-add4">Детальніше</button>
                     </div>
                   </div>
-                  <div class="landing-frame1231">
-                    <span class="landing-text26">Lorem ipsum vel at dui</span>
-                    <span class="landing-text27">
-                      Lorem ipsum malesuada commodo et pulvinar blandit
-                      adipiscing iaculis non convallis vitae.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="review-post">
-                <div class="review-content">
-                  <div class="avatar-name">
-                    <img
-                    src="{% static 'landing/pictures/user-pic.png' %}"
-                    alt="Ellipse11113"
-                    class="landing-ellipse12"
-                  />
-                    <div class="landing-frame154052">
-                      <span class="landing-text28">Василь Костенко</span>
-                      <span class="landing-text29">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
-                    </div>
-                  </div>
-                  <div class="landing-frame1232">
-                    <span class="landing-text30">Lorem ipsum vel at dui</span>
-                    <span class="landing-text31">
-                      Lorem ipsum malesuada commodo et pulvinar blandit
-                      adipiscing iaculis non convallis vitae.
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div class="review-post">
-                <div class="review-content">
-                  <div class="avatar-name">
-                    <img
-                      src="{% static 'landing/pictures/user-pic.png' %}"
-                      alt="Ellipse11123"
-                      class="landing-ellipse13"
-                    />
-                    <div class="landing-frame154053">
-                      <span class="landing-text32">Василь Костенко</span>
-                      <span class="landing-text33">&#9733;&#9733;&#9733;&#9734;&#9734;</span>
-                    </div>
-                  </div>
-                  <div class="landing-frame1233">
-                    <span class="landing-text34">Lorem ipsum vel at dui</span>
-                    <span class="landing-text35">
-                      Lorem ipsum malesuada commodo et pulvinar blandit
-                      adipiscing iaculis non convallis vitae.
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
+                {% endfor %}
+              {% else %}
+              <p>Немає запитів</p>
+              {% endif %}
           </div>
+        </div>
+
           <div class="info-block">
             <span class="block-title">Що пропонує Ругевіт?</span>
             <div class="info-blocks">
@@ -176,41 +140,6 @@
               </div>
             </div>
           </div>
-          <div class="requests-page">
-            <div class="landing-frame154433">
-              <span class="block-title">Актуальні запити</span>
-            </div>
-            <div class="landing-frame154423">
-              {% if latest_requests %}
-                {% for req in latest_requests %}
-                  <div class="landing-frame115">
-                    <div class="landing-frame1052">
-                      <img src="{% static 'landing/pictures/cover.svg' %}" alt="cover" class="landing-imageicon2" />
-                    </div>
-                    <div class="landing-frame1085">
-                      <div class="landing-frame1075">
-                        <img src="{{ req.owner.profile_picture.url }}" alt="user" class="landing-ellipse15" />
-                        <span class="landing-text61">{{ req.owner.get_full_name|default:req.owner.get_username }}</span>
-                      </div>
-                      <div class="landing-frame1235">
-                        <span class="landing-text62">{{ req.title }}</span>
-                        <span class="landing-text63">{{ req.description|truncatechars:150 }}</span>
-                      </div>
-                      <div class="landing-frame1262">
-                        <div class="landing-frame1272">
-                          <span class="landing-text68">запит з</span>
-                          <span class="landing-text69">{{ req.created_at|date:"d.m.Y" }}</span>
-                        </div>
-                      </div>
-                      <button onclick="window.location.href='{% url 'requests:request_detail' req.id %}'" class="landing-text72 landing-add4">Детальніше</button>
-                    </div>
-                  </div>
-                {% endfor %}
-              {% else %}
-              <p>Немає запитів</p>
-              {% endif %}
-          </div>
-        </div>
       </div>
     </div>
     <script>

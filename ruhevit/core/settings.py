@@ -28,12 +28,25 @@ SECRET_KEY = 'django-insecure-g+a7d7xfooaedv%n%s+*v!gu3*z6ht2i$r6_nq7xclc#o127qb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',
+                 'ruhevit.koyeb.app']
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://ruhevit.koyeb.app',
+    'http://ruhevit.koyeb.app',
+]
 
 LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = '/login'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = "ohinska.pn@ucu.edu.ua"
+EMAIL_HOST_PASSWORD = "inftpeggrsytkocw"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_FILE_PATH = BASE_DIR / 'emails'
 
 

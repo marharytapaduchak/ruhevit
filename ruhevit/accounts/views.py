@@ -1,9 +1,7 @@
 from django.http import JsonResponse
 import json
 from django.contrib.auth import get_user_model
-from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib import messages
 from django.contrib.auth import login
 from .forms import RegisterForm
 from .forms import LoginForm
