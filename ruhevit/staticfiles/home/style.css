@@ -25,18 +25,7 @@ html {
     }
     
     /* Navbar Styles */
-    .navbar {
-      background-color: rgba(254, 255, 251, 0.7);
-      display: flex;
-      min-height: 110px;
-      width: 100%;
-      padding: 30px 25px;
-      align-items: stretch;
-      gap: 40px 100px;
-      overflow: hidden;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
+
     
     .search-and-logo {
       display: flex;
@@ -53,27 +42,10 @@ html {
   
   
     /* Search styling */
-    .search {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      border-radius: 6px;
-      background-color: #f0f0f0;
-      cursor: pointer;
-      position: relative;
-    }
+}
   
 
   
-    .search.active .search-text {
-      display: none;
-    }
-  
-    .search.active .search-input {
-      display: inline;
-    }
-    
     .logo {
       font-family:
         Vinnytsia Sans,
@@ -88,26 +60,7 @@ html {
       font-size: 20px;
     }
     
-    .search {
-      align-items: center;
-      border-radius: 80px;
-      background-color: #f4f7ee;
-      display: flex;
-      min-width: 240px;
-      padding: 6px 12px;
-      gap: 10px;
-      overflow: hidden;
-      font-family:
-        SF Pro,
-        -apple-system,
-        Roboto,
-        Helvetica,
-        sans-serif;
-      font-weight: 400;
-      justify-content: start;
-      height: 100%;
-      width: 350px;
-    }
+
     
     .search-icon,
     .search-text {
@@ -682,13 +635,7 @@ html {
         max-width: 100%;
         white-space: initial;
       }
-    
-      .search {
-        padding-left: 20px;
-        padding-right: 20px;
-        white-space: initial;
-      }
-    
+  
       .requests-block {
         max-width: 100%;
         margin-top: 40px;

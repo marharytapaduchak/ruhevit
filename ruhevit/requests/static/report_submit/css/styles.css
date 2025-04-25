@@ -63,18 +63,7 @@
     box-shadow: 0 0 0 2px rgba(249, 167, 45, 0.3);
   }
   
-  .search-input {
-    background: none;
-    border: none;
-    font-family: "SF Pro", sans-serif;
-    font-size: 20px;
-    color: #1d1d20;
-    /* width: 100%; */
-    /* min-width: 200px; */
-    padding: 20px;
-  }
-  
-  .search-input:focus {
+  #search-input:focus {
     outline: none;
   }
   

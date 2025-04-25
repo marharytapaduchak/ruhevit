@@ -11,12 +11,6 @@
       <section class="info-section">
         <div class="user-profile">
           <img src="{{ user.photo.url }}" alt="User Avatar" class="user-avatar" />
-
-          <!-- {% if user.photo %}
-            <img src="{{ user.photo.url }}" alt="User Avatar" class="user-avatar" />
-          {% else %}
-            <img src="{% static 'core/images/blank.png' %}" alt="User Avatar" class="user-avatar" />
-          {% endif %} -->
           <div class="user-details">
             <h2 class="user-name">
               {{ user.get_full_name|default:user.get_username }}
