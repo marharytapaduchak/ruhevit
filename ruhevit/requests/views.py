@@ -50,6 +50,7 @@ def report_submit(request, request_id):
             history.status = 'done'
             history.save()
 
+            req_obj.status = 'done'
             req_obj.save()
 
             uploaded_photos = request.FILES.getlist('photos[]')
