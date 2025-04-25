@@ -3,318 +3,142 @@
 
 {% block title %}Мій акаунт{% endblock %}
 
-{% block extra_css %}
-<style>
-  /* Стилі для фільтрів */
-  .filters-section {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  .filters-section h3 {
-    font-size: 18px;
-    margin-bottom: 15px;
-    color: #333;
-    font-weight: 600;
-  }
-  
-  .filter-group {
-    margin-bottom: 15px;
-  }
-  
-  .filter-group h4 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #555;
-  }
-  
-  .filter-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .filter-option {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    padding: 8px 15px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 14px;
-  }
-  
-  .filter-option:hover {
-    background: #f0f0f0;
-  }
-  
-  .filter-option.active {
-    background: #F9A826;
-    color: white;
-    border-color: #F9A826;
-  }
-  
-  .apply-filters {
-    background: #F9A826;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s;
-    width: 100%;
-    margin-top: 10px;
-  }
-  
-  .apply-filters:hover {
-    background: #E89619;
-  }
-</style>
-{% endblock %}
-
 {% block content %}
-<div class="feed-mil">
-  <!-- ДОДАНІ ФІЛЬТРИ -->
-  <section class="filters-section">
-    <h3>Фільтри</h3>
-    
-    <div class="filter-group">
-      <h4>Пропозиції</h4>
-      <div class="filter-options">
-        <div class="filter-option" data-filter="category" data-value="medicine">Медицина</div>
-        <div class="filter-option" data-filter="category" data-value="equipment">Амуніція</div>
-        <div class="filter-option" data-filter="category" data-value="drones">Дрони</div>
-        <div class="filter-option" data-filter="category" data-value="transport">Транспорт</div>
-        <div class="filter-option" data-filter="category" data-value="repair">Ремонт</div>
-      </div>
-    </div>
-    
-    <div class="filter-group">
-      <h4>Локація</h4>
-      <div class="filter-options">
-        <div class="filter-option" data-filter="location" data-value="front">Фронт</div>
-        <div class="filter-option" data-filter="location" data-value="near_rear">Близький тил</div>
-        <div class="filter-option" data-filter="location" data-value="far_rear">Далекий тил</div>
-      </div>
-    </div>
-    
-    <div class="filter-group">
-      <h4>Пріоритет</h4>
-      <div class="filter-options">
-        <div class="filter-option" data-filter="priority" data-value="high">Високий</div>
-        <div class="filter-option" data-filter="priority" data-value="medium">Середній</div>
-        <div class="filter-option" data-filter="priority" data-value="low">Низький</div>
-      </div>
-    </div>
-    
-    <button class="apply-filters">Застосувати</button>
-  </section>
+  <body>
+    <div class="feed-mil">
 
-  <!-- ІНФОРМАЦІЙНИЙ БЛОК КОРИСТУВАЧА -->
-  <section class="info-section">
-    <div class="user-profile">
-      <img src="{{ user.photo.url }}" alt="User Avatar" class="user-avatar" />
-      <div class="user-details">
-        <h2 class="user-name">
-          {{ user.get_full_name|default:user.get_username }}
-        </h2>
-        <div class="user-meta">
-          <span class="username">{{ user.email }}</span>
-          <span class="separator">|</span>
-          <span class="role">{{ user.role }}</span>
+      <!-- ІНФОРМАЦІЙНИЙ БЛОК КОРИСТУВАЧА -->
+      <section class="info-section">
+        <div class="user-profile">
+          <img src="{{ user.photo.url }}" alt="User Avatar" class="user-avatar" />
+          <div class="user-details">
+            <h2 class="user-name">
+              {{ user.get_full_name|default:user.get_username }}
+            </h2>
+            <div class="user-meta">
+              <span class="username">{{ user.email }}</span>
+              <span class="separator">|</span>
+              <span class="role">{{ user.role }}</span>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    {% if user.description %}
-      <p class="user-description">{{ user.description }}</p>
-    {% endif %}
-    <p class="join-date">Акаунт створено: {{ user.date_joined|date:"d.m.Y" }}</p>
-    <div class="action-buttons">
-      <form action="{% url 'create_request' %}" method="get" style="display:inline;">
-        <button type="submit" class="create-button">
-          <span class="button-icon">&#43;</span>
-          <span class="button-text">Створити запит</span>
-        </button>
-      </form>
-      <button onclick="window.location.href='{% url 'changing_info' %}'" class="edit-button">
-        <i style="font-size:20px" class="fa">&#xf040;</i>
-        <span class="button-text">Редагувати профіль</span>
-      </button>
-    </div>
-  </section>
+        {% if user.description %}
+          <p class="user-description">{{ user.description }}</p>
+        {% endif %}
+        <p class="join-date">Акаунт створено: {{ user.date_joined|date:"d.m.Y" }}</p>
+        <div class="action-buttons">
+          <form action="{% url 'create_request' %}" method="get" style="display:inline;">
+            <button type="submit" class="create-button">
+              <span class="button-icon">&#43;</span>
+              <span class="button-text">Створити запит</span>
+            </button>
+          </form>
+          <button onclick="window.location.href='{% url 'changing_info' %}'" class="edit-button">
+            <i style="font-size:20px" class="fa">&#xf040;</i>
+            <span class="button-text">Редагувати профіль</span>
+          </button>
+        </div>
+      </section>
 
-  <!-- АКТИВНІ ЗАПИТИ КОРИСТУВАЧА -->
-  <section class="active-block">
-    <h2 class="section-title">Активні запити</h2>
-    <div class="active-posts">
-      {% for req in active_requests %}
-        <article class="request" data-category="{{ req.help_type }}" data-location="{{ req.location }}" data-priority="{{ req.priority }}">
-          <div class="request-pic">
-            <div class="request-pic-container">
-              {% if req.photo %}
-                <img src="{{ req.photo.url }}" alt="Фото запиту" class="landing-imageicon2" style="height: 100%; width: 100%; object-fit: cover;" />
-              {% else %}
-                <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2" style="height: auto; width: auto; max-height: 100%; max-width: 100%; object-fit: contain;">
-              {% endif %}
-            </div>
-          </div>
-          <div class="request-info">
-            <h3 class="request-title">{{ req.name }}</h3>
-            <p class="progress-status">{{ req.get_status_display }}</p>
-            <div class="request-details">
-              <div class="deadline-info">
-                <p class="detail-label">дата публікації</p>
-                <p class="detail-value">{{ req.created_at|date:"d.m.Y" }}</p>
+      <!-- АКТИВНІ ЗАПИТИ КОРИСТУВАЧА -->
+      <section class="active-block">
+        <h2 class="section-title">Активні запити</h2>
+        <div class="active-posts">
+                        {% for req in active_requests %}
+                            <article class="request">
+                                <div class="request-pic">
+                                    <div class="request-pic-container">
+                                        {% if req.photo %}
+                                            <img src="{{ req.photo.url }}" alt="Фото запиту" class="landing-imageicon2" style="height: 100%; width: 100%; object-fit: cover;" />
+                                        {% else %}
+                                            <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2" style="height: auto; width: auto; max-height: 100%; max-width: 100%; object-fit: contain;">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="request-info">
+                                    <h3 class="request-title">{{ req.name }}</h3>
+                                    <p class="progress-status">{{ req.get_status_display }}</p>
+                                    <div class="request-details">
+                                        <div class="deadline-info">
+                                            <p class="detail-label">дата публікації</p>
+                                            <p class="detail-value">{{ req.created_at|date:"d.m.Y" }}</p>
+                                        </div>
+                                        <div class="volunteer-info">
+                                            <p class="detail-label">виконавець</p>
+                                            <p class="detail-value">
+                                                {% if req.executor %}
+                                                    {{ req.executor.get_full_name|default:req.executor.get_username }}
+                                                {% else %}
+                                                    Не визначено
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="action-buttons">
+                                        {% if req.executor.email %}
+                                        <button onclick="window.location.href='mailto:{{ req.executor.email }}'" class="action-button contac">Сконтактувати</button>
+                                        {% endif %}
+                                        <button onclick="window.location.href='{% url 'request_detail' req.id %}'" class="action-button confirm">Детальніше</button>
+
+                                    </div>
+                                </div>
+                            </article>
+                        {% endfor %}
+        </div>
+      </section>
+
+      <!-- ІСТОРІЯ ЗАПИТІВ (ВИКОНАНІ) -->
+      <section class="history-section">
+        <h2 class="section-title">Історія запитів</h2>
+        <div class="history-posts">
+          {% for req in history_requests %}
+            <!-- <article class="history-card">
+              <div class="history-icon">
+                <img src="{% static 'profile_page/images/img.svg' %}" alt="History Icon" class="history-icon-image" />
               </div>
-              <div class="volunteer-info">
-                <p class="detail-label">виконавець</p>
-                <p class="detail-value">
-                  {% if req.executor %}
-                    {{ req.executor.get_full_name|default:req.executor.get_username }}
-                  {% else %}
-                    Не визначено
-                  {% endif %}
-                </p>
+              <div class="history-info">
+                <div class="history-text">
+                  <h4 class="history-title">{{ req.name }}</h4>
+                  <p class="history-description">{{ req.description }}</p>
+                </div>
+                <div class="history-meta">
+                  <div class="timeline-info">
+                    <span class="meta-label">Дата:</span>
+                    <span class="meta-value">{{ req.created_at|date:"d.m.Y" }}</span>
+                  </div>
+                </div>
+                <div class="action-buttons">
+                  <button onclick="window.location.href='{% url 'request_detail' req.id %}'" class="action-button confirm">Детальніше</button>
+                </div>
               </div>
-            </div>
+            </article> -->
+            <article class="offer-card" data-created-at="{{ req.created_at|date:'Y-m-d-H-i-s' }}" data-type="{{ req.help_type }}">
+                            <div class="offer-image">
+                                {% if req.photo %}
+                                    <img src="{{ req.photo.url }}" alt="Фото запиту" class="offer-icon" style="object-fit: cover; width: 100%; height: 100%;" />
+                                {% else %}
+                                    <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer Icon" class="offer-icon">
+                                {% endif %}
+                            </div>
+                            <div class="offer-info">
+                                <div class="offer-content">
+                                    <h3 class="offer-title">{{ req.name }}</h3>
+                                    <p class="offer-description">{{ req.description }}</p>
+                                </div>
+                                <div class="offer-tags">
+                                </div>
+                                <!-- Динамічне посилання "Детальніше" -->
+                                <button onclick="window.location.href='{% url 'request_detail' req.id %}'" class="details-button">Детальніше</button>
 
-            <div class="action-buttons">
-              {% if req.executor.email %}
-              <button onclick="window.location.href='mailto:{{ req.executor.email }}'" class="action-button contac">Сконтактувати</button>
-              {% endif %}
-              <button onclick="window.location.href='{% url 'request_detail' req.id %}'" class="action-button confirm">Детальніше</button>
-            </div>
-          </div>
-        </article>
-      {% endfor %}
+                            </div>
+                            </article>
+          {% empty %}
+            <p>Немає виконаних запитів в історії.</p>
+          {% endfor %}
+        </div>
+      </section>
     </div>
-  </section>
-
-  <!-- ІСТОРІЯ ЗАПИТІВ (ВИКОНАНІ) -->
-  <section class="history-section">
-    <h2 class="section-title">Історія запитів</h2>
-    <div class="history-posts">
-      {% for req in history_requests %}
-        <article class="offer-card" data-category="{{ req.help_type }}" data-location="{{ req.location }}" data-priority="{{ req.priority }}">
-          <div class="offer-image">
-            {% if req.photo %}
-              <img src="{{ req.photo.url }}" alt="Фото запиту" class="offer-icon" style="object-fit: cover; width: 100%; height: 100%;" />
-            {% else %}
-              <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer Icon" class="offer-icon">
-            {% endif %}
-          </div>
-          <div class="offer-info">
-            <div class="offer-content">
-              <h3 class="offer-title">{{ req.name }}</h3>
-              <p class="offer-description">{{ req.description }}</p>
-            </div>
-            <div class="offer-tags">
-            </div>
-            <button onclick="window.location.href='{% url 'request_detail' req.id %}'" class="details-button">Детальніше</button>
-          </div>
-        </article>
-      {% empty %}
-        <p>Немає виконаних запитів в історії.</p>
-      {% endfor %}
-    </div>
-  </section>
-</div>
-
-{% block extra_js %}
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Обробка фільтрів
-  const filterOptions = document.querySelectorAll('.filter-option');
-  const applyButton = document.querySelector('.apply-filters');
-  
-  // Додаємо обробник кліку для кожного фільтра
-  filterOptions.forEach(option => {
-    option.addEventListener('click', function() {
-      // Для категорій (checkbox-подібна логіка)
-      if (this.dataset.filter === 'category') {
-        this.classList.toggle('active');
-      } 
-      // Для інших фільтрів (radio-подібна логіка)
-      else {
-        // Видаляємо активний клас у всіх фільтрів цієї групи
-        document.querySelectorAll(`.filter-option[data-filter="${this.dataset.filter}"]`).forEach(opt => {
-          opt.classList.remove('active');
-        });
-        // Додаємо активний клас до обраного фільтра
-        this.classList.add('active');
-      }
-    });
-  });
-  
-  // Функція фільтрації
-  function applyFilters() {
-    const activeFilters = {
-      categories: [],
-      location: null,
-      priority: null
-    };
-    
-    // Збираємо активні фільтри
-    document.querySelectorAll('.filter-option.active').forEach(option => {
-      if (option.dataset.filter === 'category') {
-        activeFilters.categories.push(option.dataset.value);
-      } else if (option.dataset.filter === 'location') {
-        activeFilters.location = option.dataset.value;
-      } else if (option.dataset.filter === 'priority') {
-        activeFilters.priority = option.dataset.value;
-      }
-    });
-    
-    // Фільтруємо активні запити
-    filterRequests('.request', activeFilters);
-    // Фільтруємо історію запитів
-    filterRequests('.offer-card', activeFilters);
-  }
-  
-  // Функція для фільтрації елементів
-  function filterRequests(selector, filters) {
-    const allRequests = document.querySelectorAll(selector);
-    
-    allRequests.forEach(request => {
-      const category = request.dataset.category;
-      const location = request.dataset.location;
-      const priority = request.dataset.priority;
-      
-      let shouldShow = true;
-      
-      // Перевірка категорій
-      if (filters.categories.length > 0 && !filters.categories.includes(category)) {
-        shouldShow = false;
-      }
-      
-      // Перевірка локації
-      if (filters.location && filters.location !== location) {
-        shouldShow = false;
-      }
-      
-      // Перевірка пріоритету
-      if (filters.priority && filters.priority !== priority) {
-        shouldShow = false;
-      }
-      
-      // Показуємо/ховаємо елемент
-      request.style.display = shouldShow ? 'block' : 'none';
-    });
-  }
-  
-  // Обробка кнопки "Застосувати"
-  applyButton.addEventListener('click', applyFilters);
-  
-  // Застосовуємо фільтри при завантаженні сторінки (якщо є в URL)
-  if (window.location.search.includes('filter=')) {
-    // Тут можна додати логіку для відновлення фільтрів з URL
-    applyFilters();
-  }
-});
-</script>
-{% endblock %}
-{% endblock %}
+    <script src="{% static 'profile_page/script.js' %}" defer></script>
+  </body>
+{% endblock %} добав ось цю частину з виприавленими фільтрами сюди але нічого не забироай але щоб все працювало
