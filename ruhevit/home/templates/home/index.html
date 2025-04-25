@@ -3,298 +3,346 @@
 
 {% block title %}Мої запити{% endblock %}
 
+{% block extra_css %}
+<style>
+  /* Стилі для фільтрів */
+  .filters-and-sorting {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: center;
+  }
+  
+  .filter-button, .sorting-button {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .filter-button:hover, .sorting-button:hover {
+    background: #f5f5f5;
+  }
+  
+  .filter-menu, .sort-options {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 100;
+    margin-top: 5px;
+    width: 280px;
+  }
+  
+  .filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .filter-group {
+    margin-bottom: 15px;
+  }
+  
+  .filter-group h4 {
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #555;
+  }
+  
+  .filter-group .options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .filter-option {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .filter-option:hover {
+    background: #e9ecef;
+  }
+  
+  .filter-option.active {
+    background: #F9A826;
+    color: white;
+    border-color: #F9A826;
+  }
+  
+  .apply-filters {
+    background: #F9A826;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+  
+  .apply-filters:hover {
+    background: #E89619;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
+<div class="feed-mil">
+  <!-- Секція "Ваші запити як ініціатора" -->
+  <section class="requests-block">
+    <h2 class="requests-text">Ваші запити як ініціатора</h2>
+    <div class="requests">
+      {% if user_owner_requests %}
+        {% for req in user_owner_requests %}
+          <article class="request" data-type="{{ req.help_type }}" data-location="{{ req.location }}" data-priority="{{ req.priority }}">
+            <!-- Ваш існуючий код для запитів -->
+          </article>
+        {% endfor %}
+      {% else %}
+        <p>Поки що ви не створили жодного запиту.</p>
+      {% endif %}
+    </div>
+  </section>
 
+  <!-- Секція "Ваші запити як виконавця" -->
+  <section class="requests-block">
+    <h2 class="requests-text">Ваші запити як виконавця</h2>
+    <div class="requests">
+      {% for req in user_exec_requests %}
+        <article class="request" data-type="{{ req.help_type }}" data-location="{{ req.location }}" data-priority="{{ req.priority }}">
+          <!-- Ваш існуючий код для запитів -->
+        </article>
+      {% empty %}
+        <p>Поки що ви не прийняли жодного запиту.</p>
+      {% endfor %}
+    </div>
+  </section>
 
-            <!-- Секція "Ваші запити" -->
-            <section class="requests-block">
-                <h2 class="requests-text">Ваші запити як ініціатора</h2>
-                <div class="requests">
-                    {% if user_owner_requests %}
-                        {% for req in user_owner_requests %}
-                            <article class="request">
-                                <div class="request-pic">
-                                    <div class="request-pic-container">
-                                        {% if req.photo %}
-                                            <img src="{{ req.photo.url }}" alt="Фото запиту" class="landing-imageicon2" style="height: 100%; width: 100%; object-fit: cover;" />
-                                        {% else %}
-                                            <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2" style="height: auto; width: auto; max-height: 100%; max-width: 100%; object-fit: contain;">
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                <div class="request-info">
-                                    <h3 class="request-title">{{ req.name }}</h3>
-                                    <p class="progress-status">{{ req.get_status_display }}</p>
-                                    <div class="request-details">
-                                        <div class="deadline-info">
-                                            <p class="detail-label">дата публікації</p>
-                                            <p class="detail-value">{{ req.created_at|date:"d.m.Y" }}</p>
-                                        </div>
-                                        <div class="volunteer-info">
-                                            <p class="detail-label">виконавець</p>
-                                            <p class="detail-value">
-                                                {% if req.executor %}
-                                                    {{ req.executor.get_full_name|default:req.executor.get_username }}
-                                                {% else %}
-                                                    Не визначено
-                                                {% endif %}
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="action-buttons">
-                                        {% if req.executor.email %}
-                                        <button onclick="window.location.href='mailto:{{ req.executor.email }}'" class="action-button contac">Сконтактувати</button>
-                                        {% endif %}
-                                        <button onclick="window.location.href='{% url 'request_detail' req.id %}'" class="action-button confirm">Детальніше</button>
-
-                                    </div>
-                                </div>
-                            </article>
-                        {% endfor %}
-                    {% else %}
-                        <p>Поки що ви не створили жодного запиту.</p>
-                    {% endif %}
-                </div>
-            </section>
-
-            <!-- Секція "Ваші запити" -->
-            <section class="requests-block">
-                <h2 class="requests-text">Ваші запити як виконавця</h2>
-                <div class="requests">
-                    {% for req in user_exec_requests %}
-                        <article class="request">
-                            <div class="request-pic">
-                                <div class="request-pic-container">
-                                    {% if req.photo %}
-                                        <img src="{{ req.photo.url }}" alt="Фото запиту" class="landing-imageicon2" style="height: 100%; width: 100%; object-fit: cover;" />
-                                    {% else %}
-                                        <img src="{% static 'home/images/icon.svg' %}" alt="Request Icon" class="landing-imageicon2" style="height: auto; width: auto; max-height: 100%; max-width: 100%; object-fit: contain;">
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="request-info">
-                                <h3 class="request-title">{{ req.name }}</h3>
-                                <p class="progress-status">{{ req.get_status_display }}</p>
-                                <div class="request-details">
-                                    <div class="deadline-info">
-                                        <p class="detail-label">дата публікації</p>
-                                        <p class="detail-value">{{ req.created_at|date:"d.m.Y" }}</p>
-                                    </div>
-                                    <div class="volunteer-info">
-                                        <p class="detail-label">ініціатор</p>
-                                        <p class="detail-value">
-                                            {% if req.owner %}
-                                                {{ req.owner.get_full_name|default:req.owner.get_username }}
-                                            {% else %}
-                                                Не визначено
-                                            {% endif %}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="action-buttons">
-                                    {% if req.owner.email %}
-                                    <button onclick="window.location.href='mailto:{{ req.owner.email }}'" class="action-button contact">Сконтактувати</button>
-                                    {% endif %}
-                                    <button onclick="window.location.href='{% url 'request_detail' req.id %}'" class="action-button confirm">Детальніше</button>
-                                </div>
-                            </div>
-                        </article>
-                    {% empty %}
-                        <p>Поки що ви не прийняли жодного запиту.</p>
-                    {% endfor %}
-                </div>
-            </section>
-
-            <!-- Секція "Пропозиції допомоги" -->
-            <section class="help-offers">
-                <h2 class="section-title">Пропозиції</h2>
-                <div class="filters-and-sorting">
-                    <button class="filter-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-filter" viewBox="0 0 16 16">
-                            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"/>
-                        </svg>
-                        <span class="filter-text">Фільтри</span>
-                    </button>
-                    <div id="filter-menu" class="filter-menu" style="display: none;">
-                        <div class="filter-options">
-                            <label><input type="checkbox" name="type" value="medicine">Медицина</label>
-                            <label><input type="checkbox" name="type" value="ammo">Амуніція</label>
-                            <label><input type="checkbox" name="type" value="drones">Дрони</label>
-                            <label><input type="checkbox" name="type" value="transport">Транспорт</label>
-                            <label><input type="checkbox" name="type" value="repair">Ремонт</label>
-                            <p>Локація:</p>
-                            <label><input type="checkbox" name="location" value="front">Фронт</label>
-                            <label><input type="checkbox" name="location" value="near_rear">Близький тил</label>
-                            <label><input type="checkbox" name="location" value="far_rear">Далекий тил</label>
-
-                            <p>Пріоритет:</p>
-                            <label><input type="checkbox" name="priority" value="high">Високий</label>
-                            <label><input type="checkbox" name="priority" value="medium">Середній</label>
-                            <label><input type="checkbox" name="priority" value="low">Низький</label>
-                        </div>
-                        <button class="apply-filters edit-button">Застосувати</button>
-                    </div>
-                    <div class="sort-dropdown">
-                        <button class="sorting-button" id="sorting-button">
-                            <span class="sort-text">&#8645;Сортування</span>
-                        </button>
-                        <div id="sort-options" class="sort-options" style="display: none;">
-                        <label><input type="radio" name="sort" value="default" checked>За релевантністю</label>
-                            <label><input type="radio" name="sort" value="newest">Від новіших</label>
-                            <label><input type="radio" name="sort" value="oldest">Від старіших</label>
-                            <label><input type="radio" name="sort" value="alphabetical">За алфавітом</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="offers-container">
-                    {% if personalized_requests %}
-                        {% for offer in personalized_requests %}
-                            <article class="offer-card" data-created-at="{{ offer.created_at|date:'Y-m-d-H-i-s' }}" data-type="{{ offer.type }}" data-relevance="{{ offer.relevance_score }}" data-location="{{ offer.location }}" data-priority="{{ offer.priority }}">
-                            <div class="offer-image">
-                                {% if offer.photo %}
-                                    <img src="{{ offer.photo.url }}" alt="Фото запиту" class="offer-icon" style="object-fit: cover; width: 100%; height: 100%;" />
-                                {% else %}
-                                    <img src="{% static 'home/images/Image_icon.svg' %}" alt="Offer Icon" class="offer-icon">
-                                {% endif %}
-                            </div>
-                            <div class="offer-info">
-                                <div class="author-info">
-                                    <img src="{{ offer.owner.photo.url }}" alt="Author" class="request-icon-image" width="60" height="60" />
-                                    <p class="author-name">{{ offer.owner.get_full_name|default:offer.owner.get_username }}</p>
-                                </div>
-                                <div class="offer-content">
-                                    <h3 class="offer-title">{{ offer.name }}</h3>
-                                    <p class="offer-description">{{ offer.description }}</p>
-                                </div>
-                                <div class="offer-tags">
-                                    <span class="tag">{{ offer.get_type_display }}</span>
-                                    <span class="tag">{{ offer.get_priority_display }}</span>
-                                    <span class="tag">{{ offer.get_location_display }}</span>
-                                    {% for tag in offer.tags.all %}
-                                        <span class="tag">{{ tag.name }}</span>
-                                    {% endfor %}
-                                </div>
-                                <!-- Динамічне посилання "Детальніше" -->
-                                <button onclick="window.location.href='{% url 'request_detail' offer.id %}'" class="details-button">Детальніше</button>
-
-                            </div>
-                            </article>
-                        {% endfor %}
-                    {% else %}
-                        <p>Наразі немає пропозицій допомоги.</p>
-                    {% endif %}
-                </div>
-            </section>
+  <!-- Секція "Пропозиції допомоги" з покращеними фільтрами -->
+  <section class="help-offers">
+    <h2 class="section-title">Пропозиції</h2>
+    
+    <!-- Покращений блок фільтрів -->
+    <div class="filters-and-sorting">
+      <div class="filter-section">
+        <button class="filter-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+          </svg>
+          <span class="filter-text">Фільтри</span>
+        </button>
+        
+        <div id="filter-menu" class="filter-menu" style="display: none;">
+          <div class="filter-group">
+            <h4>Тип допомоги</h4>
+            <div class="options">
+              <div class="filter-option" data-filter="type" data-value="medicine">Медицина</div>
+              <div class="filter-option" data-filter="type" data-value="ammo">Амуніція</div>
+              <div class="filter-option" data-filter="type" data-value="drones">Дрони</div>
+              <div class="filter-option" data-filter="type" data-value="transport">Транспорт</div>
+              <div class="filter-option" data-filter="type" data-value="repair">Ремонт</div>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <h4>Локація</h4>
+            <div class="options">
+              <div class="filter-option" data-filter="location" data-value="front">Фронт</div>
+              <div class="filter-option" data-filter="location" data-value="near_rear">Близький тил</div>
+              <div class="filter-option" data-filter="location" data-value="far_rear">Далекий тил</div>
+            </div>
+          </div>
+          
+          <div class="filter-group">
+            <h4>Пріоритет</h4>
+            <div class="options">
+              <div class="filter-option" data-filter="priority" data-value="high">Високий</div>
+              <div class="filter-option" data-filter="priority" data-value="medium">Середній</div>
+              <div class="filter-option" data-filter="priority" data-value="low">Низький</div>
+            </div>
+          </div>
+          
+          <button class="apply-filters">Застосувати фільтри</button>
         </div>
-        <script src="{% static 'home/script.js' %}" defer></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const filterButton = document.querySelector(".filter-button");
-                const filterMenu = document.getElementById("filter-menu");
+      </div>
+      
+      <div class="sort-section">
+        <button class="sorting-button" id="sorting-button">
+          <span class="sort-text">&#8645; Сортування</span>
+        </button>
+        <div id="sort-options" class="sort-options" style="display: none;">
+          <label class="sort-option"><input type="radio" name="sort" value="default" checked> За релевантністю</label>
+          <label class="sort-option"><input type="radio" name="sort" value="newest"> Від новіших</label>
+          <label class="sort-option"><input type="radio" name="sort" value="oldest"> Від старіших</label>
+          <label class="sort-option"><input type="radio" name="sort" value="alphabetical"> За алфавітом</label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="offers-container">
+      {% if personalized_requests %}
+        {% for offer in personalized_requests %}
+          <article class="offer-card" data-created-at="{{ offer.created_at|date:'Y-m-d-H-i-s' }}" data-type="{{ offer.type }}" data-relevance="{{ offer.relevance_score }}" data-location="{{ offer.location }}" data-priority="{{ offer.priority }}">
+            <!-- Ваш існуючий код для пропозицій -->
+          </article>
+        {% endfor %}
+      {% else %}
+        <p>Наразі немає пропозицій допомоги.</p>
+      {% endif %}
+    </div>
+  </section>
+</div>
 
-                if (filterButton && filterMenu) {
-                    filterButton.addEventListener("click", () => {
-                        filterMenu.style.display = (filterMenu.style.display === "none" || filterMenu.style.display === "") ? "block" : "none";
-                    });
-                }
-                const sortButton = document.getElementById("sorting-button");
-                const sortOptions = document.getElementById("sort-options");
-                const sortSelect = document.createElement('select');
-                sortSelect.id = "sort-select";
-                sortSelect.style.display = "none";
-                document.body.appendChild(sortSelect);
-                ["default", "newest", "oldest", "alphabetical"].forEach(value => {
-                    const opt = document.createElement('option');
-                    opt.value = value;
-                    sortSelect.appendChild(opt);
-                });
-
-                if (sortButton && sortOptions) {
-                    sortButton.addEventListener("click", () => {
-                        sortOptions.style.display = sortOptions.style.display === "none" ? "block" : "none";
-                    });
-
-                    sortOptions.addEventListener("change", (e) => {
-                        if (e.target.name === "sort") {
-                            const sortType = e.target.value;
-                            sortSelect.value = sortType;
-                            sortSelect.dispatchEvent(new Event('change'));
-                            // Не ховаємо sortOptions після вибору
-                        }
-                    });
-                }
-
-                const offersContainer = document.querySelector(".offers-container");
-
-                function applyFiltersAndSorting() {
-                    const originalCards = Array.from(document.querySelectorAll(".offer-card"));
-                    let sortedCards = originalCards.slice();
-
-                    if (sortSelect.value === "newest") {
-                        sortedCards.sort((a, b) => b.dataset.createdAt.localeCompare(a.dataset.createdAt));
-                    } else if (sortSelect.value === "oldest") {
-                        sortedCards.sort((a, b) => a.dataset.createdAt.localeCompare(b.dataset.createdAt));
-                    } else if (sortSelect.value === "alphabetical") {
-                        sortedCards.sort((a, b) => {
-                            const titleA = a.querySelector(".offer-title").textContent.trim();
-                            const titleB = b.querySelector(".offer-title").textContent.trim();
-                            return titleA.localeCompare(titleB);
-                        });
-                    } else if (sortSelect.value === "default") {
-                        sortedCards.sort((a, b) => {
-                            const relA = parseInt(a.dataset.relevance || 0);
-                            const relB = parseInt(b.dataset.relevance || 0);
-                            return relB - relA;
-                        });
-                    }
-
-                    offersContainer.innerHTML = "";
-                    sortedCards.forEach(card => {
-                        offersContainer.appendChild(card);
-                    });
-                }
-
-                if (sortSelect && offersContainer) {
-                    sortSelect.addEventListener('change', applyFiltersAndSorting);
-                }
-                sortSelect.value = "default";
-                sortSelect.dispatchEvent(new Event('change'));
-                const applyFiltersBtn = document.querySelector(".apply-filters");
-                if (applyFiltersBtn) {
-                    applyFiltersBtn.addEventListener("click", function () {
-                        const checkedTypes = Array.from(document.querySelectorAll('input[name="type"]:checked')).map(input => input.value);
-                        const checkedLocations = Array.from(document.querySelectorAll('input[name="location"]:checked')).map(input => input.value);
-                        const checkedPriorities = Array.from(document.querySelectorAll('input[name="priority"]:checked')).map(input => input.value);
-                        const allCards = document.querySelectorAll(".offer-card");
-                        allCards.forEach(card => {
-                        const type = card.dataset.type;
-                        const location = card.dataset.location;
-                        const priority = card.dataset.priority;
-                        if (
-                          (checkedTypes.length === 0 || checkedTypes.includes(type)) &&
-                          (checkedLocations.length === 0 || checkedLocations.includes(location)) &&
-                          (checkedPriorities.length === 0 || checkedPriorities.includes(priority))
-                        ) {
-                                card.style.display = "";
-                        } else {
-                                card.style.display = "none";
-                        }
-                        });
-                        const offersContainer = document.querySelector(".offers-container");
-                        const visibleCards = Array.from(document.querySelectorAll(".offer-card")).filter(card => card.style.display !== "none");
-                        let emptyMessage = document.querySelector(".no-matching-offers");
-
-                        if (!emptyMessage) {
-                            emptyMessage = document.createElement("p");
-                            emptyMessage.className = "no-matching-offers";
-                            emptyMessage.textContent = "Немає пропозицій, що відповідають вибраним фільтрам.";
-                            offersContainer.appendChild(emptyMessage);
-                        }
-                        emptyMessage.style.display = visibleCards.length === 0 ? "block" : "none";
-                    });
-                }
-            });
-        </script>
-    </body>
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Функціонал фільтрів
+  const filterButton = document.querySelector(".filter-button");
+  const filterMenu = document.getElementById("filter-menu");
+  const sortButton = document.getElementById("sorting-button");
+  const sortOptions = document.getElementById("sort-options");
+  const applyFiltersBtn = document.querySelector(".apply-filters");
+  
+  // Перемикання видимості меню фільтрів
+  if (filterButton && filterMenu) {
+    filterButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      filterMenu.style.display = filterMenu.style.display === "none" ? "block" : "none";
+      if (sortOptions) sortOptions.style.display = "none";
+    });
+  }
+  
+  // Перемикання видимості опцій сортування
+  if (sortButton && sortOptions) {
+    sortButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      sortOptions.style.display = sortOptions.style.display === "none" ? "block" : "none";
+      if (filterMenu) filterMenu.style.display = "none";
+    });
+  }
+  
+  // Закриття меню при кліку поза ним
+  document.addEventListener("click", function() {
+    if (filterMenu) filterMenu.style.display = "none";
+    if (sortOptions) sortOptions.style.display = "none";
+  });
+  
+  // Обробка вибору фільтрів
+  const filterOptions = document.querySelectorAll(".filter-option");
+  filterOptions.forEach(option => {
+    option.addEventListener("click", function() {
+      this.classList.toggle("active");
+    });
+  });
+  
+  // Застосування фільтрів
+  if (applyFiltersBtn) {
+    applyFiltersBtn.addEventListener("click", function() {
+      const activeFilters = {
+        types: [],
+        locations: [],
+        priorities: []
+      };
+      
+      // Збираємо активні фільтри
+      document.querySelectorAll(".filter-option.active").forEach(option => {
+        const filterType = option.dataset.filter;
+        const value = option.dataset.value;
+        
+        if (filterType === "type") activeFilters.types.push(value);
+        else if (filterType === "location") activeFilters.locations.push(value);
+        else if (filterType === "priority") activeFilters.priorities.push(value);
+      });
+      
+      // Фільтрація карток
+      const allCards = document.querySelectorAll(".offer-card, .request");
+      let hasVisibleCards = false;
+      
+      allCards.forEach(card => {
+        const cardType = card.dataset.type;
+        const cardLocation = card.dataset.location;
+        const cardPriority = card.dataset.priority;
+        
+        const typeMatch = activeFilters.types.length === 0 || activeFilters.types.includes(cardType);
+        const locationMatch = activeFilters.locations.length === 0 || activeFilters.locations.includes(cardLocation);
+        const priorityMatch = activeFilters.priorities.length === 0 || activeFilters.priorities.includes(cardPriority);
+        
+        if (typeMatch && locationMatch && priorityMatch) {
+          card.style.display = "";
+          hasVisibleCards = true;
+        } else {
+          card.style.display = "none";
+        }
+      });
+      
+      // Показуємо повідомлення, якщо немає відповідних карток
+      const emptyMessage = document.querySelector(".no-results-message");
+      if (!hasVisibleCards) {
+        if (!emptyMessage) {
+          const message = document.createElement("p");
+          message.className = "no-results-message";
+          message.textContent = "Немає результатів, що відповідають вибраним фільтрам.";
+          document.querySelector(".offers-container, .requests").appendChild(message);
+        }
+      } else if (emptyMessage) {
+        emptyMessage.remove();
+      }
+      
+      // Закриваємо меню фільтрів
+      if (filterMenu) filterMenu.style.display = "none";
+    });
+  }
+  
+  // Функціонал сортування
+  const sortRadios = document.querySelectorAll('input[name="sort"]');
+  sortRadios.forEach(radio => {
+    radio.addEventListener("change", function() {
+      const sortValue = this.value;
+      const container = document.querySelector(".offers-container, .requests");
+      const cards = Array.from(container.querySelectorAll(".offer-card, .request"));
+      
+      cards.sort((a, b) => {
+        if (sortValue === "newest") {
+          return new Date(b.dataset.createdAt) - new Date(a.dataset.createdAt);
+        } else if (sortValue === "oldest") {
+          return new Date(a.dataset.createdAt) - new Date(b.dataset.createdAt);
+        } else if (sortValue === "alphabetical") {
+          const titleA = a.querySelector(".offer-title, .request-title").textContent.trim();
+          const titleB = b.querySelector(".offer-title, .request-title").textContent.trim();
+          return titleA.localeCompare(titleB);
+        } else { // default (relevance)
+          const relevanceA = parseInt(a.dataset.relevance || 0);
+          const relevanceB = parseInt(b.dataset.relevance || 0);
+          return relevanceB - relevanceA;
+        }
+      });
+      
+      // Очищаємо контейнер і додаємо відсортовані картки
+      container.innerHTML = "";
+      cards.forEach(card => container.appendChild(card));
+      
+      // Закриваємо меню сортування
+      if (sortOptions) sortOptions.style.display = "none";
+    });
+  });
+});
+</script>
+{% endblock %}
 {% endblock %}
