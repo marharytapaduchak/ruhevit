@@ -272,7 +272,7 @@ h2 {
     font-weight: 500;
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
     .navbar-right {
       display: flex;
       flex-direction: column;
@@ -288,7 +288,7 @@ h2 {
     .navbar-right form {
       width: 100%;
       display: flex;
-      justify-content: flex-end; /* left-align */
+      justify-content: flex-end; 
       margin-top: 4px;
     }
   
@@ -298,4 +298,4 @@ h2 {
       white-space: nowrap;
       border-radius: 10px;
     }
-  }
+  } */
