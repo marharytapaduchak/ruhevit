@@ -1,8 +1,6 @@
-from django.http import JsonResponse
-from django.views.decorators.http import require_GET
+from django.db.models import Q
 from django.shortcuts import render
 from requests.models import Request
-from django.contrib.auth.decorators import login_required
 
 
 from requests.models import Request
@@ -95,6 +93,19 @@ def custom_error_view(request, error_code=500, error_message='Виникла п�
 
 
 def search_requests(request):
-    query = request.GET.get('q', '')
-    results = Request.objects.filter(name__icontains=query) if query else []
+    query = request.GET.get('q', '').strip()
+    results = []
+
+    if query:
+        results = Request.objects.filter(
+            Q(name__icontains=query) |
+            Q(description__icontains=query) |
+            Q(owner__username__icontains=query) |
+            Q(owner__first_name__icontains=query) |
+            Q(owner__last_name__icontains=query) |
+            Q(executor__username__icontains=query) |
+            Q(executor__first_name__icontains=query) |
+            Q(executor__last_name__icontains=query)
+        ).distinct()
+
     return render(request, 'core/search_results.html', {'results': results, 'query': query})

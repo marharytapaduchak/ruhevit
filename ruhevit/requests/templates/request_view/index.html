@@ -26,21 +26,23 @@
         <article class="report-content">
           {{ request_obj.description|linebreaksbr }}
           {% if request_obj.photo %}
-            <div class="main-photo">
-              <img src="{{ request_obj.photo.url }}" alt="Основне фото запиту" style="max-width: 100%; height: auto; margin-top: 15px;" />
+          <section class="image-gallery">
+            <div class="gallery-item">
+              <img src="{{ request_obj.photo.url }}" alt="Основне фото запиту" style="max-width: 100%; height: auto; margin: 0;" />
             </div>
+            {% else %}
+            <p>Немає зображень</p>
           {% endif %}
+            <!-- {% for image in request_obj.images.all %}
+              <div class="gallery-item">
+                <img src="{{ image.url }}" alt="Запит фото" class="gallery-image" style="max-width: 300px; height: auto;" />
+              </div>
+            {% empty %}
+              <p>Немає зображень</p>
+            {% endfor %} -->
+          </section>
         </article>
 
-        <section class="image-gallery">
-          {% for image in request_obj.images.all %}
-            <div class="gallery-item">
-              <img src="{{ image.url }}" alt="Запит фото" class="gallery-image" style="max-width: 300px; height: auto;" />
-            </div>
-          {% empty %}
-            <p>Немає зображень</p>
-          {% endfor %}
-        </section>
 
         <div class="meta-info">
           <div class="offer-tags">
