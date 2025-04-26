@@ -2,6 +2,8 @@
 {% load static %}
 
 {% block content %}
+<div class="main-content">
+
 <h2>Результати пошуку для: "{{ query }}"</h2>
 
 <div class="card-grid">
@@ -30,5 +32,6 @@
   {% empty %}
     Нічого не знайдено.
   {% endfor %}
+</div>
 </div>
 {% endblock %}

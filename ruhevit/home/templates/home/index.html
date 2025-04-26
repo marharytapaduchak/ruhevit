@@ -13,7 +13,7 @@
     margin-bottom: 25px;
     align-items: center;
   }
-  
+
   .filter-button, .sorting-button {
     background: #fff;
     border: 1px solid #ddd;
@@ -25,11 +25,11 @@
     cursor: pointer;
     transition: all 0.3s;
   }
-  
+
   .filter-button:hover, .sorting-button:hover {
     background: #f5f5f5;
   }
-  
+
   .filter-menu, .sort-options {
     position: absolute;
     background: white;
@@ -41,29 +41,29 @@
     margin-top: 5px;
     width: 280px;
   }
-  
+
   .filter-options {
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
-  
+
   .filter-group {
     margin-bottom: 15px;
   }
-  
+
   .filter-group h4 {
     margin-bottom: 8px;
     font-size: 15px;
     color: #555;
   }
-  
+
   .filter-group .options {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
-  
+
   .filter-option {
     background: #f8f9fa;
     border: 1px solid #ddd;
@@ -73,17 +73,17 @@
     cursor: pointer;
     transition: all 0.3s;
   }
-  
+
   .filter-option:hover {
     background: #e9ecef;
   }
-  
+
   .filter-option.active {
     background: #F9A826;
     color: white;
     border-color: #F9A826;
   }
-  
+
   .apply-filters {
     background: #F9A826;
     color: white;
@@ -96,7 +96,7 @@
     margin-top: 10px;
     font-weight: 500;
   }
-  
+
   .apply-filters:hover {
     background: #E89619;
   }
@@ -104,7 +104,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="feed-mil">
+<div class="main-content">
   <!-- Секція "Ваші запити як ініціатора" -->
   <section class="requests-block">
     <h2 class="requests-text">Ваші запити як ініціатора</h2>
@@ -137,8 +137,8 @@
 
   <!-- Секція "Пропозиції допомоги" з покращеними фільтрами -->
   <section class="help-offers">
-    <h2 class="section-title">Пропозиції</h2>
-    
+    <h2 class="requests-text">Пропозиції</h2>
+
     <!-- Покращений блок фільтрів -->
     <div class="filters-and-sorting">
       <div class="filter-section">
@@ -148,7 +148,7 @@
           </svg>
           <span class="filter-text">Фільтри</span>
         </button>
-        
+
         <div id="filter-menu" class="filter-menu" style="display: none;">
           <div class="filter-group">
             <h4>Тип допомоги</h4>
@@ -160,7 +160,7 @@
               <div class="filter-option" data-filter="type" data-value="repair">Ремонт</div>
             </div>
           </div>
-          
+
           <div class="filter-group">
             <h4>Локація</h4>
             <div class="options">
@@ -169,7 +169,7 @@
               <div class="filter-option" data-filter="location" data-value="far_rear">Далекий тил</div>
             </div>
           </div>
-          
+
           <div class="filter-group">
             <h4>Пріоритет</h4>
             <div class="options">
@@ -178,11 +178,11 @@
               <div class="filter-option" data-filter="priority" data-value="low">Низький</div>
             </div>
           </div>
-          
+
           <button class="apply-filters">Застосувати фільтри</button>
         </div>
       </div>
-      
+
       <div class="sort-section">
         <button class="sorting-button" id="sorting-button">
           <span class="sort-text">&#8645; Сортування</span>
@@ -195,7 +195,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="offers-container">
       {% if personalized_requests %}
         {% for offer in personalized_requests %}
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const sortButton = document.getElementById("sorting-button");
   const sortOptions = document.getElementById("sort-options");
   const applyFiltersBtn = document.querySelector(".apply-filters");
-  
+
   // Перемикання видимості меню фільтрів
   if (filterButton && filterMenu) {
     filterButton.addEventListener("click", (e) => {
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (sortOptions) sortOptions.style.display = "none";
     });
   }
-  
+
   // Перемикання видимості опцій сортування
   if (sortButton && sortOptions) {
     sortButton.addEventListener("click", (e) => {
@@ -237,13 +237,13 @@ document.addEventListener("DOMContentLoaded", function() {
       if (filterMenu) filterMenu.style.display = "none";
     });
   }
-  
+
   // Закриття меню при кліку поза ним
   document.addEventListener("click", function() {
     if (filterMenu) filterMenu.style.display = "none";
     if (sortOptions) sortOptions.style.display = "none";
   });
-  
+
   // Обробка вибору фільтрів
   const filterOptions = document.querySelectorAll(".filter-option");
   filterOptions.forEach(option => {
@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.classList.toggle("active");
     });
   });
-  
+
   // Застосування фільтрів
   if (applyFiltersBtn) {
     applyFiltersBtn.addEventListener("click", function() {
@@ -260,30 +260,30 @@ document.addEventListener("DOMContentLoaded", function() {
         locations: [],
         priorities: []
       };
-      
+
       // Збираємо активні фільтри
       document.querySelectorAll(".filter-option.active").forEach(option => {
         const filterType = option.dataset.filter;
         const value = option.dataset.value;
-        
+
         if (filterType === "type") activeFilters.types.push(value);
         else if (filterType === "location") activeFilters.locations.push(value);
         else if (filterType === "priority") activeFilters.priorities.push(value);
       });
-      
+
       // Фільтрація карток
       const allCards = document.querySelectorAll(".offer-card, .request");
       let hasVisibleCards = false;
-      
+
       allCards.forEach(card => {
         const cardType = card.dataset.type;
         const cardLocation = card.dataset.location;
         const cardPriority = card.dataset.priority;
-        
+
         const typeMatch = activeFilters.types.length === 0 || activeFilters.types.includes(cardType);
         const locationMatch = activeFilters.locations.length === 0 || activeFilters.locations.includes(cardLocation);
         const priorityMatch = activeFilters.priorities.length === 0 || activeFilters.priorities.includes(cardPriority);
-        
+
         if (typeMatch && locationMatch && priorityMatch) {
           card.style.display = "";
           hasVisibleCards = true;
@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", function() {
           card.style.display = "none";
         }
       });
-      
+
       // Показуємо повідомлення, якщо немає відповідних карток
       const emptyMessage = document.querySelector(".no-results-message");
       if (!hasVisibleCards) {
@@ -304,12 +304,12 @@ document.addEventListener("DOMContentLoaded", function() {
       } else if (emptyMessage) {
         emptyMessage.remove();
       }
-      
+
       // Закриваємо меню фільтрів
       if (filterMenu) filterMenu.style.display = "none";
     });
   }
-  
+
   // Функціонал сортування
   const sortRadios = document.querySelectorAll('input[name="sort"]');
   sortRadios.forEach(radio => {
@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const sortValue = this.value;
       const container = document.querySelector(".offers-container, .requests");
       const cards = Array.from(container.querySelectorAll(".offer-card, .request"));
-      
+
       cards.sort((a, b) => {
         if (sortValue === "newest") {
           return new Date(b.dataset.createdAt) - new Date(a.dataset.createdAt);
@@ -333,11 +333,11 @@ document.addEventListener("DOMContentLoaded", function() {
           return relevanceB - relevanceA;
         }
       });
-      
+
       // Очищаємо контейнер і додаємо відсортовані картки
       container.innerHTML = "";
       cards.forEach(card => container.appendChild(card));
-      
+
       // Закриваємо меню сортування
       if (sortOptions) sortOptions.style.display = "none";
     });

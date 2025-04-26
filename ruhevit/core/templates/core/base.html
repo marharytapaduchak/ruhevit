@@ -13,33 +13,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
     <link rel="stylesheet" href="{% static 'changing_info/css/styles.css' %}">
-    
+
 </head>
 
 <body>
-        <header class="navbar">
-            <div class="search-and-logo">
-                <h1 class="logo" onclick='location.href="{% url 'home' %}"' style="cursor:pointer;">Ругевіт</h1>
+        <div class="main-content">
+            <header class="navbar">
+                <div class="search-and-logo">
+                    <h1 class="logo" onclick='location.href="{% url 'home' %}"' style="cursor:pointer;">Ругевіт</h1>
+                    {% if user.is_authenticated %}
+                    <div class="search">
+                        <i class="fa fa-search search-icon"></i>
+                        <input id="search-input" type="text" placeholder="Пошук"  style="border-style: none;"/>
+                      </div>
+                        <!-- <input id="search-input" type="text" placeholder="Пошук" class="search"  style="border-style: none;" /> -->
+                    {% endif %}
+                </div>
                 {% if user.is_authenticated %}
-                <div class="search">
-                    <i class="fa fa-search search-icon"></i>
-                    <input id="search-input" type="text" placeholder="Пошук"  style="border-style: none;"/>
-                  </div>
-                    <!-- <input id="search-input" type="text" placeholder="Пошук" class="search"  style="border-style: none;" /> -->
+                <div class="navbar-right">
+                <a href="{% url 'profile_page' %}" class="profile-icon">
+                    <img src="{{ user.photo.url }}" alt="Profile" class="request-icon-image" />
+                </a>
+                <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-button">Вийти</button>
+                </form>
+                </div>
                 {% endif %}
-            </div>
-            {% if user.is_authenticated %}
-            <div class="navbar-right">
-            <a href="{% url 'profile_page' %}" class="profile-icon">
-                <img src="{{ user.photo.url }}" alt="Profile" class="request-icon-image" />
-            </a>
-            <form action="{% url 'logout' %}" method="post" style="display: inline;">
-                    {% csrf_token %}
-                    <button type="submit" class="logout-button">Вийти</button>
-            </form>
-            </div>
-            {% endif %}
-        </header>
+            </header>
+        </div>
         {% block content %}
         {% endblock %}
         <script src="{% static 'core/script.js' %}" defer></script>
