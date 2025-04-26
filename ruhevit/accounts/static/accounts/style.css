@@ -192,34 +192,29 @@
  
 .thq-heading-1 {
   font-size: 48px;
-  font-family: STIX Two Text;
   font-weight: 700;
   line-height: 1.5;
 }
  
 .thq-heading-2 {
   font-size: 35px;
-  font-family: STIX Two Text;
   font-weight: 600;
   line-height: 1.5;
 }
  
 .thq-heading-3 {
   font-size: 26px;
-  font-family: STIX Two Text;
   font-weight: 600;
   line-height: 1.5;
 }
  
 .thq-body-large {
   font-size: 18px;
-  font-family: Noto Sans;
   line-height: 1.5;
 }
  
 .thq-body-small {
   font-size: 16px;
-  font-family: Noto Sans;
   line-height: 1.5;
 }
  
@@ -551,7 +546,6 @@
  
 .Content {
   font-size: 16px;
-  font-family: Inter;
   font-weight: 400;
   line-height: 1.15;
   text-transform: none;
@@ -561,7 +555,6 @@
 .paragraph {
   font-size: 20px;
   font-style: normal;
-  font-family: SF Pro;
   font-weight: 400px;
   font-stretch: normal;
   letter-spacing: 0em;
@@ -570,7 +563,6 @@
 .h1 {
   font-size: 30px;
   font-style: normal;
-  font-family: SF Pro;
   font-weight: 600px;
   font-stretch: normal;
   letter-spacing: 0em;
@@ -579,7 +571,6 @@
 .subtitle {
   font-size: 18px;
   font-style: normal;
-  font-family: SF Pro;
   font-weight: 400px;
   font-stretch: normal;
   letter-spacing: 0em;
@@ -588,7 +579,6 @@
 .emphasize {
   font-size: 18px;
   font-style: normal;
-  font-family: SF Pro;
   font-weight: 600px;
   font-stretch: normal;
   letter-spacing: 0em;
@@ -597,7 +587,6 @@
 .paragraphmobile {
   font-size: 16px;
   font-style: normal;
-  font-family: SF Pro;
   font-weight: 400px;
   font-stretch: normal;
   letter-spacing: 0em;
@@ -606,7 +595,6 @@
 .h1mobile {
   font-size: 25px;
   font-style: normal;
-  font-family: SF Pro;
   font-weight: 600px;
   font-stretch: normal;
   letter-spacing: 0em;
@@ -615,7 +603,6 @@
 .emphasizemobile {
   font-size: 16px;
   font-style: normal;
-  font-family: SF Pro;
   font-weight: 600px;
   font-stretch: normal;
   letter-spacing: 0em;
@@ -624,7 +611,6 @@
 .subtitlemobile {
   font-size: 14px;
   font-style: normal;
-  font-family: SF Pro;
   font-weight: 400px;
   font-stretch: normal;
   letter-spacing: 0em;
@@ -758,5 +744,10 @@ html, body {
 }
 
 html, body, div, span, p, h1, h2, h3, h4, h5, h6, a, button, input, textarea, select, ul, ol, li {
-    font-family: Vinnytsia Sans !important;
+  font-family:
+  SF Pro,
+  -apple-system,
+  Roboto,
+  Helvetica,
+  sans-serif !important;
 }
