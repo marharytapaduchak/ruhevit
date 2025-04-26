@@ -105,6 +105,14 @@
 
 {% block content %}
 <div class="main-content">
+  <div class="action-buttons">
+          <form action="{% url 'create_request' %}" method="get" style="display:inline;">
+            <button type="submit" class="create-button">
+              <span class="button-icon">&#43;</span>
+              <span class="button-text">Створити запит</span>
+            </button>
+          </form>
+        </div>
   <!-- Секція "Ваші запити як ініціатора" -->
   <section class="requests-block">
     <h2 class="requests-text">Ваші запити як ініціатора</h2>
