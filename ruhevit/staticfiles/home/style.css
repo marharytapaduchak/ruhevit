@@ -411,10 +411,10 @@ html {
       font-size: 20px;
       color: #1d1d20;
       font-weight: 400;
-      white-space: nowrap;
+      /* white-space: nowrap; */
       text-align: center;
       justify-content: start;
-      flex-wrap: wrap;
+      /* flex-wrap: wrap; */
     }
     
     .filter-button,
